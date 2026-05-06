@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# La Abacería - Maestros del Ibérico
 
-## Getting Started
+Una plataforma e-commerce de lujo diseñada para **La Abacería**, maestros en la selección de jamones y productos artesanos de Huelva, con sede en Coria del Río. Este proyecto moderniza la presencia digital de la marca utilizando una estética **Obsidian & Gold** de alta gama.
 
-First, run the development server:
+![Luxury Dark Design](public/images/gallery_corte.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Características Principales
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Diseño Obsidian & Gold**: Estética de lujo basada en negros profundos, dorados artesanales y efectos de cristal líquido (Glassmorphism).
+- **Experiencia Editorial**: Layouts fluidos y tipografía premium (Cormorant Garamond & Montserrat) que elevan la percepción del producto.
+- **Navegación Multi-página**: Estructura completa con secciones de Catálogo, Historia (Nosotros), Contacto y áreas legales.
+- **Animaciones Cinematográficas**: Implementación de **GSAP** para revelados de imagen y transiciones suaves impulsadas por el scroll.
+- **Optimización de Contenido**: Imágenes de alta fidelidad que destacan la textura y calidad de los productos gourmet.
+- **SEO & Performance**: Estructura semántica, metatags optimizados y tiempos de carga mínimos gracias a Next.js.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Stack Tecnológico
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Biblioteca UI**: [React 19](https://react.dev/)
+- **Lenguaje**: [TypeScript](https://www.typescriptlang.org/)
+- **Estilado**: Vanilla CSS (Modern Design Tokens)
+- **Animaciones**: [GSAP](https://greensock.com/gsap/) + ScrollTrigger
 
-## Learn More
+## 🚀 Inicio Rápido
 
-To learn more about Next.js, take a look at the following resources:
+### Requisitos Previos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js 20 o superior
+- npm / yarn / pnpm
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Instalación
 
-## Deploy on Vercel
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/jukk4p/laabaceria.git
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Instala las dependencias:
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+
+4. Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+
+## 📁 Estructura del Proyecto
+
+- `/src/app`: Rutas y lógica de páginas principales.
+- `/src/components`: Componentes modulares (Navbar, Footer, Gallery, etc.).
+- `/public`: Assets estáticos e imágenes de alta calidad.
+- `globals.css`: Definición del sistema de diseño y tokens de marca.
+
+---
+Diseñado y desarrollado para representar la excelencia artesana de **La Abacería**.
