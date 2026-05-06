@@ -13,10 +13,8 @@ const FEATURES = [
     title: "Corte a Cuchillo",
     icon: (
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14.5 17.5L3 6l3-3 11.5 11.5" />
-        <path d="M13 19l6-6" />
-        <path d="M16 16l4 4" />
-        <path d="M19 21l2-2" />
+        <path d="M2 22l1.5-1.5M4.5 19.5L19 5a2.121 2.121 0 0 1 3 3L7.5 22.5 2 22z" />
+        <path d="M15 5l4 4" />
       </svg>
     ),
     desc: "Maestría en cada loncha para preservar todo el aroma y sabor."
@@ -25,9 +23,9 @@ const FEATURES = [
     title: "Selección en Dehesa",
     icon: (
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 20V10" />
-        <path d="M18 14l-6-6-6 6" />
-        <path d="M20 20a8 8 0 0 0-16 0" />
+        <path d="M12 20v-8M9 20h6" />
+        <path d="M12 4a5 5 0 0 0-5 5c0 2 1 3.5 3 4.5.5.3 1 .5 1 .5s.5-.2 1-.5c2-1 3-2.5 3-4.5a5 5 0 0 0-5-5z" />
+        <path d="M7 9a3 3 0 0 1 3-3M14 9a3 3 0 0 0-3-3" />
       </svg>
     ),
     desc: "Solo las mejores piezas de bellota llegan a nuestra abacería."
@@ -36,8 +34,9 @@ const FEATURES = [
     title: "Tradición Local",
     icon: (
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 6v6l4 2" />
+        <circle cx="12" cy="8" r="7" />
+        <path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" />
+        <path d="M12 5v6M9 8h6" />
       </svg>
     ),
     desc: "Más de 30 años siendo el referente gourmet de Coria del Río."

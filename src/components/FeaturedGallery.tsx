@@ -9,10 +9,10 @@ import './FeaturedGallery.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const ITEMS = [
-  { img: "/images/gallery_corte.png", title: "Corte Maestro" },
-  { img: "/images/gallery_lomo.png", title: "Lomo de Bellota" },
-  { img: "/images/gallery_bodega.png", title: "Bodega Tradicional" },
-  { img: "/images/gallery_quesos.png", title: "Quesos de Autor" }
+  { id: 1, title: 'Nuestra Fachada', img: '/images/local_desde_fuera.jpg' },
+  { id: 2, title: 'Vinos de Selección', img: '/images/exposicion_vinos.jpg' },
+  { id: 3, title: 'Corte Artesano', img: '/images/Local_desde_dentro.webp' },
+  { id: 4, title: 'Nuestras Vitrinas', img: '/images/cristalera_productos_gourmet.jpg' }
 ];
 
 export default function FeaturedGallery() {

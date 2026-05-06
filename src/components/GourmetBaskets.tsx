@@ -10,28 +10,30 @@ gsap.registerPlugin(ScrollTrigger);
 const baskets = [
   {
     id: 1,
-    title: "Cesta Selección",
-    description: "Una cuidada combinación de embutidos artesanos y nuestra selección de vino tinto de la casa.",
-    price: "45€",
-    image: "/images/cesta_seleccion.png",
-    waLink: "https://wa.me/34691419369?text=Hola, quiero encargar la Cesta Selección de 45€"
+    title: "Lote Degustación Tradicional",
+    description: "Una selección equilibrada de nuestros mejores embutidos, regañás artesanales y aceite de oliva virgen extra.",
+    price: "Consultar",
+    image: "/images/cesta_pequeña.jpg",
+    waLink: "https://wa.me/34691419369?text=Hola, quiero consultar el precio del Lote Degustación Tradicional",
+    badge: "Popular"
   },
   {
     id: 2,
-    title: "Cesta Ibérica",
-    description: "Protagonizada por nuestro jamón de bellota cortado a mano, queso añejo y aceite de oliva virgen extra premium.",
-    price: "85€",
-    image: "/images/cesta_iberica.png",
-    waLink: "https://wa.me/34691419369?text=Hola, quiero encargar la Cesta Ibérica de 85€",
-    badge: "MÁS VENDIDA"
+    title: "Cesta Regalo Gourmet",
+    description: "La experiencia completa: incluye nuestra selección de quesos premiados, embutidos ibéricos y conservas selectas.",
+    price: "Consultar",
+    image: "/images/cesta_pequeña_variada.jpg",
+    waLink: "https://wa.me/34691419369?text=Hola, quiero consultar el precio de la Cesta Regalo Gourmet",
+    badge: "Premium"
   },
   {
     id: 3,
-    title: "Cesta Gran Gourmet",
-    description: "Nuestra selección más completa y exclusiva, diseñada para las ocasiones más especiales.",
-    price: "125€",
-    image: "/images/cesta_gran_gourmet.png",
-    waLink: "https://wa.me/34691419369?text=Hola, quiero encargar la Cesta Gran Gourmet de 125€"
+    title: "Pack Selección Abacería",
+    description: "Personaliza tu pack con los productos que más te gusten de nuestra vitrina de exposición.",
+    price: "Consultar",
+    image: "/images/mas_productos.jpg",
+    waLink: "https://wa.me/34691419369?text=Hola, quiero consultar por un Pack Selección Abacería",
+    badge: "Personalizado"
   }
 ];
 

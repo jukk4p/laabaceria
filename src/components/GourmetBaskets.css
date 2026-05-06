@@ -52,6 +52,8 @@
   position: relative;
   overflow: hidden;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
 }
 
 .basket-card:hover {
@@ -96,21 +98,30 @@
   font-style: italic;
 }
 
+.basket-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 .basket-content h3 {
   font-family: var(--font-display);
   font-size: 1.8rem;
   color: var(--color-text);
   margin-bottom: var(--space-sm);
   font-weight: 400;
+  min-height: 2.2em; /* Reserva espacio para 2 líneas */
+  display: flex;
+  align-items: flex-end;
 }
 
 .basket-content p {
   font-family: var(--font-body);
   font-size: 0.9rem;
-  line-height: 1.8;
+  line-height: 1.6;
   color: var(--color-muted);
   margin-bottom: var(--space-lg);
-  min-height: 80px;
+  min-height: 4.8em; /* Reserva espacio para la descripción */
   font-weight: 300;
 }
 
@@ -130,6 +141,7 @@
   transition: all var(--transition-base);
   font-weight: 500;
   text-decoration: none;
+  margin-top: auto; /* Empuja el botón al final de la tarjeta */
 }
 
 .basket-cta:hover {
