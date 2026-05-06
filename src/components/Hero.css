@@ -15,10 +15,10 @@
   left: 0;
   width: 100%;
   height: 120%;
-  background: url('/images/hero.png') no-repeat center center;
+  background: url('/images/Exposición_jamones_quesos.jpg') no-repeat center center;
   background-size: cover;
   z-index: 0;
-  filter: saturate(0.8) brightness(0.9);
+  filter: saturate(0.7) brightness(0.7) contrast(1.1);
 }
 
 .hero-overlay {
@@ -29,8 +29,8 @@
   height: 100%;
   background: radial-gradient(
     circle at center,
-    rgba(12, 10, 9, 0.2) 0%,
-    rgba(12, 10, 9, 0.8) 100%
+    rgba(12, 10, 9, 0.4) 0%,
+    rgba(12, 10, 9, 0.95) 100%
   );
   z-index: 1;
 }
@@ -104,7 +104,7 @@
 
 .btn-primary {
   background-color: var(--color-accent);
-  color: var(--color-text);
+  color: var(--color-bg);
   border: 1px solid var(--color-accent);
 }
 
@@ -112,19 +112,20 @@
   background-color: transparent;
   color: var(--color-accent);
   transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(161, 98, 7, 0.2);
+  box-shadow: 0 15px 30px rgba(209, 161, 94, 0.2);
 }
 
 .btn-secondary {
-  border: 1px solid var(--color-text);
+  border: 1px solid var(--color-accent);
   color: var(--color-text);
-  background: transparent;
+  background: rgba(209, 161, 94, 0.05);
 }
 
 .btn-secondary:hover {
-  background: var(--color-text);
+  background-color: var(--color-accent);
   color: var(--color-bg);
   transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(209, 161, 94, 0.2);
 }
 
 .hero-scroll-indicator {

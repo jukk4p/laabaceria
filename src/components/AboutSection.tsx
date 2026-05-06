@@ -41,7 +41,7 @@ export default function AboutSection() {
     <section className="about-home" ref={container} id="nosotros">
       <div className="about-home-grid">
         <div className="about-home-img" ref={imgRef}>
-          <img src="/images/jamon.png" alt="Corte artesanal" />
+          <img src="/images/Exposición_jamones_quesos_1.jpg" alt="Interior de La Abacería" />
         </div>
         <div className="about-home-content" ref={textRef}>
           <span className="section-tag">Nuestra Tradición</span>
