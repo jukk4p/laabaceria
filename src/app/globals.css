@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-  /* Colors - E-commerce Luxury (#4) & Brewery/Winery (#64) Hybrid */
-  --color-bg:       #0C0A09;   /* Obsidian Black */
-  --color-surface:  #1C1917;   /* Stone / Anthracite */
-  --color-accent:   #A16207;   /* Craft Gold (WCAG 3:1 Compliant) */
-  --color-accent-glare: #D4AF37; /* Metallic Gold highlight */
-  --color-text:     #FAFAF9;   /* Off-white Pearl */
-  --color-muted:    #A8A29E;   /* Muted Warm Gray */
-  --color-glass:    rgba(255, 255, 255, 0.03);
-  --color-border:   rgba(255, 255, 255, 0.1);
+  /* Colors - Traditional Gourmet Luxury */
+  --color-bg: #0C0A09;
+  --color-surface: #1A1614;
+  --color-accent: #4A0404;
+  --color-accent-soft: #630505;
+  --color-text: #FAF7F2;
+  --color-muted: #A8A29E;
+  --color-glass: rgba(26, 22, 20, 0.8);
+  --color-border: rgba(250, 247, 242, 0.1);
 
   /* Typography - Luxury Serif Pairing */
   --font-display:   'Cormorant Garamond', Georgia, serif;

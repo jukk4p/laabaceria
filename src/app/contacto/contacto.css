@@ -1,72 +1,72 @@
 .contacto-page {
-  padding-top: 140px;
+  padding-top: 150px;
   background-color: var(--color-bg);
   min-height: 100vh;
 }
 
 .contacto-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--space-md) var(--space-xl);
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: var(--space-xl);
+  padding: 0 var(--space-md) 100px;
 }
 
-.contacto-info {
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 60px;
+}
+
+.contacto-form {
+  background: var(--color-surface);
+  padding: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.form-group {
+  margin-bottom: 25px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: 8px;
 }
 
-.info-card {
-  background: var(--color-glass);
-  backdrop-filter: blur(10px);
-  padding: var(--space-lg);
-  border-left: 2px solid var(--color-accent);
-  border-top: 1px solid var(--color-border);
-  border-right: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-.info-card h3 {
+.form-group label {
   font-family: var(--font-body);
-  color: var(--color-muted);
-  margin-bottom: var(--space-xs);
-  text-transform: uppercase;
   font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  font-weight: 600;
 }
 
-.info-card p {
-  font-family: var(--font-display);
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-body);
+  font-size: 1rem;
   color: var(--color-text);
-  font-size: 1.4rem;
-  line-height: 1.4;
-  font-weight: 300;
-  font-style: italic;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
-.phone-number {
-  font-size: 2rem !important;
-  color: var(--color-accent) !important;
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+  border-color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.07);
 }
 
-.contacto-actions {
-  margin-top: var(--space-md);
-}
-
-.btn-whatsapp {
-  background-color: transparent;
-  color: var(--color-accent) !important;
-  border: 1px solid var(--color-accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+.submit-btn {
   width: 100%;
-  padding: 1.4rem;
   border-radius: 0;
   font-family: var(--font-body);
   font-weight: 600;
