@@ -1,0 +1,131 @@
+.about-home {
+  padding: var(--space-xl) var(--space-md);
+  background-color: var(--color-bg);
+}
+
+.about-home-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.about-home-img {
+  position: relative;
+  width: 100%;
+}
+
+.about-home-img::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid var(--color-accent);
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.about-home-img img {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+  border-radius: 2px;
+  filter: contrast(1.1) brightness(0.8) saturate(0.9);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+  transition: transform var(--transition-slow);
+}
+
+.about-home-img:hover img {
+  transform: scale(1.02);
+}
+
+.about-home-content {
+  padding: 0;
+}
+
+.section-tag {
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  font-weight: 500;
+  font-size: 0.7rem;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--color-text);
+  margin-bottom: 2.5rem;
+  line-height: 1;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.section-text {
+  font-family: var(--font-body);
+  color: rgba(250, 250, 249, 0.85);
+  font-size: 1rem;
+  line-height: 2;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.about-home-stats {
+  display: flex;
+  gap: 60px;
+  margin-top: 4rem;
+  padding: 2.5rem;
+  background: var(--color-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: var(--color-accent);
+  font-weight: 300;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-muted);
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 992px) {
+  .about-home-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  
+  .about-home-img {
+    order: 2;
+  }
+
+  .about-home-img img {
+    height: 400px;
+  }
+
+  .about-home-stats {
+    padding: 1.5rem;
+    gap: 30px;
+  }
+}

@@ -1,0 +1,121 @@
+.reviews-section {
+  padding: var(--space-xl) var(--space-md);
+  background-color: var(--color-surface);
+}
+
+.reviews-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.reviews-title {
+  color: var(--color-cream);
+  font-size: 2.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.reviews-overall {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  color: var(--color-accent);
+}
+
+.rating-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-cream);
+}
+
+.stars {
+  font-size: 1.2rem;
+}
+
+.review-count {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-md);
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch; /* Asegura que todas las tarjetas tengan la misma altura */
+}
+
+.review-card {
+  background-color: var(--color-bg);
+  padding: var(--space-lg); /* Un poco más de aire */
+  border: 1px solid rgba(201, 146, 58, 0.1);
+  transition: transform var(--transition-base);
+  display: flex;
+  flex-direction: column; /* Para empujar el autor al fondo */
+  height: 100%;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-accent);
+}
+
+.review-rating {
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+}
+
+.review-text {
+  color: var(--color-text);
+  font-style: italic;
+  line-height: 1.8;
+  margin-bottom: var(--space-lg);
+  font-size: 1.05rem;
+  flex-grow: 1; /* Hace que el texto ocupe el espacio disponible */
+}
+
+.review-author {
+  color: var(--color-accent); /* Cambiado a dorado para jerarquía */
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: auto; /* Empuja el autor siempre al fondo de la tarjeta */
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+@media (max-width: 768px) {
+  .reviews-section {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .reviews-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .reviews-overall {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .rating-value {
+    font-size: 1.8rem;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .review-card {
+    padding: var(--space-md);
+  }
+
+  .review-text {
+    font-size: 1rem;
+  }
+}
