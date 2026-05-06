@@ -43,4 +43,6 @@ next-env.d.ts
 # AI metadata
 AGENTS.md
 CLAUDE.md
+photo_requirements.md
+
 
