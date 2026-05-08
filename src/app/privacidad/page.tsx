@@ -7,7 +7,7 @@ export default async function Privacidad() {
   const supabase = await createClient();
   const { data: siteContent } = await supabase.from('site_content').select('*');
 
-  const content = siteContent?.find(c => c.id === 'legal-privacidad-content')?.content || 'Contenido no disponible.';
+  const content = siteContent?.find((c: any) => c.id === 'legal-privacidad-content')?.content || 'Contenido no disponible.';
 
   return (
     <article className="legal-page">

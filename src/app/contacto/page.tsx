@@ -9,7 +9,7 @@ export default async function Contacto() {
   const { data: siteContent } = await supabase.from('site_content').select('*');
 
   const getC = (id: string, fallback: string) => 
-    siteContent?.find(c => c.id === id)?.content || fallback;
+    siteContent?.find((c: any) => c.id === id)?.content || fallback;
 
   const contactData = {
     title: getC('contacto-page-title', 'Contacto'),

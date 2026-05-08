@@ -8,7 +8,7 @@ export default async function Nosotros() {
   const { data: siteContent } = await supabase.from('site_content').select('*');
 
   const getC = (id: string, fallback: string) => 
-    siteContent?.find(c => c.id === id)?.content || fallback;
+    siteContent?.find((c: any) => c.id === id)?.content || fallback;
 
   const nosotrosData = {
     pageTitle: getC('nosotros-page-title', 'Nuestra Historia'),
