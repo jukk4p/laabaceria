@@ -75,6 +75,7 @@
   margin-bottom: var(--space-lg);
   font-size: 1.05rem;
   flex-grow: 1; /* Hace que el texto ocupe el espacio disponible */
+  white-space: pre-wrap;
 }
 
 .review-author {

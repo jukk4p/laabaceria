@@ -33,6 +33,7 @@
   max-width: 350px;
   margin-bottom: var(--space-md);
   color: rgba(250, 250, 249, 0.7);
+  white-space: pre-wrap;
 }
 
 .footer-heading {
