@@ -1,6 +1,8 @@
 import CatalogoGrid from './CatalogoGrid';
 import './catalogo.css';
 
+export const dynamic = 'force-dynamic';
+
 export default function Catalogo() {
   return (
     <div className="catalogo-page">
