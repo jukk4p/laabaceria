@@ -435,7 +435,20 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
   const [uploading, setUploading] = useState<string | null>(null);
   const [localContent, setLocalContent] = useState<Record<string, string>>({});
   const [saving, setSaving] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState('hero');
   const supabase = createClient();
+
+  const categories = [
+    { id: 'hero', label: 'Cabecera (Hero)', icon: <Layout size={18} /> },
+    { id: 'about', label: 'Sobre Nosotros', icon: <Package size={18} /> },
+    { id: 'baskets', label: 'Cestas Gourmet', icon: <Plus size={18} /> },
+    { id: 'gallery', label: 'Galería', icon: <Layout size={18} /> },
+    { id: 'features', label: 'Características', icon: <Settings size={18} /> },
+    { id: 'reviews', label: 'Reseñas', icon: <MessageSquare size={18} /> },
+    { id: 'contact', label: 'Contacto', icon: <Settings size={18} /> },
+    { id: 'social', label: 'Redes', icon: <Settings size={18} /> },
+    { id: 'general', label: 'SEO y Pie', icon: <Settings size={18} /> },
+  ];
 
   const handleImageUpload = async (itemId: string, e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -460,39 +473,55 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
     if (text === undefined) return;
     setSaving(id);
     await onUpdate(id, text);
+    // Clear local state for this item after saving
+    const newLocal = { ...localContent };
+    delete newLocal[id];
+    setLocalContent(newLocal);
     setSaving(null);
   };
 
   return (
-    <div className="content-manager">
-      <header className="content-header">
-        <div className="header-titles">
-          <h1>Contenido de la Web</h1>
-          <p className="subtitle">Gestiona todos los textos e imágenes del sitio</p>
+    <div className="content-manager-v2">
+      <header className="cm-header">
+        <div className="cm-title-wrapper">
+          <h1>Editor de Contenido</h1>
+          <p>Personaliza cada rincón de tu sitio web en tiempo real</p>
         </div>
-        <div className="header-actions">
-          <button onClick={onSeed} className="seed-btn-secondary">
-            {content.length === 0 ? 'Cargar Contenido Inicial' : 'Sincronizar Nuevos Campos'}
-          </button>
-        </div>
+        <button onClick={onSeed} className="cm-sync-btn">
+          <Settings size={16} />
+          {content.length === 0 ? 'Cargar Contenido Inicial' : 'Sincronizar Estructura'}
+        </button>
       </header>
-      
-      <div className="sections-list">
-        {['hero', 'about', 'baskets', 'gallery', 'features', 'reviews', 'contact', 'social', 'general'].map(cat => (
-          <div key={cat} className="content-section">
-            <h2 className="section-title">{
-              cat === 'hero' ? 'Cabecera (Hero)' :
-              cat === 'about' ? 'Sobre Nosotros' :
-              cat === 'baskets' ? 'Cestas Gourmet' :
-              cat === 'gallery' ? 'Galería del Local' :
-              cat === 'features' ? 'Características / Iconos' :
-              cat === 'reviews' ? 'Reseñas de Clientes' :
-              cat === 'contact' ? 'Contacto y Horarios' :
-              cat === 'social' ? 'Redes Sociales' : 'Ajustes Generales y SEO'
-            }</h2>
-            <div className="fields-grid">
+
+      <div className="cm-main-layout">
+        <aside className="cm-nav">
+          {categories.map(cat => (
+            <button 
+              key={cat.id}
+              className={`cm-nav-item ${activeCategory === cat.id ? 'active' : ''}`}
+              onClick={() => setActiveCategory(cat.id)}
+            >
+              {cat.icon}
+              <span>{cat.label}</span>
+              {content.some((c: any) => c.category === cat.id && localContent[c.id] !== undefined) && (
+                <span className="dot-indicator" />
+              )}
+            </button>
+          ))}
+        </aside>
+
+        <main className="cm-content-area">
+          <div className="cm-category-view">
+            <div className="cm-category-header">
+              <h2>{categories.find(c => c.id === activeCategory)?.label}</h2>
+              <span className="count-tag">
+                {content.filter((c: any) => c.category === activeCategory).length} campos
+              </span>
+            </div>
+
+            <div className="cm-fields-stack">
               {content
-                .filter((c: any) => c.category === cat)
+                .filter((c: any) => c.category === activeCategory)
                 .sort((a: any, b: any) => {
                   const getNum = (id: string) => {
                     const m = id.match(/-(\d+)-/);
@@ -504,225 +533,280 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
                   return a.id.localeCompare(b.id);
                 })
                 .map((item: any) => {
-                const getLabel = (id: string) => {
-                  const base = id.replace(cat + '-', '');
-                  const labels: Record<string, string> = {
-                    'title': 'Título Principal',
-                    'subtitle': 'Subtítulo / Ceja',
-                    'content': 'Contenido de Texto',
-                    'image': 'Imagen / Foto',
-                    'description': 'Descripción Detallada',
-                    'motto': 'Lema / Eslogan',
-                    'tag': 'Etiqueta Superior',
-                    'address': 'Dirección Física',
-                    'phone': 'Teléfono de Contacto',
-                    'email': 'Correo Electrónico',
-                    'hours': 'Horarios de Apertura',
-                    'instagram': 'URL Instagram',
-                    'facebook': 'URL Facebook',
-                    'whatsapp': 'WhatsApp (Ej: 34600000000)',
-                    'tagline': 'Frase Destacada Footer',
-                    'copy': 'Texto de Copyright',
-                    'tags': 'Palabras Clave (SEO/Trust)',
-                    'text': 'Cuerpo del Mensaje',
-                    'author': 'Nombre del Cliente',
-                    'rating': 'Puntuación (Estrellas)',
-                    'badge': 'Distintivo (Badge)',
-                    'desc': 'Breve Descripción',
-                    'primary-text': 'Texto Botón Principal',
-                    'primary-link': 'Enlace Botón Principal',
-                    'secondary-text': 'Texto Botón Secundario',
-                    'secondary-link': 'Enlace Botón Secundario'
+                  const getLabel = (id: string) => {
+                    const base = id.replace(activeCategory + '-', '');
+                    const labels: Record<string, string> = {
+                      'title': 'Título', 'subtitle': 'Subtítulo', 'content': 'Texto',
+                      'image': 'Imagen', 'description': 'Descripción', 'motto': 'Lema',
+                      'tag': 'Etiqueta', 'address': 'Dirección', 'phone': 'Teléfono',
+                      'email': 'Email', 'hours': 'Horarios', 'instagram': 'Instagram',
+                      'facebook': 'Facebook', 'whatsapp': 'WhatsApp', 'tagline': 'Frase Footer',
+                      'copy': 'Copyright', 'tags': 'SEO Tags', 'text': 'Mensaje',
+                      'author': 'Autor', 'rating': 'Puntuación', 'badge': 'Badge',
+                      'desc': 'Breve desc', 'primary-text': 'Botón 1 (Texto)',
+                      'primary-link': 'Botón 1 (Link)', 'secondary-text': 'Botón 2 (Texto)',
+                      'secondary-link': 'Botón 2 (Link)'
+                    };
+
+                    if (id.match(/-\d-/)) {
+                      const parts = id.split('-');
+                      const index = parts.find(p => !isNaN(Number(p)));
+                      const type = parts[parts.length - 1];
+                      const itemName = id.includes('basket') ? 'Cesta' : 
+                                     id.includes('gallery') ? 'Imagen' : 
+                                     id.includes('feature') ? 'Característica' : 'Elemento';
+                      return `${itemName} ${index} — ${labels[type] || type}`;
+                    }
+                    return labels[base] || base.charAt(0).toUpperCase() + base.slice(1).replace(/-/g, ' ');
                   };
 
-                  if (id.match(/-\d-/)) {
-                    const parts = id.split('-');
-                    const index = parts.find(p => !isNaN(Number(p)));
-                    const type = parts[parts.length - 1];
-                    const itemName = id.includes('basket') ? 'Cesta' : 
-                                   id.includes('gallery') ? 'Imagen' : 
-                                   id.includes('feature') ? 'Característica' : 'Elemento';
-                    return `${itemName} ${index} - ${labels[type] || type}`;
-                  }
+                  const isImage = item.id.includes('image') || item.id.includes('logo');
+                  const isDirty = localContent[item.id] !== undefined;
 
-                  return labels[base] || base.charAt(0).toUpperCase() + base.slice(1).replace(/-/g, ' ');
-                };
-
-                return (
-                  <div key={item.id} className="field-card">
-                    <div className="field-label-row">
-                      <label>{getLabel(item.id)}</label>
-                      {localContent[item.id] !== undefined && (
-                        <span className="unsaved-tag">Pendiente de guardar</span>
-                      )}
-                    </div>
-                  
-                    <div className="field-input-group">
-                      {item.id.includes('image') || item.id.includes('logo') ? (
-                        <div className="image-field">
-                          <img src={item.content} alt="Preview" className="site-img-preview" />
-                          <div className="upload-controls">
-                            <input type="file" onChange={(e: any) => handleImageUpload(item.id, e)} disabled={uploading === item.id} />
-                            {uploading === item.id && <span className="loader">Subiendo...</span>}
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="text-input-wrapper">
-                          {item.content.length > 80 || item.id.includes('hours') || item.id.includes('address') || item.id.includes('text') ? (
-                            <textarea 
-                              defaultValue={item.content}
-                              onChange={(e: any) => setLocalContent({ ...localContent, [item.id]: e.target.value })}
-                              rows={3}
-                            />
-                          ) : (
-                            <input 
-                              type="text" 
-                              defaultValue={item.content}
-                              onChange={(e: any) => setLocalContent({ ...localContent, [item.id]: e.target.value })}
-                            />
-                          )}
-                          <button 
-                            className={`save-field-btn ${saving === item.id ? 'saving' : ''}`}
-                            onClick={() => handleSave(item.id)}
-                            disabled={saving === item.id || localContent[item.id] === undefined}
-                          >
-                            {saving === item.id ? '...' : 'Guardar'}
+                  return (
+                    <div key={item.id} className={`cm-field-card ${isDirty ? 'dirty' : ''}`}>
+                      <div className="cm-card-top">
+                        <label className="cm-field-label">{getLabel(item.id)}</label>
+                        <div className="cm-card-actions">
+                          {isDirty && <span className="cm-status-badge">Cambios pendientes</span>}
+                          <button className="cm-delete-btn" onClick={() => onDelete(item.id)}>
+                            <Trash2 size={14} />
                           </button>
-                          <button 
-                             className="delete-field-btn"
-                             onClick={() => onDelete(item.id)}
-                             title="Eliminar este campo (útil para limpiar legacy)"
-                           >
-                             <Trash2 size={16} />
-                           </button>
                         </div>
-                      )}
+                      </div>
+
+                      <div className="cm-card-body">
+                        {isImage ? (
+                          <div className="cm-image-edit">
+                            <div className="cm-image-preview">
+                              <img src={item.content} alt="Preview" />
+                              <div className="cm-image-overlay">
+                                <label className="cm-upload-trigger">
+                                  <input type="file" onChange={(e: any) => handleImageUpload(item.id, e)} disabled={uploading === item.id} />
+                                  <span>{uploading === item.id ? 'Subiendo...' : 'Cambiar Imagen'}</span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="cm-text-edit">
+                            {item.content.length > 80 || item.id.includes('hours') || item.id.includes('address') || item.id.includes('text') ? (
+                              <textarea 
+                                defaultValue={item.content}
+                                onChange={(e: any) => setLocalContent({ ...localContent, [item.id]: e.target.value })}
+                                placeholder="Escribe aquí..."
+                                rows={4}
+                              />
+                            ) : (
+                              <input 
+                                type="text" 
+                                defaultValue={item.content}
+                                onChange={(e: any) => setLocalContent({ ...localContent, [item.id]: e.target.value })}
+                                placeholder="Escribe aquí..."
+                              />
+                            )}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="cm-card-footer">
+                        <span className="cm-item-id">{item.id}</span>
+                        <button 
+                          className={`cm-save-btn ${isDirty ? 'visible' : ''}`}
+                          onClick={() => handleSave(item.id)}
+                          disabled={saving === item.id || !isDirty}
+                        >
+                          {saving === item.id ? 'Guardando...' : 'Guardar Cambios'}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-              {content.filter((c: any) => c.category === cat).length === 0 && (
-                <p className="no-fields">No hay campos en esta sección. Haz clic en "Sincronizar" arriba.</p>
+                  );
+                })}
+              
+              {content.filter((c: any) => c.category === activeCategory).length === 0 && (
+                <div className="cm-empty-state">
+                  <Package size={48} />
+                  <h3>No hay campos disponibles</h3>
+                  <p>Parece que esta sección aún no ha sido sincronizada con la base de datos.</p>
+                  <button onClick={onSeed} className="cm-sync-btn-inline">Sincronizar Ahora</button>
+                </div>
               )}
             </div>
           </div>
-        ))}
+        </main>
       </div>
-
       <style jsx>{`
-        .content-manager { animation: fadeIn 0.5s ease; }
+        .content-manager-v2 { animation: fadeIn 0.5s ease; color: white; }
         
-        .content-header { 
+        .cm-header { 
           display: flex; 
           justify-content: space-between; 
           align-items: center; 
-          margin-bottom: 3rem; 
+          margin-bottom: 2rem; 
           background: #0a0a0a; 
-          padding: 2rem; 
-          border-bottom: 1px solid #222;
+          padding: 1.5rem 2rem; 
+          border-bottom: 1px solid #1a1a1a;
+          border-radius: 8px 8px 0 0;
         }
         
-        .header-titles h1 { font-family: var(--font-display); color: white; margin: 0; }
-        .subtitle { color: #666; margin: 0.5rem 0 0; font-size: 0.9rem; }
+        .cm-title-wrapper h1 { font-family: var(--font-display); color: #c5a059; margin: 0; font-size: 1.8rem; }
+        .cm-title-wrapper p { color: #666; margin: 0.3rem 0 0; font-size: 0.85rem; }
         
-        .seed-btn-secondary {
-          background: #c5a05922;
+        .cm-sync-btn {
+          background: transparent;
           color: #c5a059;
           border: 1px solid #c5a05944;
-          padding: 0.8rem 1.5rem;
+          padding: 0.6rem 1.2rem;
           border-radius: 4px;
           cursor: pointer;
           font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
           transition: 0.3s;
-        }
-        .seed-btn-secondary:hover { background: #c5a059; color: black; }
-
-        .content-section { 
-          margin-bottom: 4rem; 
-          padding: 0 2rem;
-        }
-        
-        .section-title { 
-          font-family: var(--font-display); 
-          color: #c5a059; 
-          margin-bottom: 2rem; 
-          letter-spacing: 2px; 
-          border-left: 3px solid #c5a059; 
-          padding-left: 1rem; 
-          font-size: 1.5rem;
+          font-size: 0.8rem;
           text-transform: uppercase;
         }
+        .cm-sync-btn:hover { background: #c5a05922; border-color: #c5a059; }
 
-        .fields-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+        .cm-main-layout { display: flex; gap: 2rem; min-height: 600px; }
         
-        .field-card { display: flex; flex-direction: column; gap: 1rem; background: #080808; padding: 1.5rem; border: 1px solid #111; border-radius: 4px; }
+        .cm-nav { width: 240px; display: flex; flex-direction: column; gap: 0.4rem; }
+        .cm-nav-item {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 1rem;
+          background: transparent;
+          border: 1px solid transparent;
+          border-radius: 6px;
+          color: #888;
+          cursor: pointer;
+          transition: 0.2s;
+          text-align: left;
+          position: relative;
+        }
+        .cm-nav-item:hover { background: #111; color: #ccc; }
+        .cm-nav-item.active { background: #c5a05911; color: #c5a059; border-color: #c5a05922; }
+        .cm-nav-item span { font-size: 0.9rem; font-weight: 500; }
         
-        .field-label-row { display: flex; justify-content: space-between; align-items: center; }
-        label { color: #888; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
-        
-        .unsaved-tag { background: #c5a059; color: black; font-size: 0.6rem; padding: 0.2rem 0.5rem; border-radius: 2px; font-weight: bold; text-transform: uppercase; }
+        .dot-indicator { 
+          position: absolute; 
+          right: 12px; 
+          width: 6px; 
+          height: 6px; 
+          background: #c5a059; 
+          border-radius: 50%; 
+          box-shadow: 0 0 10px #c5a059;
+        }
 
-        .text-input-wrapper { display: flex; gap: 1rem; align-items: flex-start; }
+        .cm-content-area { flex: 1; background: #080808; border-radius: 8px; border: 1px solid #111; }
+        
+        .cm-category-view { padding: 2rem; }
+        .cm-category-header { 
+          display: flex; 
+          justify-content: space-between; 
+          align-items: center; 
+          margin-bottom: 2rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid #111;
+        }
+        .cm-category-header h2 { font-family: var(--font-display); font-size: 1.4rem; color: #fff; margin: 0; }
+        .count-tag { font-size: 0.7rem; color: #444; text-transform: uppercase; letter-spacing: 1px; }
+
+        .cm-fields-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+        
+        .cm-field-card { 
+          background: #0a0a0a; 
+          border: 1px solid #1a1a1a; 
+          border-radius: 8px; 
+          padding: 1.5rem; 
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cm-field-card.dirty { border-color: #c5a05944; background: #0c0b09; }
+        
+        .cm-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.2rem; }
+        .cm-field-label { color: #666; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
+        
+        .cm-card-actions { display: flex; align-items: center; gap: 1rem; }
+        .cm-status-badge { color: #c5a059; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; }
+        .cm-delete-btn { background: transparent; border: none; color: #333; cursor: pointer; transition: 0.2s; }
+        .cm-delete-btn:hover { color: #ff4444; }
+
+        .cm-card-body { margin-bottom: 1.2rem; }
         
         input, textarea { 
+          width: 100%;
           background: #111; 
           border: 1px solid #222; 
-          color: white; 
+          color: #eee; 
           padding: 1rem; 
           border-radius: 4px; 
           font-family: var(--font-body); 
-          flex: 1; 
-          transition: 0.3s; 
-          font-size: 1rem;
+          transition: 0.2s; 
+          font-size: 0.95rem;
+          line-height: 1.6;
         }
-        
-        input:focus, textarea:focus { border-color: #c5a059; outline: none; background: #161616; }
+        input:focus, textarea:focus { border-color: #c5a05966; outline: none; background: #141414; }
 
-        .save-field-btn {
+        .cm-image-preview { 
+          position: relative; 
+          width: 240px; 
+          height: 140px; 
+          border-radius: 6px; 
+          overflow: hidden; 
+          border: 1px solid #222;
+        }
+        .cm-image-preview img { width: 100%; height: 100%; object-fit: cover; }
+        .cm-image-overlay { 
+          position: absolute; 
+          inset: 0; 
+          background: rgba(0,0,0,0.6); 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          opacity: 0; 
+          transition: 0.3s; 
+        }
+        .cm-image-preview:hover .cm-image-overlay { opacity: 1; }
+        
+        .cm-upload-trigger { cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+        .cm-upload-trigger input { display: none; }
+        .cm-upload-trigger span { color: white; font-size: 0.8rem; font-weight: 600; border: 1px solid white; padding: 0.5rem 1rem; border-radius: 4px; }
+
+        .cm-card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #111; padding-top: 1rem; }
+        .cm-item-id { font-family: monospace; font-size: 0.7rem; color: #333; }
+        
+        .cm-save-btn {
           background: #c5a059;
           color: black;
           border: none;
-          padding: 1rem 1.5rem;
+          padding: 0.6rem 1.2rem;
           border-radius: 4px;
-          font-weight: bold;
+          font-weight: 700;
+          font-size: 0.8rem;
           cursor: pointer;
           transition: 0.3s;
-          white-space: nowrap;
-          min-width: 100px;
+          opacity: 0;
+          transform: translateY(5px);
+          pointer-events: none;
         }
-        .save-field-btn:disabled { background: #1a1a1a; color: #444; border-color: #222; cursor: not-allowed; }
-        .save-field-btn.saving { opacity: 0.7; }
-        
-        .delete-field-btn {
-          background: #ff444411;
-          color: #ff4444;
-          border: 1px solid #ff444433;
-          padding: 0.5rem;
-          border-radius: 4px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: 0.3s;
-        }
-        .delete-field-btn:hover { background: #ff4444; color: white; }
+        .cm-save-btn.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+        .cm-save-btn:hover { background: #d4b478; }
+        .cm-save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        .image-field { display: flex; align-items: center; gap: 2rem; background: #111; padding: 1.5rem; border-radius: 4px; border: 1px solid #222; }
-        .site-img-preview { width: 150px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #333; background: #000; }
-        
-        .no-fields { color: #444; font-style: italic; background: #050505; padding: 2rem; text-align: center; border: 1px dashed #222; border-radius: 4px; }
-        
-        .loader { color: #c5a059; font-size: 0.8rem; margin-left: 1rem; }
+        .cm-empty-state { text-align: center; padding: 6rem 2rem; color: #333; }
+        .cm-empty-state h3 { color: #555; margin: 1.5rem 0 0.5rem; }
+        .cm-sync-btn-inline { background: #c5a059; color: black; border: none; padding: 0.8rem 1.5rem; border-radius: 4px; font-weight: 700; margin-top: 1.5rem; cursor: pointer; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        @media (max-width: 768px) {
-          .content-header { flex-direction: column; gap: 1.5rem; text-align: center; }
-          .text-input-wrapper { flex-direction: column; }
-          .save-field-btn { width: 100%; }
-          .image-field { flex-direction: column; text-align: center; }
-          .site-img-preview { width: 100%; height: 200px; }
-          .content-section { padding: 0 1rem; }
+        @media (max-width: 992px) {
+          .cm-main-layout { flex-direction: column; }
+          .cm-nav { width: 100%; flex-direction: row; overflow-x: auto; padding-bottom: 1rem; }
+          .cm-nav-item { flex-shrink: 0; padding: 0.8rem; }
+          .cm-nav-item span { display: none; }
+          .cm-nav-item { width: 50px; justify-content: center; }
         }
       `}</style>
     </div>
