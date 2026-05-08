@@ -122,7 +122,6 @@ export default async function Home() {
 
       <Reviews data={reviewsData} />
       <ContactSection data={contactData} />
-      <Footer data={footerData} />
       <FloatingCTA 
         phone={getC('contact-phone', '691419369')} 
         whatsapp={getC('social-whatsapp', '34691419369')} 

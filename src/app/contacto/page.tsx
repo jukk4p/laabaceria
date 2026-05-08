@@ -1,109 +1,93 @@
-'use client';
-
-import { useState } from 'react';
+import { createClient } from '@/lib/supabase/server';
+import ContactForm from '@/components/ContactForm';
 import './contacto.css';
 
-export default function Contacto() {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    telefono: '',
-    email: '',
-    asunto: 'Información',
-    mensaje: ''
-  });
+export const dynamic = 'force-dynamic';
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+export default async function Contacto() {
+  const supabase = await createClient();
+  const { data: siteContent } = await supabase.from('site_content').select('*');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const text = `Nuevo mensaje de contacto:
-Nombre: ${formData.nombre}
-Teléfono: ${formData.telefono}
-Email: ${formData.email}
-Asunto: ${formData.asunto}
-Mensaje: ${formData.mensaje}`;
+  const getC = (id: string, fallback: string) => 
+    siteContent?.find(c => c.id === id)?.content || fallback;
 
-    const waLink = `https://wa.me/34691419369?text=${encodeURIComponent(text)}`;
-    window.open(waLink, '_blank');
+  const contactData = {
+    title: getC('contacto-page-title', 'Contacto'),
+    subtitle: getC('contacto-page-subtitle', 'Estamos a su disposición para cualquier consulta o pedido especial.'),
+    b2bTitle: getC('contacto-b2b-title', '¿Necesitas cestas para tu empresa?'),
+    b2bText: getC('contacto-b2b-text', 'Contacta con nosotros para un presupuesto personalizado y selección de piezas exclusivas.'),
+    info: {
+      address: getC('social-address', 'C. Cervantes, 1, 41100 Coria del Río, Sevilla'),
+      phone: getC('social-phone', '+34 691 41 93 69'),
+      email: getC('social-email', 'info@laabaceria.com'),
+      hours: getC('social-hours', 'L-V: 9:00-14:00, 17:00-20:00 | S: 10:00-14:00')
+    }
   };
 
   return (
     <div className="contacto-page">
       <header className="page-header">
-        <h1 className="page-title">Contacto</h1>
-        <p className="page-subtitle">Estamos a su disposición para cualquier consulta o pedido especial.</p>
+        <h1 className="page-title">{contactData.title}</h1>
+        <p className="page-subtitle">{contactData.subtitle}</p>
       </header>
 
       <div className="contacto-container">
         <div className="contacto-grid">
-          {/* Formulario */}
+          <div className="contacto-info-premium">
+            <div className="info-section">
+              <h3>Ubicación y Horario</h3>
+              <div className="info-item">
+                <span className="info-label">Dirección</span>
+                <p>{contactData.info.address}</p>
+              </div>
+              <div className="info-item">
+                <span className="info-label">Horario de Atención</span>
+                <p style={{ whiteSpace: 'pre-wrap' }}>{contactData.info.hours}</p>
+              </div>
+            </div>
+
+            <div className="info-section">
+              <h3>Contacto Directo</h3>
+              <div className="info-item">
+                <span className="info-label">Teléfono / WhatsApp</span>
+                <p className="accent-text">{contactData.info.phone}</p>
+              </div>
+              <div className="info-item">
+                <span className="info-label">Correo Electrónico</span>
+                <p>{contactData.info.email}</p>
+              </div>
+            </div>
+
+            <div className="b2b-premium-card">
+              <h4>{contactData.b2bTitle}</h4>
+              <p>{contactData.b2bText}</p>
+              <a href={`https://wa.me/${contactData.info.phone.replace(/\s+/g, '')}`} className="btn-gold-sm">
+                WhatsApp B2B
+              </a>
+            </div>
+          </div>
+
           <div className="contacto-form-wrapper">
-            <form onSubmit={handleSubmit} className="contacto-form">
-              <div className="form-group">
-                <label>Nombre completo</label>
-                <input type="text" name="nombre" value={formData.nombre} onChange={handleChange} required placeholder="Su nombre..." />
+            <div className="form-card-premium">
+              <div className="form-header">
+                <h2>Envíenos un mensaje</h2>
+                <p>Le responderemos en menos de 24 horas laborables.</p>
               </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Teléfono</label>
-                  <input type="tel" name="telefono" value={formData.telefono} onChange={handleChange} required placeholder="600 000 000" />
-                </div>
-                <div className="form-group">
-                  <label>Email</label>
-                  <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="email@ejemplo.com" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label>Asunto</label>
-                <select name="asunto" value={formData.asunto} onChange={handleChange}>
-                  <option value="Pedido">Pedido</option>
-                  <option value="Información">Información General</option>
-                  <option value="Cestas Gourmet">Cestas Gourmet</option>
-                  <option value="Empresa/B2B">Empresa / B2B</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label>Mensaje</label>
-                <textarea name="mensaje" value={formData.mensaje} onChange={handleChange} required rows={5} placeholder="¿En qué podemos ayudarle?"></textarea>
-              </div>
-              <button type="submit" className="submit-btn">Enviar por WhatsApp</button>
-            </form>
-
-            <div className="b2b-notice">
-              <h3>¿Necesitas cestas para tu empresa?</h3>
-              <p>Contacta con nosotros para un presupuesto personalizado y selección de piezas exclusivas.</p>
+              <ContactForm />
             </div>
           </div>
+        </div>
 
-          {/* Información y Mapa */}
-          <div className="contacto-info">
-            <div className="info-card">
-              <h3>La Abacería</h3>
-              <p><strong>Dirección:</strong> C. Cervantes, 75, 41100 Coria del Río, Sevilla</p>
-              <p><strong>Teléfono:</strong> <a href="tel:691419369">691 41 93 69</a></p>
-              <p><strong>Email:</strong> info@laabaceriacoria.es</p>
-              
-              <div className="horario">
-                <h4>Horario Comercial</h4>
-                <p>Lunes a Sábado: 09:30 - 14:30 | 17:30 - 21:00</p>
-                <p>Domingos: Cerrado</p>
-              </div>
-            </div>
-
-            <div className="map-wrapper">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3175.760241031354!2d-6.0526709!3d37.2889212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd12053676e109d7%3A0xc314125518401!2sLA%20ABACERIA%20JAMONES%20Y%20EMBUTIDOS!5e0!3m2!1ses!2ses!4v1714987000000!5m2!1ses!2ses" 
-                width="100%" 
-                height="300" 
-                style={{ border: 0 }} 
-                allowFullScreen={true} 
-                loading="lazy"
-                title="Mapa de La Abacería"
-              ></iframe>
-            </div>
-          </div>
+        <div className="map-section-premium">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.966378411037!2d-6.053535923467657!3d37.27962454044572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1213076e000001%3A0x6b7b744d930034a7!2sC.%20Cervantes%2C%201%2C%2041100%20Coria%20del%20R%C3%ADo%2C%20Sevilla!5e0!3m2!1ses!2ses!4v1715183421234!5m2!1ses!2ses" 
+            width="100%" 
+            height="450" 
+            style={{ border: 0, filter: 'grayscale(1) invert(0.9) contrast(1.2)' }} 
+            allowFullScreen={true} 
+            loading="lazy" 
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
     </div>

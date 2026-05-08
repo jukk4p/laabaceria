@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Lato } from "next/font/google";
 import NavbarWrapper from "@/components/NavbarWrapper";
+import FooterWrapper from "@/components/FooterWrapper";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import "./globals.css";
 
@@ -39,6 +40,7 @@ export default function RootLayout({
         <SchemaMarkup />
         <NavbarWrapper />
         {children}
+        <FooterWrapper />
       </body>
     </html>
   );

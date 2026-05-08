@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
-import { Package, LogOut, Plus, Settings, MessageSquare, Layout, Trash2, Monitor, Info, Gift, Image, CheckCircle, Quote, Phone, Share2, Search } from 'lucide-react';
+import { Package, LogOut, Plus, Settings, MessageSquare, Layout, Trash2, Monitor, Info, Gift, Image, CheckCircle, Quote, Phone, Share2, Search, History, Mail, Truck, FileText } from 'lucide-react';
 
 export default function AdminDashboard() {
   const [user, setUser] = useState<any>(null);
@@ -167,7 +167,50 @@ export default function AdminDashboard() {
         { id: 'review-2-rating', content: '5', category: 'reviews' },
         { id: 'review-3-author', content: 'Juan Pérez', category: 'reviews' },
         { id: 'review-3-text', content: 'Muy profesionales. Siempre que tengo una cena especial encargo aquí mi tabla de embutidos.', category: 'reviews' },
-        { id: 'review-3-rating', content: '4', category: 'reviews' }
+        { id: 'review-3-rating', content: '4', category: 'reviews' },
+
+        // NOSOTROS
+        { id: 'nosotros-page-title', content: 'Nuestra Historia', category: 'nosotros' },
+        { id: 'nosotros-page-subtitle', content: 'Tres décadas de pasión por el producto ibérico.', category: 'nosotros' },
+        { id: 'nosotros-section-title', content: 'Desde Coria del Río para el mundo', category: 'nosotros' },
+        { id: 'nosotros-text-1', content: 'La Abacería nació hace más de 30 años con un objetivo claro: traer la excelencia de las dehesas españolas directamente al corazón de Coria del Río. Lo que empezó como un pequeño local familiar se ha convertido hoy en un referente gourmet en Sevilla.', category: 'nosotros' },
+        { id: 'nosotros-text-2', content: 'Nuestra filosofía no ha cambiado: seleccionamos cada pieza en origen, respetando los tiempos de curación y el saber hacer de los maestros jamoneros. No vendemos solo comida, vendemos un trozo de nuestra cultura.', category: 'nosotros' },
+        { id: 'nosotros-stat-1-num', content: '30+', category: 'nosotros' },
+        { id: 'nosotros-stat-1-label', content: 'Años de experiencia', category: 'nosotros' },
+        { id: 'nosotros-stat-2-num', content: '10k+', category: 'nosotros' },
+        { id: 'nosotros-stat-2-label', content: 'Clientes satisfechos', category: 'nosotros' },
+        { id: 'nosotros-stat-3-num', content: '100%', category: 'nosotros' },
+        { id: 'nosotros-stat-3-label', content: 'Calidad garantizada', category: 'nosotros' },
+
+        // CONTACTO PAGE
+        { id: 'contacto-page-title', content: 'Contacto', category: 'contacto' },
+        { id: 'contacto-page-subtitle', content: 'Estamos a su disposición para cualquier consulta o pedido especial.', category: 'contacto' },
+        { id: 'contacto-b2b-title', content: '¿Necesitas cestas para tu empresa?', category: 'contacto' },
+        { id: 'contacto-b2b-text', content: 'Contacta con nosotros para un presupuesto personalizado y selección de piezas exclusivas.', category: 'contacto' },
+
+        // ENVIOS PAGE
+        { id: 'envios-page-title', content: 'Envíos y Entregas', category: 'envios' },
+        { id: 'envios-page-subtitle', content: 'Llevamos el sabor de nuestra abacería directamente a su mesa.', category: 'envios' },
+        { id: 'envios-card-1-title', content: 'Ámbito de Entrega', category: 'envios' },
+        { id: 'envios-card-1-text', content: 'Realizamos envíos a toda la Península Ibérica. Para envíos a Baleares, Canarias o internacional, por favor consúltenos directamente.', category: 'envios' },
+        { id: 'envios-card-1-icon', content: '🚚', category: 'envios' },
+        { id: 'envios-card-2-title', content: 'Plazos de Entrega', category: 'envios' },
+        { id: 'envios-card-2-text', content: 'Nuestros pedidos suelen entregarse en un plazo de 24 a 48 horas laborables para garantizar la frescura de los productos.', category: 'envios' },
+        { id: 'envios-card-2-icon', content: '⏱️', category: 'envios' },
+        { id: 'envios-card-3-title', content: 'Garantía de Calidad', category: 'envios' },
+        { id: 'envios-card-3-text', content: 'Todos nuestros productos viajan en embalajes reforzados y, si el producto lo requiere, con temperatura controlada.', category: 'envios' },
+        { id: 'envios-card-3-icon', content: '🛡️', category: 'envios' },
+        { id: 'envios-tarifa-1-label', content: 'Pedidos superiores a 150€', category: 'envios' },
+        { id: 'envios-tarifa-1-price', content: 'GRATIS', category: 'envios' },
+        { id: 'envios-tarifa-2-label', content: 'Envío Estándar (Península)', category: 'envios' },
+        { id: 'envios-tarifa-2-price', content: '6,95€', category: 'envios' },
+        { id: 'envios-tarifa-3-label', content: 'Recogida en tienda (Coria del Río)', category: 'envios' },
+        { id: 'envios-tarifa-3-price', content: 'GRATIS', category: 'envios' },
+
+        // LEGAL
+        { id: 'legal-aviso-content', content: 'Información legal sobre la empresa...', category: 'legal' },
+        { id: 'legal-privacidad-content', content: 'Política de privacidad y protección de datos...', category: 'legal' },
+        { id: 'legal-terminos-content', content: 'Términos y condiciones de uso...', category: 'legal' }
       ];
 
       // Get existing IDs
@@ -439,15 +482,18 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
   const supabase = createClient();
 
   const categories = [
-    { id: 'hero', label: 'Cabecera (Hero)', icon: <Monitor size={18} /> },
-    { id: 'about', label: 'Sobre Nosotros', icon: <Info size={18} /> },
-    { id: 'baskets', label: 'Cestas Gourmet', icon: <Gift size={18} /> },
-    { id: 'gallery', label: 'Galería', icon: <Image size={18} /> },
-    { id: 'features', label: 'Características', icon: <CheckCircle size={18} /> },
-    { id: 'reviews', label: 'Reseñas', icon: <Quote size={18} /> },
-    { id: 'contact', label: 'Contacto', icon: <Phone size={18} /> },
-    { id: 'social', label: 'Redes', icon: <Share2 size={18} /> },
-    { id: 'general', label: 'SEO y Pie', icon: <Search size={18} /> },
+    { id: 'hero', label: 'Home - Hero', icon: <Monitor size={18} /> },
+    { id: 'about', label: 'Home - Sobre Nosotros', icon: <Info size={18} /> },
+    { id: 'nosotros', label: 'Página - Nuestra Historia', icon: <History size={18} /> },
+    { id: 'baskets', label: 'Home - Cestas Gourmet', icon: <Gift size={18} /> },
+    { id: 'gallery', label: 'Home - Galería', icon: <Image size={18} /> },
+    { id: 'features', label: 'Home - Características', icon: <CheckCircle size={18} /> },
+    { id: 'reviews', label: 'Home - Reseñas', icon: <Quote size={18} /> },
+    { id: 'contacto', label: 'Página - Contacto', icon: <Mail size={18} /> },
+    { id: 'envios', label: 'Página - Envíos', icon: <Truck size={18} /> },
+    { id: 'legal', label: 'Páginas Legales', icon: <FileText size={18} /> },
+    { id: 'social', label: 'Redes Sociales', icon: <Share2 size={18} /> },
+    { id: 'general', label: 'SEO y Pie de página', icon: <Search size={18} /> },
   ];
 
   const handleImageUpload = async (itemId: string, e: React.ChangeEvent<HTMLInputElement>) => {
@@ -545,7 +591,20 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
                       'author': 'Autor', 'rating': 'Puntuación', 'badge': 'Badge',
                       'desc': 'Breve desc', 'primary-text': 'Botón 1 (Texto)',
                       'primary-link': 'Botón 1 (Link)', 'secondary-text': 'Botón 2 (Texto)',
-                      'secondary-link': 'Botón 2 (Link)'
+                      'secondary-link': 'Botón 2 (Link)',
+                      'page-title': 'Título de Página', 'page-subtitle': 'Subtítulo de Página',
+                      'section-title': 'Título de Sección', 'text-1': 'Párrafo 1', 'text-2': 'Párrafo 2',
+                      'stat-1-num': 'Dato 1 (Cifra)', 'stat-1-label': 'Dato 1 (Etiqueta)',
+                      'stat-2-num': 'Dato 2 (Cifra)', 'stat-2-label': 'Dato 2 (Etiqueta)',
+                      'stat-3-num': 'Dato 3 (Cifra)', 'stat-3-label': 'Dato 3 (Etiqueta)',
+                      'b2b-title': 'Título B2B', 'b2b-text': 'Texto B2B',
+                      'card-1-title': 'Tarjeta 1 (Título)', 'card-1-text': 'Tarjeta 1 (Texto)', 'card-1-icon': 'Tarjeta 1 (Icono/Emoji)',
+                      'card-2-title': 'Tarjeta 2 (Título)', 'card-2-text': 'Tarjeta 2 (Texto)', 'card-2-icon': 'Tarjeta 2 (Icono/Emoji)',
+                      'card-3-title': 'Tarjeta 3 (Título)', 'card-3-text': 'Tarjeta 3 (Texto)', 'card-3-icon': 'Tarjeta 3 (Icono/Emoji)',
+                      'tarifa-1-label': 'Tarifa 1 (Etiqueta)', 'tarifa-1-price': 'Tarifa 1 (Precio)',
+                      'tarifa-2-label': 'Tarifa 2 (Etiqueta)', 'tarifa-2-price': 'Tarifa 2 (Precio)',
+                      'tarifa-3-label': 'Tarifa 3 (Etiqueta)', 'tarifa-3-price': 'Tarifa 3 (Precio)',
+                      'aviso-content': 'Contenido Aviso Legal', 'privacidad-content': 'Contenido Privacidad', 'terminos-content': 'Contenido Términos'
                     };
 
                     if (id.match(/-\d-/)) {

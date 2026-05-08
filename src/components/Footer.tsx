@@ -64,6 +64,7 @@ const Footer: React.FC<{ data?: any }> = ({ data }) => {
             <ul className="footer-links">
               <li><Link href="/aviso-legal">Aviso Legal</Link></li>
               <li><Link href="/privacidad">Privacidad</Link></li>
+              <li><Link href="/terminos">Términos</Link></li>
               <li><Link href="/envios">Envíos</Link></li>
             </ul>
           </div>
