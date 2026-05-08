@@ -556,7 +556,7 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
                         </div>
                       ) : (
                         <div className="text-input-wrapper">
-                          {item.content.length > 80 ? (
+                          {item.content.length > 80 || item.id.includes('hours') || item.id.includes('address') || item.id.includes('text') ? (
                             <textarea 
                               defaultValue={item.content}
                               onChange={(e: any) => setLocalContent({ ...localContent, [item.id]: e.target.value })}

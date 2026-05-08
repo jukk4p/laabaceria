@@ -39,6 +39,7 @@
   font-size: 18px;
   line-height: 1.6;
   color: var(--color-text);
+  white-space: pre-wrap;
 }
 
 .info-block a {

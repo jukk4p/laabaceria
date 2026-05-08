@@ -75,6 +75,7 @@
   font-size: 0.9rem;
   line-height: 1.8;
   margin-bottom: 25px;
+  white-space: pre-wrap;
 }
 
 .footer-hours p {
