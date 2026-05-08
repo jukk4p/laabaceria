@@ -20,7 +20,7 @@ export default async function Home() {
 
   // Helper to get content by ID with fallback
   const getC = (id: string, fallback: string) => 
-    siteContent?.find(c => c.id === id)?.content || fallback;
+    siteContent?.find((c: any) => c.id === id)?.content || fallback;
 
   const heroData = {
     subtitle: getC('hero-subtitle', 'ULTRAMARINOS FINOS & PRODUCTOS GOURMET'),
