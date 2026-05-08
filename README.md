@@ -1,58 +1,81 @@
-# La Abacería - Maestros del Ibérico
+<div align="center">
+  
+![La Abacería Hero](public/images/readme_header.png)
 
-Una plataforma e-commerce de lujo diseñada para **La Abacería**, maestros en la selección de jamones y productos artesanos de Huelva, con sede en Coria del Río. Este proyecto moderniza la presencia digital de la marca utilizando una estética **Obsidian & Gold** de alta gama.
+# ✨ LA ABACERÍA ✨
+### Maestros del Ibérico • Selección Gourmet de Lujo
 
-![Luxury Dark Design](public/images/gallery_corte.png)
+[![Astro](https://img.shields.io/badge/Astro-Framework-FF5D01?style=for-the-badge&logo=astro)](https://astro.build/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![GSAP](https://img.shields.io/badge/GSAP-Animation-88CE02?style=for-the-badge&logo=greensock)](https://greensock.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 
-## ✨ Características Principales
+**Una boutique digital premium diseñada para transmitir la excelencia de la gastronomía artesana.**
+*Especialistas en Selección de Ibéricos en Huelva.*
 
-- **Diseño Obsidian & Gold**: Estética de lujo basada en negros profundos, dorados artesanales y efectos de cristal líquido (Glassmorphism).
-- **Experiencia Editorial**: Layouts fluidos y tipografía premium (Cormorant Garamond & Montserrat) que elevan la percepción del producto.
-- **Navegación Multi-página**: Estructura completa con secciones de Catálogo, Historia (Nosotros), Contacto y áreas legales.
-- **Animaciones Cinematográficas**: Implementación de **GSAP** para revelados de imagen y transiciones suaves impulsadas por el scroll.
-- **Optimización de Contenido**: Imágenes de alta fidelidad que destacan la textura y calidad de los productos gourmet.
-- **SEO & Performance**: Estructura semántica, metatags optimizados y tiempos de carga mínimos gracias a Next.js.
+---
+
+[🌐 Visitar Boutique](https://laabaceria.ivangonzalez.cloud/) • [📋 Catálogo Gourmet](#) • [📩 Contacto](https://ivangonzalez.cloud)
+
+</div>
+
+## 🏺 Sobre el Proyecto
+
+**La Abacería** es una experiencia digital inmersiva creada para los maestros en la selección de jamones y productos gourmet. El diseño busca replicar la exclusividad de una tienda física de alta gama a través de una interfaz **Obsidian & Gold**, tipografías elegantes y transiciones fluidas.
+
+### Propósito:
+- **Lujo Visual:** Crear una atmósfera de exclusividad desde el primer impacto visual.
+- **Autoridad Artesana:** Presentar la selección de productos con un enfoque editorial y profesional.
+- **Navegación Fluida:** Facilitar el descubrimiento de productos mediante una arquitectura de información optimizada.
 
 ## 🛠️ Stack Tecnológico
 
-- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
-- **Biblioteca UI**: [React 19](https://react.dev/)
-- **Lenguaje**: [TypeScript](https://www.typescriptlang.org/)
-- **Estilado**: Vanilla CSS (Modern Design Tokens)
-- **Animaciones**: [GSAP](https://greensock.com/gsap/) + ScrollTrigger
+| Tecnología | Propósito |
+| :--- | :--- |
+| **Astro** | Framework de ultra-rendimiento enfocado en la velocidad y el SEO. |
+| **TypeScript** | Tipado estricto para una base de código robusta y escalable. |
+| **Tailwind CSS** | Sistema de diseño utilitario para una estética premium y consistente. |
+| **GSAP** | Animaciones cinemáticas y control total del scroll-design. |
+| **Lucide Icons** | Iconografía minimalista adaptada al sector de lujo. |
 
-## 🚀 Inicio Rápido
+## 💎 Características Principales
 
-### Requisitos Previos
+- 🍖 **Diseño Editorial:** Layouts asimétricos inspirados en revistas de alta gastronomía.
+- 📱 **Fully Responsive:** Experiencia de lujo adaptada perfectamente a cualquier dispositivo.
+- ⚡ **Zero-JS by Default:** Máximo rendimiento gracias a la arquitectura de islas de Astro.
+- 🎭 **Motion Design:** Micro-interacciones suaves que aportan una capa de sofisticación táctil.
+- 🔒 **SEO Gourmet:** Estructura semántica optimizada para el posicionamiento de productos artesanos.
 
-- Node.js 20 o superior
-- npm / yarn / pnpm
+## 🚀 Instalación y Desarrollo
 
-### Instalación
+Si deseas clonar y ejecutar este proyecto localmente:
 
-1. Clona el repositorio:
+1. **Clonar el repositorio:**
    ```bash
    git clone https://github.com/jukk4p/laabaceria.git
+   cd laabaceria
    ```
 
-2. Instala las dependencias:
+2. **Instalar dependencias:**
    ```bash
    npm install
    ```
 
-3. Inicia el servidor de desarrollo:
+3. **Ejecutar servidor de desarrollo:**
    ```bash
    npm run dev
    ```
+   El sitio estará disponible en `http://localhost:4321`.
 
-4. Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+## 📦 Despliegue y Producción
 
-## 📁 Estructura del Proyecto
-
-- `/src/app`: Rutas y lógica de páginas principales.
-- `/src/components`: Componentes modulares (Navbar, Footer, Gallery, etc.).
-- `/public`: Assets estáticos e imágenes de alta calidad.
-- `globals.css`: Definición del sistema de diseño y tokens de marca.
+El proyecto está optimizado para un despliegue de alto rendimiento:
+- **Build:** `npm run build` genera una versión estática optimizada al 100%.
+- **Hosting:** Diseñado para brillar en Vercel, Netlify o Railway.
 
 ---
-Diseñado y desarrollado para representar la excelencia artesana de **La Abacería**.
+
+<div align="center">
+<p>Diseñado con ❤️ por <b>Antigravity</b> para La Abacería.</p>
+<p>© 2025 La Abacería - Maestros del Ibérico. Todos los derechos reservados.</p>
+</div>
