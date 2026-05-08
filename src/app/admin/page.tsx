@@ -559,7 +559,7 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
         <main className="cm-content-area">
           <div className="cm-category-view">
             <div className="cm-category-header">
-              <h2>{categories.find(c => c.id === activeCategory)?.label}</h2>
+              <h2>{categories.find((c: any) => c.id === activeCategory)?.label}</h2>
               <span className="count-tag">
                 {content.filter((c: any) => c.category === activeCategory).length} campos
               </span>
