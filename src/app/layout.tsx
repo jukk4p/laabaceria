@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Lato } from "next/font/google";
-import Navbar from "@/components/Navbar";
+import NavbarWrapper from "@/components/NavbarWrapper";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import "./globals.css";
 
@@ -37,7 +37,7 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${playfair.variable} ${lato.variable}`}>
         <SchemaMarkup />
-        <Navbar />
+        <NavbarWrapper />
         {children}
       </body>
     </html>
