@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
-import { Package, LogOut, Plus, Settings, MessageSquare, Layout, Trash2 } from 'lucide-react';
+import { Package, LogOut, Plus, Settings, MessageSquare, Layout, Trash2, Monitor, Info, Gift, Image, CheckCircle, Quote, Phone, Share2, Search } from 'lucide-react';
 
 export default function AdminDashboard() {
   const [user, setUser] = useState<any>(null);
@@ -439,15 +439,15 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
   const supabase = createClient();
 
   const categories = [
-    { id: 'hero', label: 'Cabecera (Hero)', icon: <Layout size={18} /> },
-    { id: 'about', label: 'Sobre Nosotros', icon: <Package size={18} /> },
-    { id: 'baskets', label: 'Cestas Gourmet', icon: <Plus size={18} /> },
-    { id: 'gallery', label: 'Galería', icon: <Layout size={18} /> },
-    { id: 'features', label: 'Características', icon: <Settings size={18} /> },
-    { id: 'reviews', label: 'Reseñas', icon: <MessageSquare size={18} /> },
-    { id: 'contact', label: 'Contacto', icon: <Settings size={18} /> },
-    { id: 'social', label: 'Redes', icon: <Settings size={18} /> },
-    { id: 'general', label: 'SEO y Pie', icon: <Settings size={18} /> },
+    { id: 'hero', label: 'Cabecera (Hero)', icon: <Monitor size={18} /> },
+    { id: 'about', label: 'Sobre Nosotros', icon: <Info size={18} /> },
+    { id: 'baskets', label: 'Cestas Gourmet', icon: <Gift size={18} /> },
+    { id: 'gallery', label: 'Galería', icon: <Image size={18} /> },
+    { id: 'features', label: 'Características', icon: <CheckCircle size={18} /> },
+    { id: 'reviews', label: 'Reseñas', icon: <Quote size={18} /> },
+    { id: 'contact', label: 'Contacto', icon: <Phone size={18} /> },
+    { id: 'social', label: 'Redes', icon: <Share2 size={18} /> },
+    { id: 'general', label: 'SEO y Pie', icon: <Search size={18} /> },
   ];
 
   const handleImageUpload = async (itemId: string, e: React.ChangeEvent<HTMLInputElement>) => {
