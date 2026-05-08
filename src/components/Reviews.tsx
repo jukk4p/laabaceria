@@ -8,26 +8,26 @@ import './Reviews.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const REVIEWS = [
-  {
-    author: "Antonio Moreno",
-    text: "El mejor jamón de toda la provincia. El trato es exquisito y la calidad de los embutidos es insuperable.",
-    rating: 5
-  },
-  {
-    author: "María García",
-    text: "Sitio de confianza para comprar productos gourmet. El corte a cuchillo es espectacular.",
-    rating: 5
-  },
-  {
-    author: "Juan Pérez",
-    text: "Muy profesionales. Siempre que tengo una cena especial encargo aquí mi tabla de embutidos.",
-    rating: 4
-  }
-];
-
-export default function Reviews() {
+export default function Reviews({ data }: { data?: any[] }) {
   const container = useRef<HTMLDivElement>(null);
+
+  const displayReviews = data?.length ? data : [
+    {
+      author: "Antonio Moreno",
+      text: "El mejor jamón de toda la provincia. El trato es exquisito y la calidad de los embutidos es insuperable.",
+      rating: 5
+    },
+    {
+      author: "María García",
+      text: "Sitio de confianza para comprar productos gourmet. El corte a cuchillo es espectacular.",
+      rating: 5
+    },
+    {
+      author: "Juan Pérez",
+      text: "Muy profesionales. Siempre que tengo una cena especial encargo aquí mi tabla de embutidos.",
+      rating: 4
+    }
+  ];
 
   useGSAP(() => {
     gsap.from(".review-card", {
@@ -54,9 +54,9 @@ export default function Reviews() {
         </div>
       </div>
       <div className="reviews-grid">
-        {REVIEWS.map((review, i) => (
+        {displayReviews.map((review, i) => (
           <div key={i} className="review-card">
-            <div className="review-rating">{"★".repeat(review.rating)}</div>
+            <div className="review-rating">{"★".repeat(Number(review.rating) || 5)}</div>
             <p className="review-text">"{review.text}"</p>
             <p className="review-author">— {review.author}</p>
           </div>

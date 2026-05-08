@@ -96,4 +96,12 @@
   .contact-map-wrapper {
     height: 350px;
   }
+
+  .info-block p {
+    font-size: 16px;
+  }
+
+  .contact-section {
+    padding: 60px 20px;
+  }
 }

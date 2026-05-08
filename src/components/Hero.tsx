@@ -9,7 +9,7 @@ import './Hero.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Hero() {
+export default function Hero({ data }: { data?: any }) {
   const container = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -18,7 +18,15 @@ export default function Hero() {
   const descRef = useRef<HTMLParagraphElement>(null);
   const actionsRef = useRef<HTMLDivElement>(null);
 
+  const heroData = data || {
+    subtitle: 'Desde 1990 · Coria del Río · Sevilla',
+    title: 'El Arte del Jamón Ibérico',
+    description: 'Selección artesanal de los mejores embutidos y productos gourmet de nuestra tierra. Tradición y sabor en cada corte.',
+    image: '/images/Exposición_jamones_quesos.jpg'
+  };
+
   useGSAP(() => {
+    // ... logic remains same ...
     // Parallax effect on background (Rule #13: use yPercent for performance)
     gsap.to(bgRef.current, {
       yPercent: 15,
@@ -78,22 +86,25 @@ export default function Hero() {
 
   return (
     <section className="hero" ref={container}>
-      <div className="hero-bg" ref={bgRef}></div>
+      <div 
+        className="hero-bg" 
+        ref={bgRef}
+        style={{ backgroundImage: `url(${heroData.image})` }}
+      ></div>
       <div className="hero-overlay"></div>
       
       <div className="hero-content" ref={contentRef}>
-        <p className="hero-subtitle" ref={subtitleRef}>Desde 1990 · Coria del Río · Sevilla</p>
-        <h1 className="hero-title" ref={titleRef}>El Arte del Jamón Ibérico</h1>
+        <p className="hero-subtitle" ref={subtitleRef}>{heroData.subtitle}</p>
+        <h1 className="hero-title" ref={titleRef}>{heroData.title}</h1>
         <p className="hero-description" ref={descRef}>
-          Selección artesanal de los mejores embutidos y productos gourmet 
-          de nuestra tierra. Tradición y sabor en cada corte.
+          {heroData.description}
         </p>
         <div className="hero-actions" ref={actionsRef}>
-          <a href="tel:691419369" className="btn btn-primary">
-            Llamar ahora
+          <a href={heroData.primaryBtnLink || 'tel:691419369'} className="btn btn-primary">
+            {heroData.primaryBtnText || 'Llamar ahora'}
           </a>
-          <Link href="#cestas" className="btn btn-secondary">
-            Ver catálogo
+          <Link href={heroData.secondaryBtnLink || '/catalogo'} className="btn btn-secondary">
+            {heroData.secondaryBtnText || 'Ver catálogo'}
           </Link>
         </div>
       </div>

@@ -5,13 +5,14 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import './TrustBar.css';
 
-const TAGS = [
-  "JABUGO", "GUIJUELO", "DEHESA DE EXTREMADURA", "VALLE DE LOS PEDROCHES", 
-  "CORTE A CUCHILLO", "PRODUCTO ARTESANO", "EDICIÓN LIMITADA", "CALIDAD SUPREMA"
-];
-
-export default function TrustBar() {
+export default function TrustBar({ tags }: { tags?: string }) {
   const tickerRef = useRef<HTMLDivElement>(null);
+  const displayTags = (tags && tags.trim() !== '') 
+    ? tags.split(',').map(t => t.trim()) 
+    : [
+    "JABUGO", "GUIJUELO", "DEHESA DE EXTREMADURA", "VALLE DE LOS PEDROCHES", 
+    "CORTE A CUCHILLO", "PRODUCTO ARTESANO", "EDICIÓN LIMITADA", "CALIDAD SUPREMA"
+  ];
 
   useGSAP(() => {
     gsap.to(".ticker-content", {
@@ -25,7 +26,7 @@ export default function TrustBar() {
   return (
     <div className="trust-bar" ref={tickerRef}>
       <div className="ticker-content">
-        {[...TAGS, ...TAGS].map((tag, i) => (
+        {[...displayTags, ...displayTags].map((tag, i) => (
           <span key={i} className="ticker-item">
             {tag} <span className="ticker-dot">·</span>
           </span>

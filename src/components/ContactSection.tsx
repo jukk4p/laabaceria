@@ -1,7 +1,14 @@
 import React from 'react';
 import './ContactSection.css';
 
-const ContactSection: React.FC = () => {
+const ContactSection: React.FC<{ data?: any }> = ({ data }) => {
+  const contactData = data || {
+    address: 'C. Cervantes, 75, 41100 Coria del Río, Sevilla',
+    phone: '691 41 93 69',
+    email: 'info@laabaceriacoria.es',
+    schedule: 'Lunes a Sábado:\n09:30 – 14:30 | 17:30 – 21:00\nDomingos: Cerrado'
+  };
+
   return (
     <section className="contact-section" id="contacto">
       <div className="contact-container">
@@ -16,9 +23,9 @@ const ContactSection: React.FC = () => {
           <div className="contact-info">
             <div className="info-block">
               <h3>Ubicación</h3>
-              <p>C. Cervantes, 75, 41100 Coria del Río, Sevilla</p>
+              <p>{contactData.address}</p>
               <a 
-                href="https://www.google.com/maps/dir/?api=1&destination=La+Abaceria+Coria+del+Rio" 
+                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(contactData.address)}`} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="map-link"
@@ -30,17 +37,15 @@ const ContactSection: React.FC = () => {
             <div className="info-block">
               <h3>Contacto</h3>
               <p>
-                Teléfono: <a href="tel:691419369">691 41 93 69</a><br />
-                Email: info@laabaceriacoria.es
+                Teléfono: <a href={`tel:${contactData.phone.replace(/\s/g, '')}`}>{contactData.phone}</a><br />
+                Email: {contactData.email}
               </p>
             </div>
 
             <div className="info-block">
               <h3>Horario</h3>
-              <p>
-                Lunes a Sábado:<br />
-                09:30 – 14:30 | 17:30 – 21:00<br />
-                Domingos: Cerrado
+              <p style={{ whiteSpace: 'pre-wrap' }}>
+                {contactData.schedule}
               </p>
             </div>
           </div>

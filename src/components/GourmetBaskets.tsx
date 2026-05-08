@@ -7,38 +7,43 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const baskets = [
-  {
-    id: 1,
-    title: "Lote Degustación Tradicional",
-    description: "Una selección equilibrada de nuestros mejores embutidos, regañás artesanales y aceite de oliva virgen extra.",
-    price: "Consultar",
-    image: "/images/cesta_pequeña.jpg",
-    waLink: "https://wa.me/34691419369?text=Hola, quiero consultar el precio del Lote Degustación Tradicional",
-    badge: "Popular"
-  },
-  {
-    id: 2,
-    title: "Cesta Regalo Gourmet",
-    description: "La experiencia completa: incluye nuestra selección de quesos premiados, embutidos ibéricos y conservas selectas.",
-    price: "Consultar",
-    image: "/images/cesta_pequeña_variada.jpg",
-    waLink: "https://wa.me/34691419369?text=Hola, quiero consultar el precio de la Cesta Regalo Gourmet",
-    badge: "Premium"
-  },
-  {
-    id: 3,
-    title: "Pack Selección Abacería",
-    description: "Personaliza tu pack con los productos que más te gusten de nuestra vitrina de exposición.",
-    price: "Consultar",
-    image: "/images/mas_productos.jpg",
-    waLink: "https://wa.me/34691419369?text=Hola, quiero consultar por un Pack Selección Abacería",
-    badge: "Personalizado"
-  }
-];
-
-const GourmetBaskets: React.FC = () => {
+const GourmetBaskets: React.FC<{ data?: any, items?: any[] }> = ({ data, items }) => {
   const sectionRef = useRef<HTMLElement>(null);
+  
+  const basketsData = data || {
+    eyebrow: 'REGALOS CON ALMA',
+    title: 'Cestas Gourmet'
+  };
+
+  const displayBaskets = items?.length ? items : [
+    {
+      id: 1,
+      title: "Lote Degustación Tradicional",
+      description: "Una selección equilibrada de nuestros mejores embutidos, regañás artesanales y aceite de oliva virgen extra.",
+      price: "Consultar",
+      image: "/images/cesta_pequeña.jpg",
+      waLink: "https://wa.me/34691419369?text=Hola, quiero consultar el precio del Lote Degustación Tradicional",
+      badge: "Popular"
+    },
+    {
+      id: 2,
+      title: "Cesta Regalo Gourmet",
+      description: "La experiencia completa: incluye nuestra selección de quesos premiados, embutidos ibéricos y conservas selectas.",
+      price: "Consultar",
+      image: "/images/cesta_pequeña_variada.jpg",
+      waLink: "https://wa.me/34691419369?text=Hola, quiero consultar el precio de la Cesta Regalo Gourmet",
+      badge: "Premium"
+    },
+    {
+      id: 3,
+      title: "Pack Selección Abacería",
+      description: "Personaliza tu pack con los productos que más te gusten de nuestra vitrina de exposición.",
+      price: "Consultar",
+      image: "/images/mas_productos.jpg",
+      waLink: "https://wa.me/34691419369?text=Hola, quiero consultar por un Pack Selección Abacería",
+      badge: "Personalizado"
+    }
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -66,27 +71,27 @@ const GourmetBaskets: React.FC = () => {
   return (
     <section className="baskets-section" ref={sectionRef} id="cestas">
       <div className="section-header">
-        <span className="eyebrow">REGALOS CON ALMA</span>
-        <h2 className="section-title">Cestas Gourmet</h2>
+        <span className="eyebrow">{basketsData.eyebrow}</span>
+        <h2 className="section-title">{basketsData.title}</h2>
         <div className="title-divider"></div>
       </div>
 
       <div className="baskets-grid">
-        {baskets.map((basket, index) => (
+        {displayBaskets.map((basket, index) => (
           <div 
-            key={basket.id} 
+            key={index} 
             className="basket-card"
           >
             <div className="basket-image-wrapper">
               {basket.badge && <span className="basket-badge">{basket.badge}</span>}
               <img src={basket.image} alt={basket.title} className="basket-image" />
-              <div className="basket-price-tag">{basket.price}</div>
+              <div className="basket-price-tag">{basket.price || 'Consultar'}</div>
             </div>
             <div className="basket-content">
               <h3>{basket.title}</h3>
-              <p>{basket.description}</p>
+              <p>{basket.description || basket.desc}</p>
               <a 
-                href={basket.waLink} 
+                href={basket.waLink || `https://wa.me/34691419369?text=Hola, quiero consultar el precio de ${basket.title}`}
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="basket-cta"
