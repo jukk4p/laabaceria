@@ -7,7 +7,7 @@ export default async function FooterWrapper() {
 
   // Helper to get content by ID with fallback
   const getC = (id: string, fallback: string) => 
-    siteContent?.find(c => c.id === id)?.content || fallback;
+    siteContent?.find((c: any) => c.id === id)?.content || fallback;
 
   const footerData = {
     tagline: getC('general-footer-tagline', 'Calidad, Tradición y Sabor en cada bocado.'),
