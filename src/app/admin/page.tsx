@@ -11,7 +11,7 @@ export default function AdminDashboard() {
   const [user, setUser] = useState<any>(null);
   const [products, setProducts] = useState<any[]>([]);
   const [siteContent, setSiteContent] = useState<any[]>([]);
-  const [currentView, setCurrentView] = useState<'catalog' | 'content' | 'messages'>('catalog');
+  const [currentView, setCurrentView] = useState<'catalog' | 'content' | 'messages' | 'settings'>('catalog');
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState<any>(null);
@@ -243,7 +243,7 @@ export default function AdminDashboard() {
           <button className={currentView === 'messages' ? 'active' : ''} onClick={() => setCurrentView('messages')}>
             <MessageSquare size={20} /> Mensajes
           </button>
-          <button className={currentView === 'settings' ? 'active' : ''} onClick={() => setCurrentView('catalog')}>
+          <button className={currentView === 'settings' ? 'active' : ''} onClick={() => setCurrentView('settings')}>
             <Settings size={20} /> Ajustes
           </button>
         </nav>
@@ -336,8 +336,20 @@ export default function AdminDashboard() {
             onDelete={handleDeleteContent}
             onSeed={handleSeed} 
           />
+        ) : currentView === 'messages' ? (
+          <div className="empty-view">
+            <MessageSquare size={48} style={{ marginBottom: '1rem', opacity: 0.2 }} />
+            <h2>Buzón de Mensajes</h2>
+            <p>Aquí aparecerán los mensajes enviados desde el formulario de contacto.</p>
+          </div>
+        ) : currentView === 'settings' ? (
+          <div className="empty-view">
+            <Settings size={48} style={{ marginBottom: '1rem', opacity: 0.2 }} />
+            <h2>Ajustes del Sistema</h2>
+            <p>Configuración de cuenta, seguridad y backups.</p>
+          </div>
         ) : (
-          <div className="empty-view">Sección en desarrollo...</div>
+          <div className="empty-view">Sección no encontrada</div>
         )}
       </main>
 
