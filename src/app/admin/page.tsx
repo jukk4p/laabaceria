@@ -172,7 +172,7 @@ export default function AdminDashboard() {
 
       // Get existing IDs
       const { data: existing } = await supabase.from('site_content').select('id');
-      const existingIds = (existing || []).map(e => e.id);
+      const existingIds = (existing || []).map((e: any) => e.id);
 
       // Filter new ones
       const newSeeds = allSeeds.filter(s => !existingIds.includes(s.id));
@@ -550,7 +550,7 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
                         <div className="image-field">
                           <img src={item.content} alt="Preview" className="site-img-preview" />
                           <div className="upload-controls">
-                            <input type="file" onChange={(e) => handleImageUpload(item.id, e)} disabled={uploading === item.id} />
+                            <input type="file" onChange={(e: any) => handleImageUpload(item.id, e)} disabled={uploading === item.id} />
                             {uploading === item.id && <span className="loader">Subiendo...</span>}
                           </div>
                         </div>
@@ -559,14 +559,14 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
                           {item.content.length > 80 ? (
                             <textarea 
                               defaultValue={item.content}
-                              onChange={(e) => setLocalContent({ ...localContent, [item.id]: e.target.value })}
+                              onChange={(e: any) => setLocalContent({ ...localContent, [item.id]: e.target.value })}
                               rows={3}
                             />
                           ) : (
                             <input 
                               type="text" 
                               defaultValue={item.content}
-                              onChange={(e) => setLocalContent({ ...localContent, [item.id]: e.target.value })}
+                              onChange={(e: any) => setLocalContent({ ...localContent, [item.id]: e.target.value })}
                             />
                           )}
                           <button 
@@ -751,12 +751,12 @@ function ProductModal({ product, onClose, onSave }: any) {
       <div className="modal-card">
         <h2>{product ? 'Editar Producto' : 'Nuevo Producto'}</h2>
         <form onSubmit={handleSubmit}>
-          <div className="form-group"><label>Nombre</label><input value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} required /></div>
+          <div className="form-group"><label>Nombre</label><input value={formData.name} onChange={(e: any) => setFormData({...formData, name: e.target.value})} required /></div>
           <div className="form-row">
-            <div className="form-group"><label>Categoría</label><select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}><option>Jamones</option><option>Embutidos</option><option>Quesos</option><option>Vinos</option><option>Miel</option><option>Conservas</option></select></div>
-            <div className="form-group"><label>Precio</label><input value={formData.price} onChange={e => setFormData({...formData, price: e.target.value})} /></div>
+            <div className="form-group"><label>Categoría</label><select value={formData.category} onChange={(e: any) => setFormData({...formData, category: e.target.value})}><option>Jamones</option><option>Embutidos</option><option>Quesos</option><option>Vinos</option><option>Miel</option><option>Conservas</option></select></div>
+            <div className="form-group"><label>Precio</label><input value={formData.price} onChange={(e: any) => setFormData({...formData, price: e.target.value})} /></div>
           </div>
-          <div className="form-group"><label>Descripción</label><textarea rows={3} value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} /></div>
+          <div className="form-group"><label>Descripción</label><textarea rows={3} value={formData.description} onChange={(e: any) => setFormData({...formData, description: e.target.value})} /></div>
           <div className="form-group">
             <label>Imagen</label>
             <div className="upload-container">
