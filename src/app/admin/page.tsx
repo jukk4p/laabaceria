@@ -87,50 +87,15 @@ export default function AdminDashboard() {
         { id: 'hero-subtitle', category: 'hero', content: 'ULTRAMARINOS FINOS & PRODUCTOS GOURMET' },
         { id: 'hero-description', category: 'hero', content: 'Selección artesanal de los mejores embutidos y productos gourmet de nuestra tierra. Tradición y sabor en cada bocado.' },
         { id: 'hero-image', category: 'hero', content: 'https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&q=80' },
-        { id: 'hero-primary-text', category: 'hero', content: 'Llamar ahora' },
-        { id: 'hero-primary-link', category: 'hero', content: 'tel:691419369' },
-        { id: 'hero-secondary-text', category: 'hero', content: 'Ver catálogo' },
-        { id: 'hero-secondary-link', category: 'hero', content: '/catalogo' },
         
         // ABOUT
-        { id: 'about-tag', category: 'about', content: 'NUESTRA TRADICIÓN' },
         { id: 'about-title', category: 'about', content: 'Nuestra Historia' },
         { id: 'about-content', category: 'about', content: 'Desde el corazón de Coria del Río, seleccionamos lo mejor de nuestra tierra para ofrecerte una experiencia gastronómica única.' },
-        { id: 'about-motto', category: 'about', content: 'Calidad, Tradición y Sabor en cada bocado.' },
         { id: 'about-image', category: 'about', content: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80' },
 
         // BASKETS
         { id: 'baskets-title', content: 'Cestas Gourmet', category: 'baskets' },
-        { id: 'baskets-subtitle', content: 'EL REGALO PERFECTO', category: 'baskets' },
         { id: 'baskets-image', content: 'https://images.unsplash.com/photo-1544965850-6f8a66788f9b?auto=format&fit=crop&q=80', category: 'baskets' },
-        { id: 'basket-1-title', content: 'Lote Degustación Tradicional', category: 'baskets' },
-        { id: 'basket-1-desc', content: 'Una selección equilibrada de nuestros mejores embutidos, regañás artesanales y aceite de oliva.', category: 'baskets' },
-        { id: 'basket-1-image', content: '/images/cesta_pequeña.jpg', category: 'baskets' },
-        { id: 'basket-1-badge', content: 'Popular', category: 'baskets' },
-        { id: 'basket-2-title', content: 'Cesta Regalo Gourmet', category: 'baskets' },
-        { id: 'basket-2-desc', content: 'La experiencia completa: incluye nuestra selección de quesos premiados y embutidos ibéricos.', category: 'baskets' },
-        { id: 'basket-2-image', content: '/images/cesta_pequeña_variada.jpg', category: 'baskets' },
-        { id: 'basket-2-badge', content: 'Premium', category: 'baskets' },
-        { id: 'basket-3-title', content: 'Pack Selección Abacería', category: 'baskets' },
-        { id: 'basket-3-desc', content: 'Personaliza tu pack con los productos que más te gusten de nuestra vitrina.', category: 'baskets' },
-        { id: 'basket-3-image', content: '/images/mas_productos.jpg', category: 'baskets' },
-        { id: 'basket-3-badge', content: 'Personalizado', category: 'baskets' },
-
-        // GALLERY
-        { id: 'gallery-title', content: 'Nuestro Rincón Gourmet', category: 'gallery' },
-        { id: 'gallery-subtitle', content: 'Descubre la esencia de nuestra tienda y la calidad de nuestros productos seleccionados.', category: 'gallery' },
-        { id: 'gallery-item-1-title', content: 'Nuestra Fachada', category: 'gallery' },
-        { id: 'gallery-item-1-desc', content: 'Ubicados en el corazón de Coria del Río.', category: 'gallery' },
-        { id: 'gallery-item-1-image', content: '/images/local_desde_fuera.jpg', category: 'gallery' },
-        { id: 'gallery-item-2-title', content: 'Vinos de Selección', category: 'gallery' },
-        { id: 'gallery-item-2-desc', content: 'Maridajes perfectos para nuestros ibéricos.', category: 'gallery' },
-        { id: 'gallery-item-2-image', content: '/images/exposicion_vinos.jpg', category: 'gallery' },
-        { id: 'gallery-item-3-title', content: 'Corte Artesano', category: 'gallery' },
-        { id: 'gallery-item-3-desc', content: 'Maestría y precisión en cada loncha.', category: 'gallery' },
-        { id: 'gallery-item-3-image', content: '/images/Local_desde_dentro.webp', category: 'gallery' },
-        { id: 'gallery-item-4-title', content: 'Nuestras Vitrinas', category: 'gallery' },
-        { id: 'gallery-item-4-desc', content: 'Productos selectos de la máxima calidad.', category: 'gallery' },
-        { id: 'gallery-item-4-image', content: '/images/cristalera_productos_gourmet.jpg', category: 'gallery' },
 
         // SOCIAL
         { id: 'social-instagram', category: 'social', content: 'https://instagram.com/laabaceria' },
@@ -138,7 +103,6 @@ export default function AdminDashboard() {
         { id: 'social-whatsapp', category: 'social', content: '34691419369' },
 
         // CONTACT
-        { id: 'contact-eyebrow', category: 'contact', content: 'ESTAMOS EN CORIA' },
         { id: 'contact-title', category: 'contact', content: 'Visítenos' },
         { id: 'contact-phone', category: 'contact', content: '691419369' },
         { id: 'contact-email', category: 'contact', content: 'info@laabaceriacoria.es' },
@@ -146,152 +110,120 @@ export default function AdminDashboard() {
         { id: 'contact-hours', category: 'contact', content: 'Lun - Vie: 8:30 - 14:00 | 17:30 - 21:00\nSábado: 8:30 - 14:00' },
 
         // GENERAL / SEO / FOOTER
-        { id: 'general-site-logo', content: '/logo.png', category: 'general' },
         { id: 'general-meta-description', content: 'La Abacería - Maestros del Jamón Ibérico y Productos Gourmet en Coria del Río.', category: 'general' },
         { id: 'general-footer-tagline', content: 'Calidad, Tradición y Sabor en cada bocado.', category: 'general' },
         { id: 'general-footer-copy', content: '© 2024 La Abacería. Todos los derechos reservados.', category: 'general' },
-        { id: 'general-trust-tags', content: 'JABUGO, GUIJUELO, DEHESA DE EXTREMADURA, VALLE DE LOS PEDROCHES, CORTE A CUCHILLO, PRODUCTO ARTESANO, EDICIÓN LIMITADA, CALIDAD SUPREMA', category: 'general' },
-        { id: 'footer-hours-weekday-label', content: 'Lunes a Sábado:', category: 'general' },
-        { id: 'footer-hours-weekday', content: '09:30 - 15:00, 18:00 - 21:00', category: 'general' },
-        { id: 'footer-hours-sunday-label', content: 'Domingo:', category: 'general' },
-        { id: 'footer-hours-sunday', content: '10:00 - 15:00', category: 'general' },
-
-        // FEATURES
-        { id: 'feature-1-title', content: 'Corte a Cuchillo', category: 'features' },
-        { id: 'feature-1-desc', content: 'Maestría en cada loncha para preservar todo el aroma y sabor.', category: 'features' },
-        { id: 'feature-2-title', content: 'Selección en Dehesa', category: 'features' },
-        { id: 'feature-2-desc', content: 'Solo las mejores piezas de bellota llegan a nuestra abacería.', category: 'features' },
-        { id: 'feature-3-title', content: 'Tradición Local', category: 'features' },
-        { id: 'feature-3-desc', content: 'Más de 30 años siendo el referente gourmet de nuestro pueblo.', category: 'features' },
-
-        // REVIEWS
-        { id: 'review-1-author', content: 'Antonio Moreno', category: 'reviews' },
-        { id: 'review-1-text', content: 'El mejor jamón de toda la provincia. El trato es exquisito y la calidad de los embutidos es insuperable.', category: 'reviews' },
-        { id: 'review-1-rating', content: '5', category: 'reviews' },
-        { id: 'review-1-date', content: 'marzo 2024', category: 'reviews' },
-        { id: 'review-1-avatar', content: 'AM', category: 'reviews' },
-        { id: 'review-2-author', content: 'María García', category: 'reviews' },
-        { id: 'review-2-text', content: 'Sitio de confianza para comprar productos gourmet. El corte a cuchillo es espectacular.', category: 'reviews' },
-        { id: 'review-2-rating', content: '5', category: 'reviews' },
-        { id: 'review-2-date', content: 'febrero 2024', category: 'reviews' },
-        { id: 'review-2-avatar', content: 'MG', category: 'reviews' },
-        { id: 'review-3-author', content: 'Juan Pérez', category: 'reviews' },
-        { id: 'review-3-text', content: 'Muy profesionales. Siempre que tengo una cena especial encargo aquí mi tabla de embutidos.', category: 'reviews' },
-        { id: 'review-3-rating', content: '5', category: 'reviews' },
-        { id: 'review-3-date', content: 'enero 2024', category: 'reviews' },
-        { id: 'review-3-avatar', content: 'JP', category: 'reviews' },
 
         // NOSOTROS
         { id: 'nosotros-page-title', content: 'Nuestra Historia', category: 'nosotros' },
-        { id: 'nosotros-page-subtitle', content: 'Tres décadas de pasión por el producto ibérico.', category: 'nosotros' },
-        { id: 'nosotros-section-title', content: 'Desde Coria del Río para el mundo', category: 'nosotros' },
-        { id: 'nosotros-text-1', content: 'La Abacería nació hace más de 30 años con un objetivo claro: traer la excelencia de las dehesas españolas directamente al corazón de Coria del Río. Lo que empezó como un pequeño local familiar se ha convertido hoy en un referente gourmet en Sevilla.', category: 'nosotros' },
-        { id: 'nosotros-text-2', content: 'Nuestra filosofía no ha cambiado: seleccionamos cada pieza en origen, respetando los tiempos de curación y el saber hacer de los maestros jamoneros. No vendemos solo comida, vendemos un trozo de nuestra cultura.', category: 'nosotros' },
-        { id: 'nosotros-stat-1-num', content: '30+', category: 'nosotros' },
-        { id: 'nosotros-stat-1-label', content: 'Años de experiencia', category: 'nosotros' },
-        { id: 'nosotros-stat-2-num', content: '10k+', category: 'nosotros' },
-        { id: 'nosotros-stat-2-label', content: 'Clientes satisfechos', category: 'nosotros' },
-        { id: 'nosotros-stat-3-num', content: '100%', category: 'nosotros' },
-        { id: 'nosotros-stat-3-label', content: 'Calidad garantizada', category: 'nosotros' },
+        { id: 'nosotros-text-1', content: 'La Abacería nació hace más de 30 años con un objetivo claro: traer la excelencia de las dehesas españolas directamente al corazón de Coria del Río.', category: 'nosotros' },
 
         // CONTACTO PAGE
         { id: 'contacto-page-title', content: 'Contacto', category: 'contacto' },
-        { id: 'contacto-page-subtitle', content: 'Estamos a su disposición para cualquier consulta o pedido especial.', category: 'contacto' },
-        { id: 'contacto-b2b-title', content: '¿Necesitas cestas para tu empresa?', category: 'contacto' },
-        { id: 'contacto-b2b-text', content: 'Contacta con nosotros para un presupuesto personalizado y selección de piezas exclusivas.', category: 'contacto' },
 
         // ENVIOS PAGE
         { id: 'envios-page-title', content: 'Envíos y Entregas', category: 'envios' },
-        { id: 'envios-page-subtitle', content: 'Llevamos el sabor de nuestra abacería directamente a su mesa.', category: 'envios' },
-        { id: 'envios-card-1-title', content: 'Ámbito de Entrega', category: 'envios' },
-        { id: 'envios-card-1-text', content: 'Realizamos envíos a toda la Península Ibérica. Para envíos a Baleares, Canarias o internacional, por favor consúltenos directamente.', category: 'envios' },
-        { id: 'envios-card-1-icon', content: '🚚', category: 'envios' },
-        { id: 'envios-card-2-title', content: 'Plazos de Entrega', category: 'envios' },
-        { id: 'envios-card-2-text', content: 'Nuestros pedidos suelen entregarse en un plazo de 24 a 48 horas laborables para garantizar la frescura de los productos.', category: 'envios' },
-        { id: 'envios-card-2-icon', content: '⏱️', category: 'envios' },
-        { id: 'envios-card-3-title', content: 'Garantía de Calidad', category: 'envios' },
-        { id: 'envios-card-3-text', content: 'Todos nuestros productos viajan en embalajes reforzados y, si el producto lo requiere, con temperatura controlada.', category: 'envios' },
-        { id: 'envios-card-3-icon', content: '🛡️', category: 'envios' },
-        { id: 'envios-tarifa-1-label', content: 'Pedidos superiores a 150€', category: 'envios' },
-        { id: 'envios-tarifa-1-price', content: 'GRATIS', category: 'envios' },
-        { id: 'envios-tarifa-2-label', content: 'Envío Estándar (Península)', category: 'envios' },
-        { id: 'envios-tarifa-2-price', content: '6,95€', category: 'envios' },
-        { id: 'envios-tarifa-3-label', content: 'Recogida en tienda (Coria del Río)', category: 'envios' },
-        { id: 'envios-tarifa-3-price', content: 'GRATIS', category: 'envios' },
 
-        // LEGAL
+        // LEGAL (CONTENIDO PROFESIONAL COMPLETO)
         { 
           id: 'legal-aviso-content', 
           category: 'legal',
-          content: `1. DATOS IDENTIFICATIVOS
-En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico, se reflejan los siguientes datos: la empresa titular de la web es LA ABACERÍA (en adelante La Abacería), con domicilio en C. Cervantes, 75, 41100 Coria del Río, Sevilla. Correo electrónico: info@laabaceriacoria.es.
+          content: `1. Datos Identificativos
+En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico, se reflejan los siguientes datos:
+- Titular: LA ABACERÍA (Jamones y Embutidos La Abacería)
+- CIF/NIF: [Pendiente de completar]
+- Dirección: C. Cervantes, 75, 41100 Coria del Río, Sevilla
+- Email: info@laabaceriacoria.es
+- Teléfono: +34 691 41 93 69
+- Actividad: Venta de productos cárnicos, jamones, embutidos y productos gourmet.
 
-2. USUARIOS
+2. Usuarios
 El acceso y/o uso de este portal de La Abacería atribuye la condición de USUARIO, que acepta, desde dicho acceso y/o uso, las Condiciones Generales de Uso aquí reflejadas.
 
-3. USO DEL PORTAL
+3. Uso del Portal
 laabaceriacoria.es proporciona el acceso a multitud de informaciones, servicios o datos en Internet pertenecientes a La Abacería. El USUARIO asume la responsabilidad del uso del portal.
 
-4. PROTECCIÓN DE DATOS
-La Abacería cumple con las directrices del Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), velando por garantizar un correcto uso y tratamiento de los datos personales del usuario.` 
+4. Propiedad Intelectual e Industrial
+La Abacería por sí o como cesionaria, es titular de todos los derechos de propiedad intelectual e industrial de su página web. Queda prohibida la reproducción total o parcial con fines comerciales sin la autorización de La Abacería.
+
+5. Exclusión de Garantías y Responsabilidad
+La Abacería no se hace responsable de los daños y perjuicios que pudieran ocasionar errores u omisiones en los contenidos, falta de disponibilidad del portal o transmisión de virus.
+
+6. Modificaciones
+La Abacería se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su portal.` 
         },
         { 
           id: 'legal-privacidad-content', 
           category: 'legal',
-          content: `RESPONSABLE DEL TRATAMIENTO: LA ABACERÍA
-FINALIDAD: Gestión de consultas, reservas y envío de información sobre nuestros productos gourmet.
-LEGITIMACIÓN: Consentimiento del interesado.
-DESTINATARIOS: No se cederán datos a terceros, salvo obligación legal.
-DERECHOS: Tiene derecho a acceder, rectificar y suprimir los datos, así como otros derechos, como se explica en la información adicional.
+          content: `1. Información al Usuario
+LA ABACERÍA, como responsable del Tratamiento, le informa que trataremos sus datos según lo dispuesto en el Reglamento (UE) 2016/679 (RGPD) y en la L.O. 3/2018 (LOPDGDD).
 
-Información adicional: Los datos personales proporcionados se conservarán mientras se mantenga la relación comercial o durante los años necesarios para cumplir con las obligaciones legales. Usted puede ejercer sus derechos dirigiéndose a C. Cervantes, 75, 41100 Coria del Río, Sevilla o vía email.` 
+2. Finalidad del Tratamiento
+- Tramitación de pedidos y solicitudes.
+- Gestión de reservas.
+- Envío de comunicaciones comerciales publicitarias por e-mail, WhatsApp o similar.
+
+3. Criterios de Conservación de los Datos
+Se conservarán durante no más tiempo del necesario para mantener el fin del tratamiento o existan prescripciones legales que dictaminen su custodia.
+
+4. Comunicación de los Datos
+No se comunicarán los datos a terceros, salvo obligación legal o a proveedores de logística.
+
+5. Derechos del Usuario
+Usted tiene derecho a retirar el consentimiento, acceso, rectificación, portabilidad y supresión de sus datos.
+
+6. Datos de Contacto
+Para ejercer sus derechos: C. Cervantes, 75, 41100 Coria del Río, Sevilla o info@laabaceriacoria.es.` 
         },
         { 
           id: 'legal-cookies-content', 
           category: 'legal',
-          content: `Este sitio web utiliza cookies para mejorar la experiencia del usuario. A continuación encontrará información sobre qué son las cookies, qué tipo de cookies utiliza este portal y cómo puede desactivarlas en su navegador.
+          content: `Este sitio web utiliza cookies para mejorar la experiencia del usuario.
 
-¿QUÉ SON LAS COOKIES?
-Las cookies son pequeños archivos que algunas plataformas pueden instalar en su ordenador, smartphone o tableta.
+1. ¿Qué son las cookies?
+Son pequeños archivos que las plataformas instalan en su ordenador para almacenar preferencias, recopilar estadísticas y permitir funcionalidades técnicas.
 
-TIPOS DE COOKIES QUE UTILIZAMOS:
-1. Cookies técnicas: Son aquellas que permiten al usuario la navegación a través de una página web y la utilización de las diferentes opciones o servicios que en ella existan.
-2. Cookies de análisis: Son aquellas que nos permiten cuantificar el número de usuarios y realizar la medición y análisis estadístico de la utilización que hacen los usuarios del servicio.
-3. Cookies de personalización: Permiten al usuario acceder al servicio con algunas características de carácter general predefinidas.` 
+2. Tipos de cookies que utilizamos
+- Cookies técnicas: Necesarias para la navegación.
+- Cookies de análisis: Para medición estadística del uso.
+- Cookies de personalización: Para recordar preferencias.
+
+3. ¿Cómo puede configurar sus preferencias?
+Usted puede permitir, bloquear o eliminar las cookies mediante la configuración de su navegador (Chrome, Firefox, Safari, Edge).
+
+4. Actualizaciones y cambios
+LA ABACERÍA puede modificar esta Política de Cookies en función de nuevas exigencias legislativas o reglamentarias.` 
         },
         { 
           id: 'legal-terminos-content', 
           category: 'legal',
-          content: `1. OBJETO Y ÁMBITO DE APLICACIÓN
-Las presentes Condiciones Generales regulan el acceso y uso del sitio web de La Abacería, así como la adquisición de sus productos.
+          content: `1. Objeto y Ámbito de Aplicación
+Regulan el acceso, navegación y uso del sitio web de LA ABACERÍA, así como la adquisición de productos gourmet y servicios de reserva.
 
-2. PRODUCTOS Y PRECIOS
-La Abacería se reserva el derecho a decidir, en cada momento, los productos que se ofrecen a los usuarios. Los precios indicados en pantalla incluyen el IVA.
+2. Productos y Precios
+Los precios incluyen el IVA correspondiente. Las imágenes son ilustrativas y el producto final puede variar ligeramente en apariencia.
 
-3. PROCESO DE COMPRA/RESERVA
-Los pedidos y reservas podrán gestionarse directamente a través de los canales de contacto facilitados (WhatsApp, teléfono). La formalización de la reserva implica la aceptación de estas condiciones.
+3. Proceso de Compra y Reserva
+Los pedidos y reservas se gestionan de forma personalizada a través de WhatsApp, Teléfono o Formulario.
 
-4. DEVOLUCIONES
-Dada la naturaleza perecedera de muchos de nuestros productos (jamones, embutidos, quesos), las devoluciones se regirán por la normativa vigente para productos de alimentación y consumo inmediato.` 
+4. Envíos y Entregas
+Los plazos y costes se comunicarán durante el proceso de compra. Trabajamos con logística especializada para garantizar la calidad.
+
+5. Devoluciones y Desistimiento
+Dada la naturaleza perecedera de los productos, el desistimiento solo aplica si el producto no ha sido abierto o manipulado.
+
+6. Legislación Aplicable y Jurisdicción
+Se rigen por la legislación española y se someten a los Juzgados y Tribunales de Sevilla.` 
         }
       ];
 
-      // Get existing IDs
-      const { data: existing } = await supabase.from('site_content').select('id');
-      const existingIds = (existing || []).map((e: any) => e.id);
-
-      // Filter new ones
-      const newSeeds = allSeeds.filter(s => !existingIds.includes(s.id));
-
-      if (newSeeds.length === 0) {
-        alert('Todos los campos ya están presentes en la base de datos.');
-        return;
-      }
-
-      const { error } = await supabase.from('site_content').insert(newSeeds);
+      // Filtramos para que solo se sincronicen/actualicen los campos de la categoría legal
+      const legalSeeds = allSeeds.filter(s => s.category === 'legal');
+      
+      const { error } = await supabase.from('site_content').upsert(legalSeeds, { onConflict: 'id' });
       if (error) throw error;
       
-      alert(`Se han añadido ${newSeeds.length} nuevos campos correctamente.`);
+      alert(`Se ha actualizado el contenido de las Páginas Legales correctamente.`);
       fetchContent();
     } catch (err: any) {
       alert(err.message);
@@ -694,9 +626,7 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
                         <label className="cm-field-label">{getLabel(item.id)}</label>
                         <div className="cm-card-actions">
                           {isDirty && <span className="cm-status-badge">Cambios pendientes</span>}
-                          <button className="cm-delete-btn" onClick={() => onDelete(item.id)}>
-                            <Trash2 size={14} />
-                          </button>
+                          {/* Botón de borrar eliminado para blindar la estructura */}
                         </div>
                       </div>
 

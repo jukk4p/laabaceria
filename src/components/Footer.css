@@ -190,6 +190,12 @@
   border-color: rgba(16, 185, 129, 0.2);
 }
 
+.status-pill.open .status-dot {
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
+
 .status-pill.closed {
   background: rgba(178, 59, 59, 0.15);
   color: #B23B3B;

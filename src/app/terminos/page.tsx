@@ -1,31 +1,56 @@
-import { createClient } from '@/lib/supabase/server';
 import '../Legal.css';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Terminos() {
-  const supabase = await createClient();
-  const { data: siteContent } = await supabase.from('site_content').select('*');
-
-  const defaultContent = `1. OBJETO Y ÁMBITO DE APLICACIÓN
-Las presentes Condiciones Generales regulan el acceso y uso del sitio web de La Abacería, así como la adquisición de sus productos y servicios de reserva.
-
-2. PRODUCTOS Y PRECIOS
-La Abacería se reserva el derecho a decidir, en cada momento, los productos que se ofrecen a los usuarios. Los precios indicados en pantalla incluyen el IVA correspondiente.
-
-3. PROCESO DE COMPRA/RESERVA
-Los pedidos y reservas podrán gestionarse directamente a través de los canales de contacto facilitados (WhatsApp, teléfono o formulario). La formalización de la reserva implica la aceptación íntegra de estas condiciones.
-
-4. DEVOLUCIONES Y CANCELACIONES
-Dada la naturaleza perecedera de muchos de nuestros productos gourmet (jamones, embutidos, quesos), las devoluciones se regirán por la normativa vigente para productos de alimentación. Para cancelaciones de reservas, se ruega avisar con un mínimo de 24 horas de antelación.`;
-
-  const content = siteContent?.find((c: any) => c.id === 'legal-terminos-content')?.content || defaultContent;
-
   return (
     <article className="legal-page">
       <h1>Términos y Condiciones</h1>
-      <div className="legal-content-rich" style={{ whiteSpace: 'pre-wrap' }}>
-        {content}
+      <div className="legal-content-rich">
+        <section>
+          <h2>1. Objeto y Ámbito de Aplicación</h2>
+          <p>
+            Las presentes Condiciones Generales regulan el acceso, navegación y uso del sitio web de LA ABACERÍA, así como las responsabilidades derivadas de la utilización de sus contenidos y cualquier otra comunicación comercial, incluyendo la adquisición de productos gourmet y servicios de reserva.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Productos y Precios</h2>
+          <p>
+            LA ABACERÍA se reserva el derecho a decidir, en cada momento, los productos que se ofrecen a los usuarios. Los precios indicados en pantalla están expresados en euros e incluyen el Impuesto sobre el Valor Adiñido (IVA) correspondiente.
+          </p>
+          <p>
+            A pesar de nuestros esfuerzos por mantener la información actualizada, las imágenes de los productos (especialmente en el caso de cortes de jamón o embutidos artesanales) son ilustrativas y el producto final puede variar ligeramente en apariencia.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Proceso de Compra y Reserva</h2>
+          <p>
+            Actualmente, los pedidos y reservas se gestionan de forma personalizada a través de nuestros canales directos (WhatsApp, Teléfono o Formulario de Contacto). La confirmación de un pedido o reserva por estos medios implica la aceptación íntegra de estas condiciones.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Envíos y Entregas</h2>
+          <p>
+            Los plazos de entrega y costes de envío se comunicarán de forma transparente durante el proceso de compra personalizada. LA ABACERÍA trabaja con proveedores logísticos especializados para garantizar que los productos gourmet lleguen en condiciones óptimas.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Devoluciones y Desistimiento</h2>
+          <p>
+            Dada la naturaleza perecedera de muchos de nuestros productos (jamones, embutidos, quesos), el derecho de desistimiento solo será aplicable si el producto no ha sido abierto o manipulado y mantiene su precinto original, salvo en casos de defectos de calidad demostrables.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Legislación Aplicable y Jurisdicción</h2>
+          <p>
+            Las presentes condiciones se regirán por la legislación española. Para cualquier controversia que pudiera derivarse del acceso o uso de este sitio web, LA ABACERÍA y el USUARIO se someten a los Juzgados y Tribunales de Sevilla, con renuncia expresa a cualquier otro fuero que pudiera corresponderles.
+          </p>
+        </section>
       </div>
     </article>
   );
