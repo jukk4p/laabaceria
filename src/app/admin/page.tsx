@@ -646,10 +646,10 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
                   const getLabel = (id: string) => {
                     const base = id.replace(activeCategory + '-', '');
                     const labels: Record<string, string> = {
-                      'title': 'Título', 'subtitle': 'Subtítulo', 'content': 'Texto',
+                      'title': 'Título / Título de Sección', 'subtitle': 'Subtítulo', 'content': 'Texto',
                       'image': 'Imagen', 'description': 'Descripción', 'motto': 'Lema',
-                      'tag': 'Etiqueta', 'address': 'Dirección', 'phone': 'Teléfono',
-                      'email': 'Email', 'hours': 'Horarios', 'instagram': 'Instagram',
+                      'tag': 'Etiqueta', 'address': 'Dirección Física', 'phone': 'Teléfono',
+                      'email': 'Email', 'hours': 'Horario (Texto)', 'instagram': 'Instagram',
                       'facebook': 'Facebook', 'whatsapp': 'WhatsApp', 'tagline': 'Frase Footer',
                       'copy': 'Copyright', 'tags': 'SEO Tags', 'text': 'Mensaje',
                       'author': 'Autor', 'rating': 'Puntuación', 'badge': 'Badge',
@@ -658,9 +658,7 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
                       'secondary-link': 'Botón 2 (Link)',
                       'page-title': 'Título de Página', 'page-subtitle': 'Subtítulo de Página',
                       'section-title': 'Título de Sección', 'text-1': 'Párrafo 1', 'text-2': 'Párrafo 2',
-                      'title': 'Título de Sección', 'eyebrow': 'Subtítulo (Eyebrow)',
-                      'address': 'Dirección Física', 'phone': 'Teléfono', 'email': 'Email',
-                      'hours': 'Horario (Texto)',
+                      'eyebrow': 'Subtítulo (Eyebrow)',
                       'stat-1-num': 'Dato 1 (Cifra)', 'stat-1-label': 'Dato 1 (Etiqueta)',
                       'stat-2-num': 'Dato 2 (Cifra)', 'stat-2-label': 'Dato 2 (Etiqueta)',
                       'stat-3-num': 'Dato 3 (Cifra)', 'stat-3-label': 'Dato 3 (Etiqueta)',
