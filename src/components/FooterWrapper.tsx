@@ -11,11 +11,18 @@ export default async function FooterWrapper() {
 
   const footerData = {
     tagline: getC('general-footer-tagline', 'Calidad, Tradición y Sabor en cada bocado.'),
-    address: getC('contact-address', 'C. San Sebastián, 5, 41510 Mairena del Alcor, Sevilla'),
-    hours: getC('contact-hours', 'Lunes a Viernes: 09:00 - 14:00 | 17:00 - 20:30\nSábados: 09:30 - 14:30'),
-    instagram: getC('social-instagram', 'https://instagram.com/laabaceria'),
-    facebook: getC('social-facebook', 'https://facebook.com/laabaceria'),
-    copy: getC('general-footer-copy', '© 2024 La Abacería. Todos los derechos reservados.')
+    address: getC('contact-address', 'C. Cervantes, 75, 41100 Coria del Río, Sevilla'),
+    hours: getC('contact-hours', 'Lun - Vie: 8:30 - 14:00 | 17:30 - 21:00\nSábado: 8:30 - 14:00'),
+    instagram: getC('social-instagram', 'https://www.instagram.com/la_abaceria_/'),
+    facebook: getC('social-facebook', 'https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/'),
+    whatsapp: getC('social-whatsapp', '34691419369'),
+    phone: getC('contact-phone', '691419369'),
+    email: getC('contact-email', 'info@laabaceriacoria.es'),
+    copy: getC('general-footer-copy', '© 2026 La Abacería. Todos los derechos reservados.'),
+    hoursWeekdayLabel: getC('footer-hours-weekday-label', 'Lunes a Sábado:'),
+    hoursWeekday: getC('footer-hours-weekday', '09:30 - 15:00, 18:00 - 21:00'),
+    hoursSundayLabel: getC('footer-hours-sunday-label', 'Domingo:'),
+    hoursSunday: getC('footer-hours-sunday', '10:00 - 15:00'),
   };
 
   return <Footer data={footerData} />;

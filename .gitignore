@@ -45,4 +45,9 @@ AGENTS.md
 CLAUDE.md
 photo_requirements.md
 
+# Debug & Temp
+output.txt
+scratch/
+site_content_dump.json
+
 

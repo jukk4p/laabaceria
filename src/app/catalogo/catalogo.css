@@ -40,24 +40,37 @@
 }
 
 .tab-btn {
-  padding: 12px 25px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  padding: 10px 25px;
+  background: rgba(232, 201, 122, 0.05);
+  border: 1px solid rgba(232, 201, 122, 0.1);
   color: var(--color-muted);
+  border-radius: 30px;
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-radius: 40px;
-  transition: all var(--transition-base);
-  font-weight: 500;
+}
+
+.tab-btn:hover {
+  background: rgba(232, 201, 122, 0.15);
+  color: var(--color-accent);
+  border-color: rgba(232, 201, 122, 0.4);
 }
 
 .tab-btn.active {
   background: var(--color-accent);
-  color: #FFFFFF;
+  color: #0e0600;
   border-color: var(--color-accent);
-  box-shadow: 0 10px 20px rgba(74, 4, 4, 0.2);
+  box-shadow: 0 4px 15px rgba(232, 201, 122, 0.2);
+}
+
+.tab-btn.active:hover {
+  background: #f0d898;
+  color: #0e0600;
 }
 
 .products-grid {
@@ -69,88 +82,107 @@
 .product-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
+  border-radius: 12px;
   transition: all var(--transition-base);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .product-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-  border-color: var(--color-accent);
+  transform: translateY(-5px);
+  border-color: rgba(232, 201, 122, 0.4);
 }
 
 .product-image-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/9;
   overflow: hidden;
+  background: #251000;
 }
 
 .product-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1); /* Sin zoom por defecto para máxima visibilidad */
   transition: transform var(--transition-slow);
 }
 
+/* Zoom extra solo para categorías con marcas de agua */
+.category-jamones .product-image-wrapper img,
+.category-embutidos .product-image-wrapper img,
+.category-quesos .product-image-wrapper img,
+.category-conservas .product-image-wrapper img {
+  transform: scale(1.2);
+}
+
 .product-card:hover .product-image-wrapper img {
-  transform: scale(1.05);
+  transform: scale(1.08); /* Hover sutil para las normales */
+}
+
+/* Ajuste de hover para las que ya tienen zoom inicial */
+.category-jamones:hover .product-image-wrapper img,
+.category-embutidos:hover .product-image-wrapper img,
+.category-quesos:hover .product-image-wrapper img,
+.category-conservas:hover .product-image-wrapper img {
+  transform: scale(1.25);
 }
 
 .product-price {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: var(--color-accent);
-  padding: 8px 15px;
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-accent);
   font-weight: 600;
-  border-radius: 2px;
+  margin: 0;
 }
 
 .product-info {
-  padding: 30px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
   flex-grow: 1;
 }
 
 .product-info h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--color-title);
   font-weight: 500;
 }
 
 .product-info p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--color-muted);
-  margin-bottom: 30px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(255, 245, 220, 0.6);
+  margin: 0;
   flex-grow: 1;
 }
 
 .wa-order-btn {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
   width: 100%;
-  padding: 15px;
-  background: var(--color-accent);
-  color: #FFFFFF;
-  text-align: center;
+  padding: 10px;
+  background: rgba(232, 201, 122, 0.08);
+  border: 1px solid rgba(232, 201, 122, 0.2);
+  border-radius: 8px;
+  color: rgba(255, 245, 220, 0.75);
+  font-size: 13px;
   text-decoration: none;
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  font-weight: 500;
 }
 
 .wa-order-btn:hover {
-  background: var(--color-accent-soft);
+  background: rgba(232, 201, 122, 0.15);
+  color: var(--color-accent);
+  border-color: rgba(232, 201, 122, 0.4);
 }
 
 @media (max-width: 768px) {

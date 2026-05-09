@@ -1,0 +1,65 @@
+.celebration-cta {
+  background: #261811; /* Warm Espresso Wood tone for a premium gourmet feel */
+  padding: 80px 20px;
+  border-top: 1px solid rgba(209, 161, 94, 0.05);
+  border-bottom: 1px solid rgba(209, 161, 94, 0.05);
+}
+
+.celebration-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.celebration-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--color-text);
+  margin-bottom: 10px;
+}
+
+.celebration-text {
+  font-family: var(--font-body);
+  color: var(--color-muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+}
+
+.wa-btn-full {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #25D366; /* Official vibrant WhatsApp green */
+  color: #fff;
+  padding: 18px 32px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.wa-btn-full:hover {
+  transform: translateY(-3px);
+  background: #25D366; /* Standard vibrant WhatsApp green */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 992px) {
+  .celebration-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .celebration-title {
+    font-size: 1.8rem;
+  }
+}

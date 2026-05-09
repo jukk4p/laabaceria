@@ -19,20 +19,20 @@
 .form-group label {
   font-size: 0.8rem;
   text-transform: uppercase;
-  color: #888;
-  letter-spacing: 1px;
+  color: var(--color-muted);
+  letter-spacing: 1.5px;
   font-weight: 700;
 }
 
 .form-group input,
 .form-group textarea {
-  background: #151515;
-  border: 1px solid #222;
+  background: rgba(13, 8, 6, 0.5); /* Semi-transparent Deep Espresso */
+  border: 1px solid rgba(209, 161, 94, 0.15);
   padding: 15px;
   color: #fff;
   font-family: var(--font-body);
   font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 8px;
   transition: 0.3s;
 }
 
@@ -40,21 +40,24 @@
 .form-group textarea:focus {
   outline: none;
   border-color: var(--color-accent);
-  background: #1a1a1a;
+  background: rgba(26, 15, 10, 0.8); /* Warm Espresso focus */
 }
 
 .submit-btn-premium {
   margin-top: 10px;
   padding: 18px;
   background: var(--color-accent);
-  color: #000;
+  color: #0d0806;
   border: none;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
   cursor: pointer;
   transition: 0.3s;
-  border-radius: 4px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .submit-btn-premium:hover:not(:disabled) {
@@ -100,7 +103,7 @@
 }
 
 .contact-success p {
-  color: #888;
+  color: var(--color-muted);
   margin-bottom: 30px;
 }
 

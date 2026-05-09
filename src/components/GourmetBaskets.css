@@ -1,181 +1,209 @@
 .baskets-section {
-  padding: var(--space-xl) var(--space-md);
-  background-color: var(--color-bg);
+  padding: 100px 24px;
+  background-color: #0d0806; /* Matches Reviews section for a deep editorial contrast */
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: var(--space-xl);
+  max-width: 800px;
+  margin: 0 auto 60px;
 }
 
-.eyebrow {
+.section-header .eyebrow {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.7rem;
-  letter-spacing: 0.5em;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
   color: var(--color-accent);
-  margin-bottom: var(--space-sm);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
-.section-title {
+.section-header .section-title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   color: var(--color-text);
-  margin-bottom: var(--space-md);
-  font-weight: 300;
-  font-style: italic;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  line-height: 1.1;
 }
 
-.title-divider {
-  width: 40px;
-  height: 1px;
-  background-color: var(--color-accent);
-  margin: 0 auto;
-  opacity: 0.4;
+.section-header .section-subtitle {
+  font-family: var(--font-body);
+  color: var(--color-muted);
+  font-size: 1.1rem;
+  font-weight: 400;
 }
 
 .baskets-grid {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-md);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 
 .basket-card {
-  background: var(--color-glass);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--color-border);
-  padding: var(--space-md);
-  transition: all var(--transition-base);
-  position: relative;
-  overflow: hidden;
-  border-radius: 4px;
+  background: #120f0d;
+  border: 1px solid rgba(209, 161, 94, 0.1);
+  border-radius: 20px;
+  padding: 45px 30px;
   display: flex;
   flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  height: 100%;
 }
 
 .basket-card:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+  transform: translateY(-10px);
+  border-color: rgba(209, 161, 94, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-.basket-image-wrapper {
+.basket-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 35px;
   position: relative;
+}
+
+.basket-badge {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 8px 16px;
+  border-radius: 100px;
+  background: #0c0a09;
+  position: absolute;
+  top: -12px;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.basket-badge.popular {
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.5);
+}
+
+.basket-badge.premium {
+  color: #ea580c;
+  border: 1px solid rgba(234, 88, 12, 0.5);
+}
+
+.basket-badge.a-medida,
+.basket-badge.personalizado,
+.basket-badge.pack-selección {
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.5);
+}
+
+.basket-image-container {
   width: 100%;
-  aspect-ratio: 4/5;
-  margin-bottom: var(--space-md);
+  aspect-ratio: 16 / 10;
   overflow: hidden;
-  border-radius: 2px;
+  border-radius: 12px;
+  border: 1px solid rgba(209, 161, 94, 0.15);
+  background: #000;
 }
 
 .basket-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow);
-  filter: contrast(1.05) brightness(0.9);
+  transition: transform 0.6s ease;
+  opacity: 0.9;
 }
 
 .basket-card:hover .basket-image {
-  transform: scale(1.08);
-}
-
-.basket-price-tag {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background: var(--color-accent);
-  color: var(--color-text);
-  padding: 1rem 1.5rem;
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: 1.5rem;
-  z-index: 2;
-  font-style: italic;
+  transform: scale(1.05);
+  opacity: 1;
 }
 
 .basket-content {
+  text-align: left;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex: 1;
 }
 
 .basket-content h3 {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: var(--color-text);
-  margin-bottom: var(--space-sm);
+  margin-bottom: 1.2rem;
   font-weight: 400;
-  min-height: 2.2em; /* Reserva espacio para 2 líneas */
+  line-height: 1.2;
+  min-height: 3.8rem;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .basket-content p {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: var(--color-muted);
-  margin-bottom: var(--space-lg);
-  min-height: 4.8em; /* Reserva espacio para la descripción */
-  font-weight: 300;
-  white-space: pre-wrap;
+  margin-bottom: 2.5rem;
+  min-height: 5rem;
+}
+
+.basket-price {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-top: auto;
+  margin-bottom: 2.5rem;
 }
 
 .basket-cta {
-  width: 100%;
-  display: block;
-  text-align: center;
-  padding: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 24px;
   background: transparent;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(209, 161, 94, 0.3);
   color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  cursor: pointer;
-  transition: all var(--transition-base);
-  font-weight: 500;
+  border-radius: 12px;
   text-decoration: none;
-  margin-top: auto; /* Empuja el botón al final de la tarjeta */
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .basket-cta:hover {
-  background: var(--color-accent);
+  background: rgba(209, 161, 94, 0.1);
   border-color: var(--color-accent);
-  color: #FFFFFF;
+  transform: translateY(-2px);
 }
 
-.basket-badge {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: var(--color-accent);
-  color: #FFFFFF;
-  padding: 5px 12px;
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  font-weight: 700;
-  z-index: 10;
-  border-radius: 2px;
-  font-family: var(--font-body);
+.basket-cta svg {
+  opacity: 0.8;
 }
 
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 2.5rem;
+@media (max-width: 1024px) {
+  .baskets-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
+}
+
+@media (max-width: 640px) {
   .baskets-grid {
     grid-template-columns: 1fr;
   }
-
+  
+  .section-header .section-title {
+    font-size: 2.5rem;
+  }
+  
   .basket-card {
-    padding: var(--space-sm);
+    padding: 30px 20px;
   }
 }

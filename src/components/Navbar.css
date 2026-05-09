@@ -4,16 +4,16 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 2rem 0;
-  transition: all var(--transition-base);
+  padding: 1.5rem 0;
+  transition: all 0.3s ease;
+  background-color: transparent;
 }
 
 .navbar.scrolled {
-  padding: 1.2rem 0;
-  background-color: rgba(12, 10, 9, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border);
+  padding: 0.8rem 0;
+  background-color: #0d0806; /* Negro Espresso profundo */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(161, 98, 7, 0.2);
 }
 
 .navbar-container {
@@ -25,72 +25,170 @@
   align-items: center;
 }
 
+/* Rediseño tripartito */
+.navbar-left, .navbar-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+}
+
+.navbar-right {
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.navbar-logo-group {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
 .navbar-logo {
   font-family: var(--font-display);
   font-size: 1.8rem;
-  color: var(--color-text);
-  font-weight: 400;
+  color: var(--color-accent); /* Logo en oro como en la imagen */
+  font-weight: 600;
   letter-spacing: 2px;
-}
-
-.navbar-links {
-  display: flex;
-  gap: var(--space-lg);
-  align-items: center;
-}
-
-.navbar-links a {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
-  font-weight: 500;
-  color: rgba(250, 250, 249, 0.75);
-  transition: all var(--transition-fast);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  line-height: 1;
 }
 
-.navbar-links a:hover {
+.navbar-subtext {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-top: 4px;
+  opacity: 0.8;
+}
+
+.navbar-center a {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  text-transform: capitalize; /* "Inicio" con mayúscula inicial */
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  color: var(--color-text);
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.navbar-center a:hover,
+.navbar-center a.active {
   color: var(--color-accent);
 }
 
-.nav-social {
+.navbar-center a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.navbar-center a.active::after {
+  width: 100%;
+}
+
+.social-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-group a {
+  color: var(--color-text);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.social-group a:hover {
+  color: var(--color-accent);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.divider {
+  width: 1px;
+  height: 30px;
+  background-color: rgba(209, 161, 94, 0.3);
+  margin: 0 0.5rem;
+}
+
+.phone-link {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.phone-capsule {
   display: flex;
   align-items: center;
-  color: var(--color-text);
-  transition: all var(--transition-fast);
-  padding: 0 10px;
+  gap: 12px;
+  padding: 10px 20px;
+  border: 1px solid rgba(209, 161, 94, 0.3);
+  border-radius: 50px; /* Estilo pill para que haga juego con el botón de WhatsApp */
+  color: var(--color-accent);
+  transition: all 0.3s ease;
 }
 
-.nav-social:hover {
-  color: var(--color-accent) !important;
-  transform: translateY(-2px);
+.phone-capsule:hover {
+  background-color: rgba(209, 161, 94, 0.05);
+  border-color: var(--color-accent);
 }
 
-.nav-cta {
-  background-color: var(--color-accent) !important;
-  color: var(--color-text) !important;
-  padding: 0.8rem 1.6rem !important;
-  border-radius: 0 !important;
-  border: 1px solid var(--color-accent) !important;
+.phone-number {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
-.nav-cta:hover {
-  background-color: transparent !important;
-  color: var(--color-accent) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(161, 98, 7, 0.2);
+.cta-btn-whatsapp {
+  background-color: var(--color-accent);
+  color: #0d0806;
+  padding: 0.7rem 1.6rem;
+  border-radius: 50px; /* Redondeado como en la imagen */
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
+.cta-btn-whatsapp:hover {
+  background-color: var(--color-accent-vibrant);
+}
+
+/* Mobile Menu */
 .mobile-menu-btn {
   display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1002;
   padding: 10px;
 }
 
 .hamburger {
   display: block;
   width: 24px;
-  height: 1px;
+  height: 2px;
   background: var(--color-text);
   position: relative;
   transition: all 0.3s;
@@ -101,7 +199,7 @@
   content: '';
   position: absolute;
   width: 24px;
-  height: 1px;
+  height: 2px;
   background: var(--color-text);
   left: 0;
   transition: all 0.3s;
@@ -114,32 +212,113 @@
 .hamburger.active::before { transform: rotate(45deg); top: 0; }
 .hamburger.active::after { transform: rotate(-45deg); top: 0; }
 
-@media (max-width: 992px) {
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background-color: #0d0806;
+  z-index: 1001;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-overlay.open {
+  right: 0;
+}
+
+.mobile-nav-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  padding-top: 5rem; /* Espacio para el logo/botón cerrar si existiera */
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.mobile-nav-links a {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-text);
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.mobile-nav-links a.active {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+.mobile-nav-footer {
+  padding: 30px 0 40px;
+  border-top: 1px solid rgba(197, 160, 89, 0.15); /* Oro muy sutil */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.mobile-social-links {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+}
+
+.mobile-social-links a {
+  color: #fff;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.mobile-social-links a:hover {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+.mobile-wa-fixed {
+  background-color: var(--color-accent);
+  color: #000;
+  padding: 1.1rem 2.2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(209, 161, 94, 0.3);
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.mobile-wa-fixed:active {
+  transform: scale(0.98);
+  background-color: var(--color-accent-soft);
+}
+
+@media (max-width: 1024px) {
+  .desktop-only {
+    display: none;
+  }
+  
   .mobile-menu-btn {
     display: block;
   }
 
-  .navbar-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 80%;
-    height: 100vh;
-    background-color: var(--color-bg);
-    flex-direction: column;
-    justify-content: center;
-    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    padding: var(--space-xl) var(--space-md);
-    box-shadow: -20px 0 50px rgba(0,0,0,0.8);
-    backdrop-filter: blur(10px);
-  }
-
-  .navbar-links.open {
-    right: 0;
-  }
-
-  .navbar-links a {
-    font-size: 1rem;
-    padding: var(--space-sm) 0;
+  .navbar-left {
+    flex: 1;
   }
 }

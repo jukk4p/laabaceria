@@ -18,18 +18,25 @@
   line-height: 1.8;
 }
 
+/* Section Delimiters - Editorial Style */
+main > section:not(:first-child) {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Specific section spacing adjustments */
 .middle-content {
   min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px 0;
+  padding: 0; /* Resetting since internal sections have their own padding */
   background-color: var(--color-bg);
 }
 
+/* Footer styling */
 .main-footer {
   padding: var(--space-lg) var(--space-md);
-  border-top: 1px solid var(--color-surface);
+  border-top: 1px solid var(--color-border);
   text-align: center;
 }
 

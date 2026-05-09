@@ -33,7 +33,15 @@
 
 .cta-button:hover {
   transform: scale(1.1);
+}
+
+.cta-button.phone:hover {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.cta-button.whatsapp:hover {
+  background-color: #25D366;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .cta-button.phone {

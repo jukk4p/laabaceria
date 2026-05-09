@@ -50,7 +50,7 @@ export default async function Nosotros() {
         </div>
         <div className="history-image">
           <div className="image-wrapper-premium">
-            <div className="image-real" style={{ backgroundImage: 'url("/images/Local_desde_dentro.webp")' }}>
+            <div className="image-real" style={{ backgroundImage: `url("${getC('about-image', '/images/nosotros_hero.png')}")` }}>
               <div className="image-caption-premium">Nuestra esencia en Coria del Río</div>
             </div>
             <div className="image-border-gold"></div>

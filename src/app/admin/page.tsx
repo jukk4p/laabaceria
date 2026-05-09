@@ -95,7 +95,7 @@ export default function AdminDashboard() {
         // ABOUT
         { id: 'about-tag', category: 'about', content: 'NUESTRA TRADICIÓN' },
         { id: 'about-title', category: 'about', content: 'Nuestra Historia' },
-        { id: 'about-content', category: 'about', content: 'Desde el corazón de nuestro pueblo, seleccionamos lo mejor de nuestra tierra para ofrecerte una experiencia gastronómica única.' },
+        { id: 'about-content', category: 'about', content: 'Desde el corazón de Coria del Río, seleccionamos lo mejor de nuestra tierra para ofrecerte una experiencia gastronómica única.' },
         { id: 'about-motto', category: 'about', content: 'Calidad, Tradición y Sabor en cada bocado.' },
         { id: 'about-image', category: 'about', content: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80' },
 
@@ -120,7 +120,7 @@ export default function AdminDashboard() {
         { id: 'gallery-title', content: 'Nuestro Rincón Gourmet', category: 'gallery' },
         { id: 'gallery-subtitle', content: 'Descubre la esencia de nuestra tienda y la calidad de nuestros productos seleccionados.', category: 'gallery' },
         { id: 'gallery-item-1-title', content: 'Nuestra Fachada', category: 'gallery' },
-        { id: 'gallery-item-1-desc', content: 'Ubicados en el corazón de Mairena.', category: 'gallery' },
+        { id: 'gallery-item-1-desc', content: 'Ubicados en el corazón de Coria del Río.', category: 'gallery' },
         { id: 'gallery-item-1-image', content: '/images/local_desde_fuera.jpg', category: 'gallery' },
         { id: 'gallery-item-2-title', content: 'Vinos de Selección', category: 'gallery' },
         { id: 'gallery-item-2-desc', content: 'Maridajes perfectos para nuestros ibéricos.', category: 'gallery' },
@@ -138,17 +138,23 @@ export default function AdminDashboard() {
         { id: 'social-whatsapp', category: 'social', content: '34691419369' },
 
         // CONTACT
+        { id: 'contact-eyebrow', category: 'contact', content: 'ESTAMOS EN CORIA' },
+        { id: 'contact-title', category: 'contact', content: 'Visítenos' },
         { id: 'contact-phone', category: 'contact', content: '691419369' },
-        { id: 'contact-email', category: 'contact', content: 'info@laabaceria.com' },
-        { id: 'contact-address', category: 'contact', content: 'C. San Sebastián, 5, 41510 Mairena del Alcor, Sevilla' },
-        { id: 'contact-hours', category: 'contact', content: 'Lunes a Viernes: 09:00 - 14:00 | 17:00 - 20:30\nSábados: 09:30 - 14:30' },
+        { id: 'contact-email', category: 'contact', content: 'info@laabaceriacoria.es' },
+        { id: 'contact-address', category: 'contact', content: 'C. Cervantes, 75, 41100 Coria del Río, Sevilla' },
+        { id: 'contact-hours', category: 'contact', content: 'Lun - Vie: 8:30 - 14:00 | 17:30 - 21:00\nSábado: 8:30 - 14:00' },
 
         // GENERAL / SEO / FOOTER
         { id: 'general-site-logo', content: '/logo.png', category: 'general' },
-        { id: 'general-meta-description', content: 'La Abacería - Maestros del Jamón Ibérico y Productos Gourmet. Calidad artesanal en Mairena del Alcor.', category: 'general' },
+        { id: 'general-meta-description', content: 'La Abacería - Maestros del Jamón Ibérico y Productos Gourmet en Coria del Río.', category: 'general' },
         { id: 'general-footer-tagline', content: 'Calidad, Tradición y Sabor en cada bocado.', category: 'general' },
         { id: 'general-footer-copy', content: '© 2024 La Abacería. Todos los derechos reservados.', category: 'general' },
         { id: 'general-trust-tags', content: 'JABUGO, GUIJUELO, DEHESA DE EXTREMADURA, VALLE DE LOS PEDROCHES, CORTE A CUCHILLO, PRODUCTO ARTESANO, EDICIÓN LIMITADA, CALIDAD SUPREMA', category: 'general' },
+        { id: 'footer-hours-weekday-label', content: 'Lunes a Sábado:', category: 'general' },
+        { id: 'footer-hours-weekday', content: '09:30 - 15:00, 18:00 - 21:00', category: 'general' },
+        { id: 'footer-hours-sunday-label', content: 'Domingo:', category: 'general' },
+        { id: 'footer-hours-sunday', content: '10:00 - 15:00', category: 'general' },
 
         // FEATURES
         { id: 'feature-1-title', content: 'Corte a Cuchillo', category: 'features' },
@@ -162,12 +168,18 @@ export default function AdminDashboard() {
         { id: 'review-1-author', content: 'Antonio Moreno', category: 'reviews' },
         { id: 'review-1-text', content: 'El mejor jamón de toda la provincia. El trato es exquisito y la calidad de los embutidos es insuperable.', category: 'reviews' },
         { id: 'review-1-rating', content: '5', category: 'reviews' },
+        { id: 'review-1-date', content: 'marzo 2024', category: 'reviews' },
+        { id: 'review-1-avatar', content: 'AM', category: 'reviews' },
         { id: 'review-2-author', content: 'María García', category: 'reviews' },
         { id: 'review-2-text', content: 'Sitio de confianza para comprar productos gourmet. El corte a cuchillo es espectacular.', category: 'reviews' },
         { id: 'review-2-rating', content: '5', category: 'reviews' },
+        { id: 'review-2-date', content: 'febrero 2024', category: 'reviews' },
+        { id: 'review-2-avatar', content: 'MG', category: 'reviews' },
         { id: 'review-3-author', content: 'Juan Pérez', category: 'reviews' },
         { id: 'review-3-text', content: 'Muy profesionales. Siempre que tengo una cena especial encargo aquí mi tabla de embutidos.', category: 'reviews' },
-        { id: 'review-3-rating', content: '4', category: 'reviews' },
+        { id: 'review-3-rating', content: '5', category: 'reviews' },
+        { id: 'review-3-date', content: 'enero 2024', category: 'reviews' },
+        { id: 'review-3-avatar', content: 'JP', category: 'reviews' },
 
         // NOSOTROS
         { id: 'nosotros-page-title', content: 'Nuestra Historia', category: 'nosotros' },
@@ -208,9 +220,60 @@ export default function AdminDashboard() {
         { id: 'envios-tarifa-3-price', content: 'GRATIS', category: 'envios' },
 
         // LEGAL
-        { id: 'legal-aviso-content', content: 'Información legal sobre la empresa...', category: 'legal' },
-        { id: 'legal-privacidad-content', content: 'Política de privacidad y protección de datos...', category: 'legal' },
-        { id: 'legal-terminos-content', content: 'Términos y condiciones de uso...', category: 'legal' }
+        { 
+          id: 'legal-aviso-content', 
+          category: 'legal',
+          content: `1. DATOS IDENTIFICATIVOS
+En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico, se reflejan los siguientes datos: la empresa titular de la web es LA ABACERÍA (en adelante La Abacería), con domicilio en C. Cervantes, 75, 41100 Coria del Río, Sevilla. Correo electrónico: info@laabaceriacoria.es.
+
+2. USUARIOS
+El acceso y/o uso de este portal de La Abacería atribuye la condición de USUARIO, que acepta, desde dicho acceso y/o uso, las Condiciones Generales de Uso aquí reflejadas.
+
+3. USO DEL PORTAL
+laabaceriacoria.es proporciona el acceso a multitud de informaciones, servicios o datos en Internet pertenecientes a La Abacería. El USUARIO asume la responsabilidad del uso del portal.
+
+4. PROTECCIÓN DE DATOS
+La Abacería cumple con las directrices del Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), velando por garantizar un correcto uso y tratamiento de los datos personales del usuario.` 
+        },
+        { 
+          id: 'legal-privacidad-content', 
+          category: 'legal',
+          content: `RESPONSABLE DEL TRATAMIENTO: LA ABACERÍA
+FINALIDAD: Gestión de consultas, reservas y envío de información sobre nuestros productos gourmet.
+LEGITIMACIÓN: Consentimiento del interesado.
+DESTINATARIOS: No se cederán datos a terceros, salvo obligación legal.
+DERECHOS: Tiene derecho a acceder, rectificar y suprimir los datos, así como otros derechos, como se explica en la información adicional.
+
+Información adicional: Los datos personales proporcionados se conservarán mientras se mantenga la relación comercial o durante los años necesarios para cumplir con las obligaciones legales. Usted puede ejercer sus derechos dirigiéndose a C. Cervantes, 75, 41100 Coria del Río, Sevilla o vía email.` 
+        },
+        { 
+          id: 'legal-cookies-content', 
+          category: 'legal',
+          content: `Este sitio web utiliza cookies para mejorar la experiencia del usuario. A continuación encontrará información sobre qué son las cookies, qué tipo de cookies utiliza este portal y cómo puede desactivarlas en su navegador.
+
+¿QUÉ SON LAS COOKIES?
+Las cookies son pequeños archivos que algunas plataformas pueden instalar en su ordenador, smartphone o tableta.
+
+TIPOS DE COOKIES QUE UTILIZAMOS:
+1. Cookies técnicas: Son aquellas que permiten al usuario la navegación a través de una página web y la utilización de las diferentes opciones o servicios que en ella existan.
+2. Cookies de análisis: Son aquellas que nos permiten cuantificar el número de usuarios y realizar la medición y análisis estadístico de la utilización que hacen los usuarios del servicio.
+3. Cookies de personalización: Permiten al usuario acceder al servicio con algunas características de carácter general predefinidas.` 
+        },
+        { 
+          id: 'legal-terminos-content', 
+          category: 'legal',
+          content: `1. OBJETO Y ÁMBITO DE APLICACIÓN
+Las presentes Condiciones Generales regulan el acceso y uso del sitio web de La Abacería, así como la adquisición de sus productos.
+
+2. PRODUCTOS Y PRECIOS
+La Abacería se reserva el derecho a decidir, en cada momento, los productos que se ofrecen a los usuarios. Los precios indicados en pantalla incluyen el IVA.
+
+3. PROCESO DE COMPRA/RESERVA
+Los pedidos y reservas podrán gestionarse directamente a través de los canales de contacto facilitados (WhatsApp, teléfono). La formalización de la reserva implica la aceptación de estas condiciones.
+
+4. DEVOLUCIONES
+Dada la naturaleza perecedera de muchos de nuestros productos (jamones, embutidos, quesos), las devoluciones se regirán por la normativa vigente para productos de alimentación y consumo inmediato.` 
+        }
       ];
 
       // Get existing IDs
@@ -484,16 +547,17 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
   const categories = [
     { id: 'hero', label: 'Home - Hero', icon: <Monitor size={18} /> },
     { id: 'about', label: 'Home - Sobre Nosotros', icon: <Info size={18} /> },
-    { id: 'nosotros', label: 'Página - Nuestra Historia', icon: <History size={18} /> },
     { id: 'baskets', label: 'Home - Cestas Gourmet', icon: <Gift size={18} /> },
     { id: 'gallery', label: 'Home - Galería', icon: <Image size={18} /> },
-    { id: 'features', label: 'Home - Características', icon: <CheckCircle size={18} /> },
     { id: 'reviews', label: 'Home - Reseñas', icon: <Quote size={18} /> },
+    { id: 'contact', label: 'Home - Contacto', icon: <Phone size={18} /> },
+    { id: 'nosotros', label: 'Página - Nuestra Historia', icon: <History size={18} /> },
     { id: 'contacto', label: 'Página - Contacto', icon: <Mail size={18} /> },
     { id: 'envios', label: 'Página - Envíos', icon: <Truck size={18} /> },
-    { id: 'legal', label: 'Páginas Legales', icon: <FileText size={18} /> },
     { id: 'social', label: 'Redes Sociales', icon: <Share2 size={18} /> },
     { id: 'general', label: 'SEO y Pie de página', icon: <Search size={18} /> },
+    { id: 'legal', label: 'Páginas Legales', icon: <FileText size={18} /> },
+    { id: 'features', label: 'Home - Características (Oculto)', icon: <CheckCircle size={18} /> },
   ];
 
   const handleImageUpload = async (itemId: string, e: React.ChangeEvent<HTMLInputElement>) => {
@@ -594,6 +658,9 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
                       'secondary-link': 'Botón 2 (Link)',
                       'page-title': 'Título de Página', 'page-subtitle': 'Subtítulo de Página',
                       'section-title': 'Título de Sección', 'text-1': 'Párrafo 1', 'text-2': 'Párrafo 2',
+                      'title': 'Título de Sección', 'eyebrow': 'Subtítulo (Eyebrow)',
+                      'address': 'Dirección Física', 'phone': 'Teléfono', 'email': 'Email',
+                      'hours': 'Horario (Texto)',
                       'stat-1-num': 'Dato 1 (Cifra)', 'stat-1-label': 'Dato 1 (Etiqueta)',
                       'stat-2-num': 'Dato 2 (Cifra)', 'stat-2-label': 'Dato 2 (Etiqueta)',
                       'stat-3-num': 'Dato 3 (Cifra)', 'stat-3-label': 'Dato 3 (Etiqueta)',
@@ -604,7 +671,8 @@ function ContentManager({ content, onUpdate, onDelete, onSeed }: any) {
                       'tarifa-1-label': 'Tarifa 1 (Etiqueta)', 'tarifa-1-price': 'Tarifa 1 (Precio)',
                       'tarifa-2-label': 'Tarifa 2 (Etiqueta)', 'tarifa-2-price': 'Tarifa 2 (Precio)',
                       'tarifa-3-label': 'Tarifa 3 (Etiqueta)', 'tarifa-3-price': 'Tarifa 3 (Precio)',
-                      'aviso-content': 'Contenido Aviso Legal', 'privacidad-content': 'Contenido Privacidad', 'terminos-content': 'Contenido Términos'
+                      'aviso-content': 'Contenido Aviso Legal', 'privacidad-content': 'Contenido Privacidad', 'terminos-content': 'Contenido Términos',
+                      'date': 'Fecha', 'avatar': 'Iniciales Avatar'
                     };
 
                     if (id.match(/-\d-/)) {

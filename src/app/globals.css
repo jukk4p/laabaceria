@@ -1,15 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-  /* Premium Gold & Charcoal Palette */
-  --color-bg: #0C0A09;
-  --color-surface: #171412;
-  --color-accent: #D1A15E; /* Old Gold / Brass */
-  --color-accent-soft: #B48A4D;
-  --color-text: #F5F5F4; /* Soft Ivory */
-  --color-muted: #A8A29E;
-  --color-glass: rgba(23, 20, 18, 0.9);
-  --color-border: rgba(209, 161, 94, 0.2);
+  /* Authentic La Abacería Palette (from HTML source) */
+  --color-bg: #0e0600;      /* Deepest Espresso - used in Reviews/Baskets */
+  --color-mid: #130800;     /* Mid Espresso - used in Visit/About/Gallery */
+  --color-surface: #1a0a00; /* Dark Espresso - used in Hero/Cards/Navbar */
+  --color-warm: #2a1200;    /* Warmest Brown - used in CTA Bands */
+  
+  --color-accent: #e8c97a;  /* Original Gold */
+  --color-accent-vibrant: #f0d88a; /* Bright Gold hover */
+  
+  --color-text: #f5e8c8;    /* Creamy Bone for body text */
+  --color-title: #f0e0b0;   /* Warm Bone for Headings */
+  --color-muted: rgba(255, 245, 220, 0.45);
+  
+  --color-glass: rgba(14, 6, 0, 0.9);
+  --color-border: rgba(232, 201, 122, 0.18);
+  --gold-gradient: linear-gradient(135deg, #e8c97a 0%, #f0d88a 50%, #e8c97a 100%);
 
   /* Typography - Luxury Serif Pairing */
   --font-display:   'Cormorant Garamond', Georgia, serif;
@@ -49,6 +56,56 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.2;
+  color: var(--color-title);
+}
+
+/* Buttons */
+.btn {
+  padding: 1rem 2.5rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-base);
+  border-radius: 12px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: #1A0F0A;
+  border: 1px solid var(--color-accent);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-vibrant);
+  border-color: var(--color-accent-vibrant);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(209, 161, 94, 0.2);
+}
+
+.btn-secondary {
+  border: 1px solid rgba(209, 161, 94, 0.5);
+  color: var(--color-text);
+  background: rgba(26, 15, 10, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  background-color: rgba(209, 161, 94, 0.1);
+  transform: translateY(-3px);
+}
+
+.text-gradient-gold {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
 }
 
 a {

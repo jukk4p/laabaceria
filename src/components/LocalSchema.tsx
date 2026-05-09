@@ -3,7 +3,7 @@ import React from 'react';
 const LocalSchema: React.FC = () => {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "GourmetStore",
+    "@type": "FoodEstablishment",
     "name": "La Abacería",
     "image": "https://laabaceriacoria.es/images/hero.png",
     "@id": "https://laabaceriacoria.es",
@@ -25,22 +25,30 @@ const LocalSchema: React.FC = () => {
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "09:30",
-        "closes": "14:30"
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:30",
+        "closes": "14:00"
       },
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         "opens": "17:30",
         "closes": "21:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "08:30",
+        "closes": "14:00"
       }
     ],
     "sameAs": [
-      "https://www.facebook.com/laabaceriacoria",
-      "https://www.instagram.com/laabaceriacoria"
+      "https://www.facebook.com/laabaceria",
+      "https://www.instagram.com/laabaceria"
     ],
-    "priceRange": "$$"
+    "priceRange": "€€",
+    "servesCuisine": "Gourmet, Ibéricos, Vinos",
+    "hasMap": "https://www.google.com/maps?cid=126344556677889900"
   };
 
   return (
