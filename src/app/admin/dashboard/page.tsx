@@ -1,5 +1,5 @@
 import { getProducts, getSiteContent, getMessages } from '@/lib/content'
-import { Package, Mail, FileText, TrendingUp, Clock, User, ArrowRight, Send } from 'lucide-react'
+import { Package, Mail, Database, ShoppingBag, TrendingUp, Clock, User, ArrowRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 
@@ -14,8 +14,8 @@ export default async function AdminDashboard() {
   const stats = [
     { label: 'Productos', value: products.length, trend: 'Activos en catálogo', icon: Package },
     { label: 'Mensajes', value: messages.length, trend: `${unreadMessages} nuevos por leer`, icon: Mail },
-    { label: 'Contenido', value: Object.keys(content).length, trend: 'Puntos de control', icon: FileText },
-    { label: 'Actividad', value: 'Óptima', trend: 'Sistema sincronizado', icon: TrendingUp },
+    { label: 'Pedidos', value: '0', trend: 'Nuevos hoy', icon: ShoppingBag },
+    { label: 'Mantenimiento', value: 'Correcto', trend: 'Sistema estable', icon: Database },
   ]
 
   return (
@@ -23,18 +23,14 @@ export default async function AdminDashboard() {
       {/* Top Header */}
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-gold/10">
         <div>
-          <h2 className="text-3xl font-serif italic text-gold tracking-tight">Bienvenido de nuevo</h2>
+          <h2 className="text-3xl font-serif italic text-gold tracking-tight">Panel de Control</h2>
           <p className="text-[10px] uppercase tracking-[0.3em] text-gold/40 mt-2 font-bold">
-            Resumen de actividad · Panel de Control General
+            Resumen operativo · Estado de La Abacería
           </p>
         </div>
-        <button className="flex items-center gap-2 bg-gold/5 border border-gold/20 text-gold px-6 py-2.5 rounded-full text-[10px] font-bold tracking-[0.2em] hover:bg-gold hover:text-black transition-all group">
-          <Send size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          PUBLICAR CAMBIOS
-        </button>
       </header>
 
-      {/* Stats Grid con estilo Mockup */}
+      {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {stats.map((stat, i) => (
           <div key={i} className="bg-[#1a120b] p-6 rounded-[2rem] border border-gold/5 space-y-2 hover:border-gold/20 transition-colors group">
