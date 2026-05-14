@@ -3,7 +3,6 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
-import WhatsAppButton from './WhatsAppButton'
 
 import { usePathname } from 'next/navigation'
 
@@ -32,7 +31,6 @@ export default function LayoutWrapper({
         {children}
       </main>
       <Footer content={content} />
-      <WhatsAppButton />
       <Cart />
       <CartTrigger />
     </CartProvider>
