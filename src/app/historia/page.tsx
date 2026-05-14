@@ -122,7 +122,7 @@ export default async function HistoriaPage() {
                   </AdminEditable>
 
                   <AdminEditable category="historia" id={`historia_milestone_${i}_desc`} content={content[`historia_milestone_${i}_desc`] || milestone.desc}>
-                     <p className="text-gold-muted font-light leading-relaxed max-w-2xl">{content[`historia_milestone_${i}_desc`] || milestone.desc}</p>
+                     <p className="text-text-muted font-light leading-relaxed max-w-2xl">{content[`historia_milestone_${i}_desc`] || milestone.desc}</p>
                   </AdminEditable>
                 </div>
               );
@@ -146,7 +146,7 @@ export default async function HistoriaPage() {
               </h2>
             </AdminEditable>
             <AdminEditable category="historia" id="historia_valores_subtitle" content={content['historia_valores_subtitle'] || "Todo lo que hacemos está guiado por tres principios que nos han acompañado desde el primer día."}>
-              <p className="text-gold-muted font-light max-w-2xl mx-auto">
+              <p className="text-text-muted font-light max-w-2xl mx-auto">
                 {content['historia_valores_subtitle'] || "Todo lo que hacemos está guiado por tres principios que nos han acompañado desde el primer día."}
               </p>
             </AdminEditable>
@@ -168,7 +168,7 @@ export default async function HistoriaPage() {
                     <h3 className="text-xl font-serif text-gold mb-4">{content[`historia_valor_${i}_title`] || v.title}</h3>
                   </AdminEditable>
                   <AdminEditable category="historia" id={`historia_valor_${i}_desc`} content={content[`historia_valor_${i}_desc`] || v.desc}>
-                    <p className="text-[13px] text-gold-muted font-light leading-relaxed">{content[`historia_valor_${i}_desc`] || v.desc}</p>
+                    <p className="text-[13px] text-text-muted font-light leading-relaxed">{content[`historia_valor_${i}_desc`] || v.desc}</p>
                   </AdminEditable>
                 </div>
               );
