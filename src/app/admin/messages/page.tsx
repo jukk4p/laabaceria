@@ -52,7 +52,7 @@ export default function MessagesPage() {
   }
 
   return (
-    <div className="space-y-10">
+    <div className="p-8 md:p-12 max-w-7xl mx-auto space-y-12 animate-in fade-in duration-700">
       <div className="flex justify-between items-end">
         <div>
           <h1 className="text-4xl font-serif text-gold italic mb-4">Mensajes de Contacto</h1>
