@@ -19,10 +19,12 @@ export default async function FooterWrapper() {
     phone: getC('contact-phone', '691419369'),
     email: getC('contact-email', 'info@laabaceriacoria.es'),
     copy: getC('general-footer-copy', '© 2026 La Abacería. Todos los derechos reservados.'),
-    hoursWeekdayLabel: getC('footer-hours-weekday-label', 'Lunes a Sábado:'),
-    hoursWeekday: getC('footer-hours-weekday', '09:30 - 15:00, 18:00 - 21:00'),
+    hoursWeekdayLabel: getC('footer-hours-weekday-label', 'Lunes a Viernes:'),
+    hoursWeekday: getC('footer-hours-weekday', '08:30 - 14:00, 17:30 - 21:00'),
+    hoursSaturdayLabel: getC('footer-hours-saturday-label', 'Sábado:'),
+    hoursSaturday: getC('footer-hours-saturday', '08:30 - 14:00'),
     hoursSundayLabel: getC('footer-hours-sunday-label', 'Domingo:'),
-    hoursSunday: getC('footer-hours-sunday', '10:00 - 15:00'),
+    hoursSunday: getC('footer-hours-sunday', 'Cerrado'),
   };
 
   return <Footer data={footerData} />;

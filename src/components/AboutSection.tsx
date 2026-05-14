@@ -69,12 +69,12 @@ export default function AboutSection({ data }: { data?: any }) {
           <p className="section-text">
             {aboutData.text1}
           </p>
-          {aboutData.text2 && <p className="section-text" style={{ marginTop: '1rem' }}>{aboutData.text2}</p>}
+          {aboutData.text2 && <div className="about-actions mt-8"><p className="section-text">{aboutData.text2}</p></div>}
           
           <div className="about-features-grid">
             <div className="about-feature-card">
               <div className="feature-icon-wrapper">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14.5 2.5a2.121 2.121 0 0 1 3 3L7 16l-4 1 1-4 10.5-10.5z"></path>
                   <path d="M12 5l4 4"></path>
                   <path d="M2 22l5-5"></path>

@@ -1,6 +1,6 @@
 .about-home {
   padding: var(--space-xl) var(--space-md);
-  background-color: var(--color-bg);
+  background-color: var(--bg-base);
 }
 
 .about-home-grid {
@@ -15,8 +15,8 @@
 .about-home-img-card {
   width: 100%;
   aspect-ratio: 4 / 5;
-  background-color: #120f0d;
-  border: 1px solid rgba(209, 161, 94, 0.1);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 20px;
   position: sticky;
   top: 120px;
@@ -40,7 +40,7 @@
   left: 0;
   right: 0;
   padding: 40px 30px 30px;
-  background: linear-gradient(to top, rgba(12, 10, 9, 0.9), transparent);
+  background: linear-gradient(to top, var(--bg-dark), transparent);
   display: flex;
   align-items: flex-end;
 }
@@ -99,17 +99,17 @@
 }
 
 .about-feature-card {
-  background-color: #120f0d;
-  border: 1px solid rgba(209, 161, 94, 0.08);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
   padding: 2.5rem 2rem;
   border-radius: 20px;
   transition: all 0.4s ease;
 }
 
 .about-feature-card:hover {
-  border-color: rgba(209, 161, 94, 0.3);
+  border-color: var(--gold-35);
   transform: translateY(-5px);
-  background-color: #171412;
+  background-color: var(--bg-product);
 }
 
 .about-feature-card .feature-icon-wrapper {
@@ -119,15 +119,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(209, 161, 94, 0.05);
-  border: 1px solid rgba(209, 161, 94, 0.1);
+  background: var(--gold-08);
+  border: 1px solid var(--border);
   border-radius: 14px;
   transition: all 0.3s ease;
 }
 
 .about-feature-card:hover .feature-icon-wrapper {
-  background: rgba(209, 161, 94, 0.1);
-  border-color: var(--color-accent);
+  background: var(--gold-15);
+  border-color: var(--gold);
   transform: scale(1.05);
 }
 

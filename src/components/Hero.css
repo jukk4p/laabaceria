@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: var(--color-bg);
+  background-color: var(--bg-base);
 }
 
 .hero-bg {
@@ -29,8 +29,8 @@
   height: 100%;
   background: radial-gradient(
     circle at center,
-    rgba(12, 10, 9, 0.4) 0%,
-    rgba(12, 10, 9, 0.95) 100%
+    rgba(var(--bg-dark-rgb), 0.4) 0%,
+    rgba(var(--bg-dark-rgb), 0.95) 100%
   );
   z-index: 1;
 }
@@ -46,7 +46,7 @@
 
 .hero-subtitle {
   font-family: var(--font-body);
-  color: var(--color-muted);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.25em; /* Un poco menos exagerado */
   font-weight: 500;
@@ -57,7 +57,7 @@
 .hero-title {
   font-family: var(--font-display);
   font-size: clamp(3rem, 10vw, 5rem);
-  color: var(--color-accent); /* Título en oro como en la imagen */
+  color: var(--gold); /* Título en oro como en la imagen */
   margin-bottom: var(--space-md);
   line-height: 1.1;
   font-weight: 400;
@@ -67,7 +67,7 @@
 .hero-description {
   font-family: var(--font-body);
   font-size: 1.2rem;
-  color: var(--color-muted);
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: var(--space-xl);
   max-width: 650px;
@@ -96,8 +96,8 @@
   justify-content: center;
   align-items: center;
   padding: var(--space-lg) 0;
-  background: linear-gradient(to top, rgba(12, 10, 9, 0.9), transparent);
-  border-top: 1px solid rgba(209, 161, 94, 0.1);
+  background: linear-gradient(to top, var(--bg-dark), transparent);
+  border-top: 1px solid var(--border);
 }
 
 .stat-item {
@@ -111,7 +111,7 @@
 .stat-value {
   font-family: var(--font-display);
   font-size: 2.5rem;
-  color: var(--color-text);
+  color: var(--text-primary);
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -120,7 +120,7 @@
 .stat-label {
   font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--color-muted);
+  color: var(--text-muted);
   text-transform: capitalize;
   letter-spacing: 0.05em;
 }
@@ -128,7 +128,7 @@
 .stat-divider {
   width: 1px;
   height: 50px;
-  background-color: rgba(209, 161, 94, 0.2);
+  background-color: var(--border);
 }
 
 @media (max-width: 1024px) {

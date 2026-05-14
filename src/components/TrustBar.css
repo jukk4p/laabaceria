@@ -1,8 +1,8 @@
 .trust-bar {
   width: 100%;
-  background-color: #1a0f0a; /* Matches AboutSection for seamless visual flow */
-  border-top: 1px solid rgba(209, 161, 94, 0.15);
-  border-bottom: 1px solid rgba(209, 161, 94, 0.15);
+  background-color: var(--bg-section);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   padding: 1.2rem 0;
   overflow: hidden;
   position: relative;
@@ -16,7 +16,7 @@
 }
 
 .ticker-item {
-  color: var(--color-accent);
+  color: var(--gold);
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
@@ -31,12 +31,12 @@
 
 .ticker-item:hover {
   opacity: 1;
-  color: var(--color-text);
+  color: var(--text-primary);
 }
 
 .ticker-dot {
   margin-left: 4rem;
   font-size: 0.6rem;
   opacity: 0.6;
-  color: var(--color-accent);
+  color: var(--gold);
 }

@@ -1,55 +1,61 @@
-import type { Metadata } from "next";
-import { Playfair_Display, Lato } from "next/font/google";
-import NavbarWrapper from "@/components/NavbarWrapper";
-import FooterWrapper from "@/components/FooterWrapper";
-import LocalSchema from "@/components/LocalSchema";
-import "./globals.css";
-
-const playfair = Playfair_Display({
-  variable: "--font-display",
-  subsets: ["latin"],
-});
-
-const lato = Lato({
-  variable: "--font-body",
-  weight: ["100", "300", "400", "700", "900"],
-  subsets: ["latin"],
-});
+import type { Metadata } from 'next'
+import './globals.css'
+import LayoutWrapper from '@/components/LayoutWrapper'
 
 export const metadata: Metadata = {
-  title: "La Abacería | Jamones y Embutidos Gourmet · Coria del Río, Sevilla",
-  description: "Tienda especializada en jamones ibéricos, embutidos artesanales y productos gourmet en Coria del Río, Sevilla. Calidad artesanal y tradición.",
-  keywords: ["jamón ibérico", "Coria del Río", "Sevilla", "gourmet", "embutidos", "delicatessen"],
-  authors: [{ name: "La Abacería" }],
+  title: 'La Abacería | Jamones Ibéricos Gourmet · Coria del Río',
+  description: 'Tienda gourmet de referencia en Coria del Río, Sevilla. Jamones ibéricos, embutidos artesanales y cestas gourmet desde 1990.',
   openGraph: {
-    title: "La Abacería | Jamones y Embutidos Gourmet",
-    description: "El arte del jamón ibérico en Coria del Río.",
-    type: "website",
-    locale: "es_ES",
-    images: [
-      {
-        url: "https://laabaceria.ivangonzalez.cloud/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "La Abacería - Jamones y Embutidos Gourmet",
-      },
-    ],
+    images: ['/og-image.jpg'],
   },
-};
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FoodEstablishment",
+    "name": "La Abacería",
+    "description": "Tienda gourmet de jamones ibéricos y embutidos artesanales",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "C. Cervantes, 75",
+      "addressLocality": "Coria del Río",
+      "postalCode": "41100",
+      "addressRegion": "Sevilla",
+      "addressCountry": "ES"
+    },
+    "telephone": "+34691419369",
+    "email": "info@laabaceriacoria.es",
+    "url": "https://laabaceria.ivangonzalez.cloud",
+    "openingHours": [
+      "Mo-Fr 08:30-14:00",
+      "Mo-Fr 17:30-21:00",
+      "Sa 08:30-14:00"
+    ],
+    "priceRange": "€€",
+    "servesCuisine": "Spanish"
+  }
+
   return (
     <html lang="es">
-      <body className={`${playfair.variable} ${lato.variable}`}>
-        <LocalSchema />
-        <NavbarWrapper />
-        {children}
-        <FooterWrapper />
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="bg-bg-base text-gold antialiased">
+        <LayoutWrapper>
+          {children}
+        </LayoutWrapper>
       </body>
     </html>
-  );
+  )
 }

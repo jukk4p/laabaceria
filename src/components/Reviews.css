@@ -1,6 +1,6 @@
 .reviews-section {
   padding: 100px 20px;
-  background: #0d0806; /* Darkest espresso for a deep, high-contrast review area */
+  background: var(--bg-dark);
   position: relative;
   overflow: hidden;
 }
@@ -26,13 +26,13 @@
 .reviews-summary .rating-value {
   font-family: var(--font-display);
   font-size: 4rem;
-  color: var(--color-text);
+  color: var(--text-primary);
   line-height: 1;
   margin-bottom: 10px;
 }
 
 .reviews-summary .stars {
-  color: #f59e0b;
+  color: var(--gold);
   font-size: 1.2rem;
   letter-spacing: 2px;
   margin-bottom: 10px;
@@ -41,7 +41,7 @@
 .review-google-count {
   font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--color-muted);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -51,7 +51,7 @@
 }
 
 .reviews-header-content .eyebrow {
-  color: var(--color-accent);
+  color: var(--gold);
   font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 700;
@@ -67,7 +67,7 @@
 
 .section-subtitle {
   font-family: var(--font-body);
-  color: var(--color-muted);
+  color: var(--text-muted);
   font-size: 1.1rem;
 }
 
@@ -79,8 +79,8 @@
 }
 
 .review-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(209, 161, 94, 0.1);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 40px;
   display: flex;
@@ -89,13 +89,13 @@
 }
 
 .review-card:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(209, 161, 94, 0.2);
+  background: var(--bg-product);
+  border-color: var(--gold-35);
   transform: translateY(-5px);
 }
 
 .review-stars {
-  color: #f59e0b;
+  color: var(--gold);
   font-size: 0.8rem;
   letter-spacing: 2px;
   margin-bottom: 25px;
@@ -105,7 +105,7 @@
   font-family: var(--font-body);
   font-size: 1.05rem;
   line-height: 1.7;
-  color: var(--color-text);
+  color: var(--text-primary);
   margin-bottom: 30px;
   font-style: italic;
 }
@@ -120,9 +120,9 @@
 .review-avatar {
   width: 44px;
   height: 44px;
-  background: rgba(209, 161, 94, 0.1);
-  border: 1px solid rgba(209, 161, 94, 0.2);
-  color: var(--color-accent);
+  background: var(--bg-product);
+  border: 1px solid var(--border);
+  color: var(--gold);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -136,14 +136,14 @@
   font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--text-primary);
   margin-bottom: 2px;
 }
 
 .review-date {
   font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--color-muted);
+  color: var(--text-muted);
 }
 
 .reviews-bottom {
@@ -152,7 +152,7 @@
 
 .google-link {
   font-family: var(--font-body);
-  color: var(--color-accent);
+  color: var(--gold);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 700;
@@ -167,7 +167,7 @@
 }
 
 .google-link:hover {
-  border-bottom: 1px solid rgba(209, 161, 94, 0.4);
+  border-bottom: 1px solid var(--gold-45);
   gap: 12px;
 }
 

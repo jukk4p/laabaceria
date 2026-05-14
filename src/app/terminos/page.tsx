@@ -1,57 +1,154 @@
-import '../Legal.css';
+'use client'
 
-export const dynamic = 'force-dynamic';
+import PageHero from '@/components/PageHero'
 
-export default async function Terminos() {
+export default function TerminosPage() {
+  const indexItems = [
+    "Proceso de compra",
+    "Precios y formas de pago",
+    "Envío y entrega",
+    "Devoluciones y desistimiento",
+    "Garantías",
+    "Modificaciones"
+  ]
+
   return (
-    <article className="legal-page">
-      <h1>Términos y Condiciones</h1>
-      <div className="legal-content-rich">
-        <section>
-          <h2>1. Objeto y Ámbito de Aplicación</h2>
-          <p>
-            Las presentes Condiciones Generales regulan el acceso, navegación y uso del sitio web de LA ABACERÍA, así como las responsabilidades derivadas de la utilización de sus contenidos y cualquier otra comunicación comercial, incluyendo la adquisición de productos gourmet y servicios de reserva.
-          </p>
-        </section>
+    <div className="flex flex-col bg-bg-base min-h-screen">
+      <PageHero 
+        eyebrow="LEGAL · LA ABACERÍA"
+        title="Términos y Condiciones"
+        subtitle="Condiciones generales que regulan la compra de productos en La Abacería."
+      />
 
-        <section>
-          <h2>2. Productos y Precios</h2>
-          <p>
-            LA ABACERÍA se reserva el derecho a decidir, en cada momento, los productos que se ofrecen a los usuarios. Los precios indicados en pantalla están expresados en euros e incluyen el Impuesto sobre el Valor Adiñido (IVA) correspondiente.
-          </p>
-          <p>
-            A pesar de nuestros esfuerzos por mantener la información actualizada, las imágenes de los productos (especialmente en el caso de cortes de jamón o embutidos artesanales) son ilustrativas y el producto final puede variar ligeramente en apariencia.
-          </p>
-        </section>
+      <section className="py-20 px-6">
+        <div className="container mx-auto max-w-4xl">
+          <p className="text-gold/40 text-xs mb-12 font-medium italic">Última actualización: enero de 2026</p>
 
-        <section>
-          <h2>3. Proceso de Compra y Reserva</h2>
-          <p>
-            Actualmente, los pedidos y reservas se gestionan de forma personalizada a través de nuestros canales directos (WhatsApp, Teléfono o Formulario de Contacto). La confirmación de un pedido o reserva por estos medios implica la aceptación íntegra de estas condiciones.
-          </p>
-        </section>
+          <div className="bg-bg-card border border-gold/10 p-8 md:p-10 rounded-2xl mb-20 max-w-2xl">
+            <h3 className="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-6">ÍNDICE</h3>
+            <ul className="space-y-3">
+              {indexItems.map((item, idx) => (
+                <li key={idx} className="flex gap-4 text-sm">
+                  <span className="text-gold font-bold">{idx + 1}.</span>
+                  <span className="text-gold-muted hover:text-gold transition-colors cursor-pointer">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <section>
-          <h2>4. Envíos y Entregas</h2>
-          <p>
-            Los plazos de entrega y costes de envío se comunicarán de forma transparente durante el proceso de compra personalizada. LA ABACERÍA trabaja con proveedores logísticos especializados para garantizar que los productos gourmet lleguen en condiciones óptimas.
-          </p>
-        </section>
+          <div className="space-y-24">
+            {/* 1. Proceso de compra */}
+            <section id="section-1">
+              <h2 className="text-xl font-bold text-gold mb-8 flex items-center gap-4">
+                <span className="text-gold">1.</span> Proceso de compra
+              </h2>
+              <div className="text-gold-muted text-[15px] space-y-6">
+                <p>
+                  Los pedidos en La Abacería se realizan a través de los canales habilitados: WhatsApp (+34 691 419 369), formulario de contacto web o llamada telefónica. Una vez recibida tu solicitud, te enviaremos confirmación con el detalle del pedido, precio final e instrucciones de pago.
+                </p>
+                <p>
+                  El contrato de compraventa se perfecciona en el momento en que La Abacería confirma expresamente la disponibilidad de los productos y el cliente confirma el pedido.
+                </p>
+              </div>
+            </section>
 
-        <section>
-          <h2>5. Devoluciones y Desistimiento</h2>
-          <p>
-            Dada la naturaleza perecedera de muchos de nuestros productos (jamones, embutidos, quesos), el derecho de desistimiento solo será aplicable si el producto no ha sido abierto o manipulado y mantiene su precinto original, salvo en casos de defectos de calidad demostrables.
-          </p>
-        </section>
+            {/* 2. Precios */}
+            <section id="section-2">
+              <h2 className="text-xl font-bold text-gold mb-8 flex items-center gap-4">
+                <span className="text-gold">2.</span> Precios y formas de pago
+              </h2>
+              <div className="text-gold-muted text-[15px] leading-relaxed space-y-8">
+                <p>Todos los precios mostrados en el sitio web incluyen el IVA correspondiente. La Abacería se reserva el derecho de modificar los precios sin previo aviso, garantizando siempre el precio vigente en el momento de la confirmación del pedido.</p>
+                <div>
+                  <h4 className="text-gold text-sm font-bold mb-4 uppercase tracking-wider">Formas de pago aceptadas</h4>
+                  <ul className="space-y-3 pl-2">
+                    <li className="flex gap-3 items-center">
+                      <span className="text-gold w-1 h-1 rounded-full bg-gold shrink-0"></span>
+                      <span>Efectivo (en tienda física)</span>
+                    </li>
+                    <li className="flex gap-3 items-center">
+                      <span className="text-gold w-1 h-1 rounded-full bg-gold shrink-0"></span>
+                      <span>Tarjeta de débito/crédito (Visa, Mastercard)</span>
+                    </li>
+                    <li className="flex gap-3 items-center">
+                      <span className="text-gold w-1 h-1 rounded-full bg-gold shrink-0"></span>
+                      <span>Transferencia bancaria</span>
+                    </li>
+                    <li className="flex gap-3 items-center">
+                      <span className="text-gold w-1 h-1 rounded-full bg-gold shrink-0"></span>
+                      <span>Bizum (consultar disponibilidad)</span>
+                    </li>
+                  </ul>
+                </div>
+                <p className="italic text-gold/40 font-medium">No almacenamos datos de tarjetas bancarias. Los pagos por transferencia deben realizarse antes de la preparación del pedido.</p>
+              </div>
+            </section>
 
-        <section>
-          <h2>6. Legislación Aplicable y Jurisdicción</h2>
-          <p>
-            Las presentes condiciones se regirán por la legislación española. Para cualquier controversia que pudiera derivarse del acceso o uso de este sitio web, LA ABACERÍA y el USUARIO se someten a los Juzgados y Tribunales de Sevilla, con renuncia expresa a cualquier otro fuero que pudiera corresponderles.
-          </p>
-        </section>
-      </div>
-    </article>
-  );
+            {/* 3. Envíos */}
+            <section id="section-3">
+              <h2 className="text-xl font-bold text-gold mb-8 flex items-center gap-4">
+                <span className="text-gold">3.</span> Envío y entrega
+              </h2>
+              <div className="text-gold-muted text-[15px] leading-relaxed space-y-6">
+                <p>Realizamos envíos a toda la Península Ibérica. Los pedidos se procesan de lunes a viernes (excepto festivos). Debido a la naturaleza artesanal de nuestros productos, algunos tiempos de preparación pueden variar.</p>
+                <ul className="space-y-3 pl-2">
+                  <li className="flex gap-3">
+                    <span className="text-gold mt-1.5 w-1 h-1 rounded-full bg-gold shrink-0"></span>
+                    <span><strong>Provincia de Sevilla:</strong> 24-48 horas laborables.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="text-gold mt-1.5 w-1 h-1 rounded-full bg-gold shrink-0"></span>
+                    <span><strong>Resto de la Península:</strong> 48-72 horas laborables.</span>
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            {/* 4. Devoluciones */}
+            <section id="section-4">
+              <h2 className="text-xl font-bold text-gold mb-8 flex items-center gap-4">
+                <span className="text-gold">4.</span> Devoluciones y desistimiento
+              </h2>
+              <div className="text-gold-muted text-[15px] space-y-6">
+                <p>
+                  Los productos alimenticios que pueden deteriorarse rápidamente quedan excluidos del derecho de desistimiento de 14 días conforme al artículo 103 del Real Decreto Legislativo 1/2007.
+                </p>
+                <p>
+                  No obstante, si el producto llega en mal estado o no corresponde al pedido confirmado, lo gestionaremos con reenvío o reembolso íntegro. Debes notificarnos en las primeras 24 horas desde la recepción con fotografía del producto y el embalaje.
+                </p>
+              </div>
+            </section>
+
+            {/* 5. Garantía */}
+            <section id="section-5">
+              <h2 className="text-xl font-bold text-gold mb-8 flex items-center gap-4">
+                <span className="text-gold">5.</span> Garantías
+              </h2>
+              <div className="text-gold-muted text-[15px] space-y-6">
+                <p>
+                  Todos nuestros productos cumplen con la normativa española y europea de seguridad alimentaria. Las fechas de caducidad o consumo preferente se indican en el etiquetado de cada producto conforme a la normativa vigente.
+                </p>
+                <p>
+                  La Abacería garantiza que los productos son auténticos, corresponden a las denominaciones indicadas y han sido almacenados en las condiciones adecuadas hasta su envío.
+                </p>
+              </div>
+            </section>
+
+            {/* 6. Modificaciones */}
+            <section id="section-6">
+              <h2 className="text-xl font-bold text-gold mb-8 flex items-center gap-4">
+                <span className="text-gold">6.</span> Modificaciones
+              </h2>
+              <div className="text-gold-muted text-[15px] border-b border-gold/10 pb-20 space-y-6">
+                <p>
+                  La Abacería se reserva el derecho a modificar estas condiciones en cualquier momento. Las modificaciones entrarán en vigor desde su publicación en el sitio web. Los pedidos en curso se regirán por las condiciones vigentes en el momento de su confirmación.
+                </p>
+                <p>Para cualquier duda sobre estas condiciones, contáctanos en <strong>info@laabaceriacoria.es</strong>.</p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
 }

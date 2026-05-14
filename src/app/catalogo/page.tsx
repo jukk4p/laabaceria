@@ -1,17 +1,11 @@
-import CatalogoGrid from './CatalogoGrid';
-import './catalogo.css';
+import { getProducts } from '@/lib/content'
+import CatalogoClient from '@/components/CatalogoClient'
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic'
 
-export default function Catalogo() {
-  return (
-    <div className="catalogo-page">
-      <header className="page-header">
-        <h1 className="page-title">Nuestro Catálogo</h1>
-        <p className="page-subtitle">Piezas seleccionadas con la maestría de más de 30 años de tradición.</p>
-      </header>
+export default async function CatalogoPage() {
+  const products = await getProducts()
+  console.log(`[CatalogoPage] Fetched ${products?.length || 0} products`);
 
-      <CatalogoGrid />
-    </div>
-  );
+  return <CatalogoClient initialProducts={products} />
 }

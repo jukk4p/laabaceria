@@ -1,139 +1,236 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* ============================================================
+   LA ABACERÍA — Design System & Global Styles
+   Versión: 1.2.1 · Mayo 2026 (Cache cleared)
+   ============================================================ */
+
+/* ── 2. CSS CUSTOM PROPERTIES ── */
 :root {
-  /* Authentic La Abacería Palette (from HTML source) */
-  --color-bg: #0e0600;      /* Deepest Espresso - used in Reviews/Baskets */
-  --color-mid: #130800;     /* Mid Espresso - used in Visit/About/Gallery */
-  --color-surface: #1a0a00; /* Dark Espresso - used in Hero/Cards/Navbar */
-  --color-warm: #2a1200;    /* Warmest Brown - used in CTA Bands */
+  /* ── FONDOS ── */
+  --bg-base-rgb:    14, 6, 0;
+  --bg-dark-rgb:    8, 3, 0;
+  --bg-card-rgb:    26, 10, 0;
+  --bg-section-rgb: 19, 8, 0;
+  --bg-product-rgb: 37, 16, 0;
+  --bg-cta-rgb:     42, 18, 0;
   
-  --color-accent: #e8c97a;  /* Original Gold */
-  --color-accent-vibrant: #f0d88a; /* Bright Gold hover */
-  
-  --color-text: #f5e8c8;    /* Creamy Bone for body text */
-  --color-title: #f0e0b0;   /* Warm Bone for Headings */
-  --color-muted: rgba(255, 245, 220, 0.45);
-  
-  --color-glass: rgba(14, 6, 0, 0.9);
-  --color-border: rgba(232, 201, 122, 0.18);
-  --gold-gradient: linear-gradient(135deg, #e8c97a 0%, #f0d88a 50%, #e8c97a 100%);
+  --bg-base:        #0e0600;   /* Fondo general de la web */
+  --bg-dark:        #080300;   /* Fondo del footer */
+  --bg-card:        #1a0a00;   /* Cards, navbar, hero */
+  --bg-section:     #130800;   /* Secciones alternadas (about, galería, visita) */
+  --bg-product:     #251000;   /* Imágenes de producto, avatares */
+  --bg-cta:         #2a1200;   /* Franja CTA */
+  --bg-ticker:      #120700;   /* Fondo Ticker */
 
-  /* Typography - Luxury Serif Pairing */
+  /* ── DORADO ── */
+  --gold-rgb:       232, 201, 122;
+  --gold:           #e8c97a;
+  --gold-light-rgb: 240, 224, 176;
+  --gold-light:     #f0e0b0;
+  --gold-warm:      #f5e8c8;
+  --gold-55:        rgba(232, 201, 122, 0.55);
+  --gold-45:        rgba(232, 201, 122, 0.45);
+  --gold-35:        rgba(232, 201, 122, 0.35);
+  --gold-25:        rgba(232, 201, 122, 0.25);
+  --gold-15:        rgba(232, 201, 122, 0.15);
+  --gold-12:        rgba(232, 201, 122, 0.12);
+  --gold-08:        rgba(232, 201, 122, 0.08);
+
+  /* ── TEXTO ── */
+  --text-primary-rgb: 245, 232, 200;
+  --text-primary:   #f5e8c8;
+  --text-secondary: rgba(255, 245, 220, 0.70);
+  --text-muted-rgb: 255, 245, 220;
+  --text-muted:     rgba(255, 245, 220, 0.50);
+  --text-faint-rgb: 255, 245, 220;
+  --text-faint:     rgba(255, 245, 220, 0.35);
+  --text-ghost:     rgba(255, 245, 220, 0.22);
+
+  /* ── BORDES ── */
+  --border:         rgba(232, 201, 122, 0.12);
+  --border-md:      rgba(232, 201, 122, 0.20);
+  --border-strong:  rgba(232, 201, 122, 0.40);
+
+  /* ── ACENTOS ── */
+  --green-wa-rgb:   37, 211, 102;
+  --green-wa:       #25d366;
+  --green-wa-dark:  #1db954;
+  --red-closed-rgb: 226, 75, 74;
+  --red-closed:     #e24b4a;
+  --teal-custom-rgb: 93, 202, 165;
+  --teal-custom:    #5DCAA5;
+  --amber-premium-rgb: 239, 159, 39;
+  --amber-premium:  #EF9F27;
+
+  /* ── TIPOGRAFÍA ── */
   --font-display:   'Cormorant Garamond', Georgia, serif;
-  --font-body:      'Montserrat', system-ui, sans-serif;
+  --font-body:      'DM Sans', system-ui, sans-serif;
 
-  /* Spacing */
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 2rem;
-  --space-lg: 4rem;
-  --space-xl: 8rem;
+  /* ── RADIOS ── */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-pill: 999px;
 
-  /* Motion - Rule #13 & #15 (Fluid Premium) */
-  --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 400ms cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  /* ── TRANSICIONES ── */
+  --t-fast:   150ms ease;
+  --t-base:   250ms ease;
+  --t-slow:   350ms ease;
+
+  /* Z-index */
+  --z-nav:    100;
+  --z-modal:  200;
+  --z-toast:  300;
+  --z-wa:     50;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* ── 3. RESET & BASE ── */
+@layer base {
+  body {
+    @apply antialiased;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  h1, h2, .display {
+    font-family: var(--font-display);
+    @apply font-medium leading-tight text-gold-light;
+  }
+
+  h1 { font-size: clamp(32px, 5vw, 48px); }
+  h2 { font-size: clamp(22px, 3.5vw, 32px); }
+  h3 { font-size: clamp(17px, 2.5vw, 22px); font-family: var(--font-body); @apply font-medium text-gold-light; }
+  h4 { font-size: 15px; @apply font-medium; color: rgba(255,245,220,0.85); }
+
+  h1 em, h2 em {
+    @apply text-gold not-italic;
+  }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ── 4. COMPONENTS ── */
+@layer components {
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 10px;
+    @apply font-medium uppercase tracking-widest-xl text-gold/55;
+  }
+
+  .text-lead    { font-size: 16px; color: var(--text-muted); line-height: 1.7; }
+  .text-body    { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+  .text-sm      { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+  .text-xs      { font-size: 11px; @apply text-text-faint tracking-wider; }
+
+  .navbar--semantic {
+    @apply sticky top-0 flex items-center justify-between transition-all duration-500 bg-bg-base border-b border-gold-08;
+    height: 62px;
+    z-index: var(--z-nav);
+    padding: 0 var(--space-8);
+  }
+
+  .btn-semantic {
+    @apply inline-flex items-center justify-center transition-all duration-200 cursor-pointer whitespace-nowrap font-sans font-medium rounded-md px-6 py-3;
+    gap: var(--space-2);
+    font-size: 14px;
+  }
+
+  .btn-primary-semantic { @apply bg-gold text-bg-dark hover:bg-gold-light; }
+  .btn-outline-semantic { 
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-secondary);
+    transition: all 0.2s;
+  }
+  .btn-outline-semantic:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Review card */
+  .review-card { 
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px; 
+  }
+  .review-card__stars { @apply text-gold text-xs mb-3; }
+  .review-card__text  { @apply text-xs italic text-text-muted leading-relaxed mb-3.5; }
+  .review-card__author { @apply flex items-center gap-2; }
+  .review-card__avatar {
+    @apply rounded-full bg-gold/10 flex items-center justify-center text-xs font-medium text-gold shrink-0;
+    width: 34px; height: 34px;
+  }
+  .review-card__name { @apply text-xs font-medium; color: var(--text-secondary); }
+  .review-card__date { @apply text-[11px] text-text-faint; }
+
+  /* Shipping card */
+  .shipping-card { 
+    @apply text-center bg-bg-card border border-gold/10 rounded-lg transition-all duration-300; 
+    padding: 26px;
+  }
+  .shipping-card--featured { @apply border-gold-strong bg-bg-cta; }
+  .shipping-card__icon  { @apply text-3xl text-gold/55 mb-3.5; }
+  .shipping-card__price { @apply font-serif text-2xl text-gold mb-1; }
+
+  /* Timeline */
+  .timeline {
+    @apply relative pl-8 border-l border-gold/15 flex flex-col;
+    gap: 34px;
+  }
+  .timeline__dot {
+    @apply absolute -left-[37px] top-1 w-3.5 h-3.5 rounded-full bg-gold border-2 border-bg-base;
+    box-shadow: 0 0 0 3px rgba(232, 201, 122, 0.20);
+  }
+
+  /* Steps */
+  .steps { @apply grid grid-cols-4 relative; }
+  .step { @apply text-center relative z-10; }
+  .step__num {
+    @apply w-14 h-14 rounded-full bg-bg-card border border-gold/20 flex items-center justify-center mx-auto mb-4 text-xl text-gold/55;
+  }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--color-title);
+/* ── 5. UTILITIES ── */
+@layer utilities {
+  .bg-section { @apply bg-bg-section border-y border-gold-08; }
+  .bg-cta     { @apply bg-bg-cta border-t border-gold/10; }
+
+  @keyframes ticker-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-track {
+    @apply flex whitespace-nowrap;
+    animation: ticker-scroll 24s linear infinite;
+  }
 }
 
-/* Buttons */
-.btn {
-  padding: 1rem 2.5rem;
-  font-weight: 600;
-  text-transform: capitalize;
-  letter-spacing: 0.05em;
-  transition: all var(--transition-base);
-  border-radius: 12px;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
+/* ── 9. CUSTOM ANIMATIONS ── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.btn-primary {
-  background-color: var(--color-accent);
-  color: #1A0F0A;
-  border: 1px solid var(--color-accent);
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.btn-primary:hover {
-  background-color: var(--color-accent-vibrant);
-  border-color: var(--color-accent-vibrant);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(209, 161, 94, 0.2);
-}
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
 
-.btn-secondary {
-  border: 1px solid rgba(209, 161, 94, 0.5);
-  color: var(--color-text);
-  background: rgba(26, 15, 10, 0.3);
-  backdrop-filter: blur(5px);
-}
-
-.btn-secondary:hover {
-  border-color: var(--color-accent);
-  background-color: rgba(209, 161, 94, 0.1);
-  transform: translateY(-3px);
-}
-
-.text-gradient-gold {
-  background: var(--gold-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-surface);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
 }
