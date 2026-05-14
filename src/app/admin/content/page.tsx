@@ -280,8 +280,27 @@ function ContentPageInner() {
         <div className="flex gap-4">
           <button 
             disabled={isRestoring}
+            onClick={async () => {
+              if (confirm('¿ESTÁS TOTALMENTE SEGURO? Esta acción borrará TODOS los textos y configuraciones del sitio. Asegúrate de tener un backup.')) {
+                setIsRestoring(true);
+                const { error } = await supabase.from('site_content').delete().neq('id', 'placeholder'); // Delete all
+                if (error) alert('Error al borrar: ' + error.message);
+                else {
+                  alert('Todo el contenido ha sido borrado.');
+                  fetchContent();
+                }
+                setIsRestoring(false);
+              }
+            }}
+            className="flex items-center gap-2 bg-red-500/10 border border-red-500/30 text-red-400 px-6 py-2.5 rounded-full text-[10px] font-bold tracking-[0.2em] hover:bg-red-500 hover:text-white transition-all group disabled:opacity-50"
+          >
+            <Trash2 size={14} />
+            BORRAR TODO
+          </button>
+          <button 
+            disabled={isRestoring}
             onClick={restoreToDefaults}
-            className="flex items-center gap-2 bg-red-500/5 border border-red-500/20 text-red-400 px-6 py-2.5 rounded-full text-[10px] font-bold tracking-[0.2em] hover:bg-red-500 hover:text-white transition-all group disabled:opacity-50"
+            className="flex items-center gap-2 bg-white/5 border border-white/20 text-gold/60 px-6 py-2.5 rounded-full text-[10px] font-bold tracking-[0.2em] hover:bg-gold hover:text-black transition-all group disabled:opacity-50"
           >
             <RotateCcw size={14} className={isRestoring ? 'animate-spin' : ''} />
             RESTAURAR FÁBRICA
