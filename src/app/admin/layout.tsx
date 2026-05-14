@@ -7,7 +7,7 @@ import {
   LayoutDashboard, 
   Package, 
   Mail, 
-  FileText, 
+  Database, 
   Globe, 
   Image as ImageIcon, 
   LogOut, 
@@ -54,9 +54,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       ]
     },
     {
-      label: 'Contenido',
+      label: 'Configuración',
       items: [
-        { id: 'content', label: 'Contenido Web', href: '/admin/content', icon: FileText, hasSubmenu: true },
+        { id: 'content', label: 'Mantenimiento', href: '/admin/content', icon: Database },
       ]
     },
     {
@@ -124,26 +124,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         {item.hasSubmenu && <ChevronDown size={14} className={isActive ? 'rotate-0' : '-rotate-90'} />}
                       </Link>
 
-                      {/* Submenú de Páginas (Solo si está activo) */}
-                      {item.id === 'content' && isActive && (
-                        <div className="mt-2 px-2 pb-2 space-y-1 animate-in fade-in slide-in-from-top-2 duration-300">
-                          {[
-                            { id: 'home', label: 'Página de Inicio' },
-                            { id: 'about', label: 'Sobre Nosotros (Historia)' },
-                            { id: 'contact', label: 'Contacto y Ubicación' },
-                            { id: 'legal', label: 'Información y Legal' },
-                            { id: 'footer', label: 'Ajustes Globales (Footer)' },
-                          ].map((subItem) => (
-                            <Link
-                              key={subItem.id}
-                              href={`/admin/content?page=${subItem.id}`}
-                              className="block px-8 py-2 text-[10px] font-medium text-gold/40 hover:text-gold transition-colors"
-                            >
-                              {subItem.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
+
                     </div>
                   )
                 })}
