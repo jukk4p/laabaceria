@@ -306,10 +306,6 @@ function ContentPageInner() {
             <RotateCcw size={14} className={isRestoring ? 'animate-spin' : ''} />
             RESTAURAR FÁBRICA
           </button>
-          <button className="flex items-center gap-2 bg-gold/5 border border-gold/20 text-gold px-6 py-2.5 rounded-full text-[10px] font-bold tracking-[0.2em] hover:bg-gold hover:text-black transition-all group">
-            <Send size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            PUBLICAR CAMBIOS
-          </button>
         </div>
       </header>
 
