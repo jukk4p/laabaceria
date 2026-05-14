@@ -9,7 +9,7 @@ export default async function AdminDashboard() {
   const content = await getSiteContent()
   const messages = await getMessages(serverSupabase)
   
-  const unreadMessages = messages.filter(m => !m.is_read).length
+  const unreadMessages = messages.filter((m: { is_read: boolean }) => !m.is_read).length
 
   const stats = [
     { label: 'Productos', value: products.length, trend: 'Activos en catálogo', icon: Package },
