@@ -5,6 +5,8 @@ import { useCart } from '@/context/CartContext'
 import { X, Plus, Minus, ShoppingCart, Trash2 } from 'lucide-react'
 import Image from 'next/image'
 
+import { createBrowserClient } from '@supabase/ssr'
+
 export default function Cart() {
   const { 
     cart, 
@@ -18,17 +20,52 @@ export default function Cart() {
   } = useCart()
 
   const [notes, setNotes] = React.useState('')
+  const [customerName, setCustomerName] = React.useState('')
+  const [isSaving, setIsSaving] = React.useState(false)
+
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
 
   if (!isCartOpen) return null
 
-  const handleWhatsAppOrder = () => {
+  const handleWhatsAppOrder = async () => {
+    if (!customerName.trim()) {
+      alert('Por favor, introduce tu nombre para el pedido.')
+      return
+    }
+
+    setIsSaving(true)
+    
+    // 1. Guardar en Supabase
+    const { error } = await supabase
+      .from('orders')
+      .insert({
+        customer_name: customerName,
+        items: cart,
+        total: totalPrice,
+        notes: notes,
+        status: 'Pendiente'
+      })
+
+    if (error) {
+      console.error('Error saving order:', error)
+      alert('Hubo un error al registrar el pedido, pero podés continuar por WhatsApp.')
+    }
+
+    // 2. Abrir WhatsApp
     const message = encodeURIComponent(
-      `Hola La Abacería, me gustaría realizar el siguiente pedido:\n\n` +
+      `Hola La Abacería, soy ${customerName}. Me gustaría realizar el siguiente pedido:\n\n` +
       cart.map(item => `• ${item.name} x${item.quantity} - ${item.price}`).join('\n') +
       (notes ? `\n\nNotas adicionales:\n${notes}` : '') +
       `\n\nTotal estimado: ${totalPrice.toFixed(2)}€\n\n¿Me podríais confirmar disponibilidad y precio final? Gracias.`
     )
+    
+    setIsSaving(false)
     window.open(`https://wa.me/34691419369?text=${message}`, '_blank')
+    clearCart()
+    setIsCartOpen(false)
   }
 
   return (
@@ -123,17 +160,33 @@ export default function Cart() {
                 </div>
               ))}
               
-              {/* Notes Section */}
-              <div className="pt-6 border-t border-gold/5">
-                <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold mb-4 italic">
-                  Notas para el pedido
-                </h4>
-                <textarea
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  placeholder="Escribe aquí cualquier instrucción especial (ej. preparación, horario de recogida, etc.)"
-                  className="w-full bg-bg-dark/30 border border-gold/10 rounded-2xl p-4 text-gold-muted text-sm placeholder:text-gold/20 focus:outline-none focus:border-gold/30 transition-all min-h-[100px] resize-none font-light"
-                />
+              {/* Customer Name Section */}
+              <div className="pt-6 border-t border-gold/5 space-y-4">
+                <div className="space-y-3">
+                  <label className="text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold italic">
+                    Tu nombre
+                  </label>
+                  <input
+                    type="text"
+                    value={customerName}
+                    onChange={(e) => setCustomerName(e.target.value)}
+                    placeholder="¿A nombre de quién hacemos el pedido?"
+                    className="w-full bg-bg-dark/30 border border-gold/10 rounded-2xl px-6 py-4 text-gold-muted text-sm placeholder:text-gold/20 focus:outline-none focus:border-gold/30 transition-all font-light"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-3">
+                  <label className="text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold italic">
+                    Notas para el pedido
+                  </label>
+                  <textarea
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    placeholder="Escribe aquí cualquier instrucción especial (ej. preparación, horario de recogida, etc.)"
+                    className="w-full bg-bg-dark/30 border border-gold/10 rounded-2xl p-4 text-gold-muted text-sm placeholder:text-gold/20 focus:outline-none focus:border-gold/30 transition-all min-h-[100px] resize-none font-light"
+                  />
+                </div>
               </div>
             </>
           )}
@@ -167,9 +220,10 @@ export default function Cart() {
             
             <button 
               onClick={handleWhatsAppOrder}
-              className="w-full bg-[#ebc47a] hover:bg-[#f3d49b] text-bg-dark py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[12px] flex items-center justify-center gap-3 shadow-xl transition-all hover:-translate-y-1 active:scale-[0.98]"
+              disabled={isSaving}
+              className="w-full bg-[#ebc47a] hover:bg-[#f3d49b] disabled:opacity-50 disabled:hover:bg-[#ebc47a] text-bg-dark py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[12px] flex items-center justify-center gap-3 shadow-xl transition-all hover:-translate-y-1 active:scale-[0.98]"
             >
-              Realizar pedido por WhatsApp
+              {isSaving ? 'Procesando...' : 'Realizar pedido por WhatsApp'}
             </button>
             
             <p className="text-center text-[10px] text-gold/40 tracking-wider">
