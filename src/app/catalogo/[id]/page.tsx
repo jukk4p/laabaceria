@@ -100,7 +100,7 @@ export default function ProductDetailsPage() {
           
           {/* Image Gallery Column (5/12) */}
           <div className="lg:col-span-5 space-y-8 sticky top-32">
-            <AdminEditable id={product.id} tableName="products" field="image_url" type="image" content={product.image_url || product.image || ''}>
+            <AdminEditable id={product.id} tableName="products" field="image_url" type="image" content={product.image_url || product.image || ''} className="w-full h-full">
               <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-gold/10 bg-bg-product group shadow-[0_40px_100px_rgba(0,0,0,0.5)]">
                 <Image 
                   src={product.image_url || product.image || '/images/placeholder.jpg'} 

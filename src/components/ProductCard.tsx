@@ -31,7 +31,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Visual / Badge Area (60% of card visual weight roughly) */}
       <div className="relative aspect-video flex items-center justify-center overflow-hidden bg-bg-product">
         {/* Product Image */}
-        <AdminEditable id={product.id} tableName="products" field="image_url" type="image" content={product.image_url || product.image || ''}>
+        <AdminEditable id={product.id} tableName="products" field="image_url" type="image" content={product.image_url || product.image || ''} className="w-full h-full">
           <Image 
             src={product.image_url || product.image || '/images/placeholder.jpg'} 
             alt={product.name}
