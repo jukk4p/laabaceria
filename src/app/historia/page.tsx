@@ -21,16 +21,16 @@ export default async function HistoriaPage() {
         </div>
 
         <div className="container mx-auto max-w-4xl relative z-10 text-center">
-          <div className="mb-8 opacity-0 animate-fade-in">
+          <div className="mb-6 opacity-0 animate-fade-in">
             <AdminEditable category="historia" id="historia_hero_eyebrow" content={content['historia_hero_eyebrow'] || "DESDE 1993 · CORIA DEL RÍO"}>
-              <span className="inline-block text-[10px] md:text-[11px] uppercase tracking-[0.6em] text-gold/60 font-bold border-b border-gold/20 pb-3">
+              <span className="inline-block text-[10px] md:text-[11px] uppercase tracking-[0.5em] text-gold/60 font-bold border-b border-gold/20 pb-2">
                 {content['historia_hero_eyebrow'] || "DESDE 1993 · CORIA DEL RÍO"}
               </span>
             </AdminEditable>
           </div>
           
           <AdminEditable category="historia" id="historia_hero_title" content={content['historia_hero_title'] || "Nuestra Historia"}>
-            <h1 className="text-4xl md:text-7xl font-serif text-[#f4ead5] mb-8 leading-tight opacity-0 animate-fade-in-up italic">
+            <h1 className="text-4xl md:text-6xl font-serif text-[#f4ead5] mb-6 leading-tight opacity-0 animate-fade-in-up italic">
               {content['historia_hero_title'] || "Nuestra Historia"}
             </h1>
           </AdminEditable>
