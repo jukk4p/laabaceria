@@ -105,7 +105,7 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="space-y-10">
+    <div className="p-8 md:p-12 max-w-7xl mx-auto space-y-12 animate-in fade-in duration-700">
       <div className="flex flex-wrap justify-between items-end gap-6">
         <div>
           <h1 className="text-4xl font-serif text-gold italic mb-4">Gestión de Productos</h1>
