@@ -15,7 +15,8 @@ import {
   Database,
   Download,
   UploadCloud,
-  RotateCcw
+  RotateCcw,
+  Trash2
 } from 'lucide-react'
 
 // --- Diccionario de Nombres Amigables ---
