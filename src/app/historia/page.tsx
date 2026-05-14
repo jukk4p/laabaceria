@@ -12,50 +12,35 @@ export default async function HistoriaPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0e0600]">
-      {/* Hero Section Reimagined */}
-      <section className="relative min-h-[60vh] flex items-center justify-center px-6 overflow-hidden">
-        {/* Background Image with Deep Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src="/images/historia-hero.png" 
-            alt="La Abacería Local" 
-            fill 
-            className="object-cover scale-105"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0e0600]/90 via-[#0e0600]/70 to-[#0e0600]" />
-          <div className="absolute inset-0 bg-black/40" />
+      {/* Hero Section - Clean Dark Aesthetic */}
+      <section className="relative pt-44 pb-28 px-6 overflow-hidden border-b border-gold/5">
+        {/* Premium ambient glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-gold/10 blur-[160px] rounded-full opacity-60" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0e0600_100%)] opacity-40" />
         </div>
 
-        {/* Ambient Glows */}
-        <div className="absolute inset-0 pointer-events-none z-[1]">
-          <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold/10 blur-[120px] rounded-full opacity-40" />
-        </div>
-
-        <div className="container mx-auto max-w-4xl relative z-10 text-center pt-20">
+        <div className="container mx-auto max-w-4xl relative z-10 text-center">
           <div className="mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
             <AdminEditable category="historia" id="historia_hero_eyebrow" content={content['historia_hero_eyebrow'] || "DESDE 1993 · CORIA DEL RÍO"}>
-              <span className="inline-block text-[10px] md:text-[11px] uppercase tracking-[0.6em] text-gold font-black border-b border-gold/30 pb-3">
+              <span className="inline-block text-[10px] md:text-[11px] uppercase tracking-[0.6em] text-gold/60 font-bold border-b border-gold/20 pb-3">
                 {content['historia_hero_eyebrow'] || "DESDE 1993 · CORIA DEL RÍO"}
               </span>
             </AdminEditable>
           </div>
           
           <AdminEditable category="historia" id="historia_hero_title" content={content['historia_hero_title'] || "Nuestra Historia"}>
-            <h1 className="text-5xl md:text-8xl font-serif text-white mb-8 leading-[1.1] animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+            <h1 className="text-4xl md:text-7xl font-serif text-[#f4ead5] mb-8 leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200 italic">
               {content['historia_hero_title'] || "Nuestra Historia"}
             </h1>
           </AdminEditable>
           
           <AdminEditable category="historia" id="historia_hero_subtitle" content={content['historia_hero_subtitle'] || "Más de tres décadas seleccionando los mejores productos ibéricos con pasión, dedicación y respeto por la tradición."}>
-            <p className="text-white/70 text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed font-light italic animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
+            <p className="text-gold-muted/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
               {content['historia_hero_subtitle'] || "Más de tres décadas seleccionando los mejores productos ibéricos con pasión, dedicación y respeto por la tradición."}
             </p>
           </AdminEditable>
         </div>
-
-        {/* Subtle Bottom Blur transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0e0600] to-transparent z-[5]" />
       </section>
 
       {/* Orígenes */}
