@@ -115,10 +115,12 @@ export default function ProductDetailsPage() {
                 
                 {/* Corner Badges */}
                 <div className="absolute top-8 left-8 flex flex-col gap-2">
-                  {product.category === 'jamon' && (
-                    <span className="bg-gold text-bg-dark text-[9px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-2xl">
-                      Auténtico Jabugo
-                    </span>
+                  {(product.category === 'jamon' || product.badge) && (
+                    <AdminEditable id={product.id} tableName="products" field="badge" content={product.badge || (product.category === 'jamon' ? 'Auténtico Jabugo' : '')}>
+                      <span className="bg-gold text-bg-dark text-[9px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-2xl">
+                        {product.badge || (product.category === 'jamon' ? 'Auténtico Jabugo' : '')}
+                      </span>
+                    </AdminEditable>
                   )}
                 </div>
               </div>

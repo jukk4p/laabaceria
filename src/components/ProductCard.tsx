@@ -46,17 +46,12 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         {/* Quality Badges */}
         <div className="absolute top-6 right-6 z-10 flex flex-col gap-2 items-end">
-          {product.category === 'jamon' && (
-            <AdminEditable id={product.id} tableName="products" field="badge" content={product.badge || 'D.O.P. Jabugo'}>
+          {(product.category === 'jamon' || product.badge) && (
+            <AdminEditable id={product.id} tableName="products" field="badge" content={product.badge || (product.category === 'jamon' ? 'D.O.P. Jabugo' : '')}>
               <div className="bg-bg-card/80 border border-gold/20 text-gold text-[8px] uppercase tracking-widest px-3 py-1.5 rounded-full font-bold backdrop-blur-sm">
-                {product.badge || 'D.O.P. Jabugo'}
+                {product.badge || (product.category === 'jamon' ? 'D.O.P. Jabugo' : '')}
               </div>
             </AdminEditable>
-          )}
-          {product.badge && (
-            <div className="bg-bg-card/80 border border-gold/30 text-gold text-[8px] uppercase tracking-widest px-3 py-1.5 rounded-full font-bold backdrop-blur-sm">
-              {product.badge}
-            </div>
           )}
         </div>
 
