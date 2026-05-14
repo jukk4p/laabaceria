@@ -51,11 +51,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         { id: 'dashboard', label: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
         { id: 'products', label: 'Productos', href: '/admin/products', icon: Package },
         { id: 'messages', label: 'Mensajes', href: '/admin/messages', icon: Mail, badge: messageCount?.toString() },
-      ]
-    },
-    {
-      label: 'Configuración',
-      items: [
         { id: 'content', label: 'Mantenimiento', href: '/admin/content', icon: Database },
       ]
     },
