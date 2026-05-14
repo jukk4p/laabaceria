@@ -11,7 +11,11 @@ import {
   Upload,
   Pencil,
   X,
-  Send
+  Send,
+  Database,
+  Download,
+  UploadCloud,
+  RotateCcw
 } from 'lucide-react'
 
 // --- Diccionario de Nombres Amigables ---
@@ -31,14 +35,6 @@ const labels: Record<string, string> = {
   'contact_address': 'Dirección Física',
   'contact_phone': 'Teléfono de Contacto',
   'contact_email': 'Email de Contacto',
-  'gallery-image-1': 'Imagen Galería 1 (Fachada)',
-  'gallery-image-2': 'Imagen Galería 2 (Vinos)',
-  'gallery-image-3': 'Imagen Galería 3 (Corte)',
-  'gallery-image-4': 'Imagen Galería 4 (Vitrinas)',
-  'gallery-label-1': 'Etiqueta Foto 1',
-  'gallery-label-2': 'Etiqueta Foto 2',
-  'gallery-label-3': 'Etiqueta Foto 3',
-  'gallery-label-4': 'Etiqueta Foto 4',
 }
 
 const sectionLabels: Record<string, string> = {
@@ -48,9 +44,9 @@ const sectionLabels: Record<string, string> = {
   'footer-general': 'Pie de Página Global',
   'gallery': 'Galería de Imágenes (Home)',
   'baskets': 'Sección Cestas Gourmet',
+  'catalogo': 'Cabecera del Catálogo'
 }
 
-// Estructura de Páginas para mapear con la DB
 const PAGE_STRUCTURE: Record<string, { label: string, categories: string[] }> = {
   'home': { 
     label: 'Página de Inicio', 
@@ -74,7 +70,6 @@ const PAGE_STRUCTURE: Record<string, { label: string, categories: string[] }> = 
   },
 }
 
-// Orden visual de las secciones por página
 const SECTION_ORDER: Record<string, string[]> = {
   'home': ['hero', 'features', 'about', 'baskets', 'gallery', 'reviews', 'social'],
   'about': ['history', 'about'],
@@ -82,6 +77,20 @@ const SECTION_ORDER: Record<string, string[]> = {
   'legal': ['legal', 'envios', 'privacy', 'terms'],
   'footer': ['footer', 'general']
 }
+
+// --- Valores Predeterminados para Restauración ---
+const DEFAULT_CONTENT = [
+  { id: 'home_hero_title', content: 'Tradición y Sabor en cada rincón', category: 'home', type: 'text' },
+  { id: 'home_hero_subtitle', content: 'Descubre la auténtica experiencia de una abacería tradicional con los mejores productos de nuestra tierra.', category: 'home', type: 'text' },
+  { id: 'home_hero_eyebrow', content: 'BIENVENIDOS A LA ABACERÍA', category: 'home', type: 'text' },
+  { id: 'catalogo-title', content: 'Nuestro Catálogo', category: 'catalogo', type: 'text' },
+  { id: 'catalogo-subtitle', content: 'Descubre nuestra exclusiva selección de jamones ibéricos, embutidos artesanos y productos gourmet de la máxima calidad.', category: 'catalogo', type: 'text' },
+  { id: 'catalogo-eyebrow', content: 'SELECCIÓN ARTESANAL', category: 'catalogo', type: 'text' },
+  { id: 'footer_description', content: 'Tu rincón gourmet de confianza para disfrutar de los mejores productos ibéricos y artesanales.', category: 'footer', type: 'text' },
+  { id: 'contact_phone', content: '+34 600 000 000', category: 'contact', type: 'text' },
+  { id: 'contact_email', content: 'hola@laabaceria.es', category: 'contact', type: 'text' },
+  { id: 'contact_address', content: 'Calle Real, 1, 41001 Sevilla', category: 'contact', type: 'text' },
+]
 
 function ContentPageInner() {
   const searchParams = useSearchParams()
@@ -92,6 +101,7 @@ function ContentPageInner() {
   const [savingId, setSavingId] = useState<string | null>(null)
   const [editMode, setEditMode] = useState<string | null>(null)
   const [editValue, setEditValue] = useState('')
+  const [isRestoring, setIsRestoring] = useState(false)
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -111,6 +121,70 @@ function ContentPageInner() {
     if (error) console.error('Error fetching content:', error)
     else setContent(data || [])
     setLoading(false)
+  }
+
+  // --- Funciones de Backup y Restauración ---
+  const exportBackup = () => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(content, null, 2));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href",     dataStr);
+    downloadAnchorNode.setAttribute("download", `la-abaceria-backup-${new Date().toISOString().split('T')[0]}.json`);
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  }
+
+  const importBackup = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const json = JSON.parse(e.target?.result as string);
+        if (Array.isArray(json)) {
+          if (confirm('¿Estás seguro de que quieres restaurar este backup? Sobrescribirá el contenido actual.')) {
+            setIsRestoring(true);
+            for (const item of json) {
+              await supabase.from('site_content').upsert({
+                id: item.id,
+                content: item.content,
+                category: item.category,
+                type: item.type,
+                updated_at: new Date()
+              });
+            }
+            alert('Backup restaurado correctamente');
+            fetchContent();
+          }
+        }
+      } catch (err) {
+        alert('Error al procesar el archivo JSON');
+      } finally {
+        setIsRestoring(false);
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  const restoreToDefaults = async () => {
+    if (confirm('¿Restaurar todos los textos a su estado original de fábrica?')) {
+      setIsRestoring(true);
+      try {
+        for (const item of DEFAULT_CONTENT) {
+          await supabase.from('site_content').upsert({
+            ...item,
+            updated_at: new Date()
+          });
+        }
+        alert('Estructura restaurada con éxito');
+        fetchContent();
+      } catch (err) {
+        alert('Error en la restauración');
+      } finally {
+        setIsRestoring(false);
+      }
+    }
   }
 
   async function updateContent(id: string, value: string) {
@@ -185,6 +259,14 @@ function ContentPageInner() {
           if (file && id) handleFileUpload(id, file)
         }}
       />
+      <input 
+        type="file" 
+        id="backup-import" 
+        className="hidden" 
+        accept=".json"
+        onChange={importBackup}
+      />
+
       {/* Top Header - Gestión Contextual */}
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-gold/10">
         <div>
@@ -192,31 +274,52 @@ function ContentPageInner() {
             {PAGE_STRUCTURE[activePageId]?.label || 'Gestión de Contenido'}
           </h2>
           <p className="text-[10px] uppercase tracking-[0.3em] text-gold/40 mt-2 font-bold">
-            Gestión de Contenido · Haz clic en cualquier campo para editar
+            Administración del sitio · Controles maestros de contenido
           </p>
         </div>
-        <button className="flex items-center gap-2 bg-gold/5 border border-gold/20 text-gold px-6 py-2.5 rounded-full text-[10px] font-bold tracking-[0.2em] hover:bg-gold hover:text-black transition-all group">
-          <Send size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          PUBLICAR CAMBIOS
-        </button>
+        <div className="flex gap-4">
+          <button 
+            disabled={isRestoring}
+            onClick={restoreToDefaults}
+            className="flex items-center gap-2 bg-red-500/5 border border-red-500/20 text-red-400 px-6 py-2.5 rounded-full text-[10px] font-bold tracking-[0.2em] hover:bg-red-500 hover:text-white transition-all group disabled:opacity-50"
+          >
+            <RotateCcw size={14} className={isRestoring ? 'animate-spin' : ''} />
+            RESTAURAR FÁBRICA
+          </button>
+          <button className="flex items-center gap-2 bg-gold/5 border border-gold/20 text-gold px-6 py-2.5 rounded-full text-[10px] font-bold tracking-[0.2em] hover:bg-gold hover:text-black transition-all group">
+            <Send size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            PUBLICAR CAMBIOS
+          </button>
+        </div>
       </header>
 
-      {/* Stats Grid - Mockup Data for UI Polish */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {[
-          { label: 'Productos', value: '48', trend: '+3 este mes' },
-          { label: 'Mensajes', value: '12', trend: '3 sin leer' },
-          { label: 'Imágenes', value: '94', trend: '+7 nuevas' },
-          { label: 'Última Edición', value: 'Hoy', trend: 'hace 2 horas' },
-        ].map((stat, i) => (
-          <div key={i} className="bg-[#1a120b] p-6 rounded-[2rem] border border-gold/5 space-y-2">
-            <p className="text-[9px] uppercase tracking-widest text-gold/30 font-bold">{stat.label}</p>
-            <div className="flex items-baseline gap-3">
-              <span className="text-2xl font-serif italic text-gold">{stat.value}</span>
-              <span className="text-[9px] text-green-500 font-bold">{stat.trend}</span>
-            </div>
+      {/* Backup Controls */}
+      <div className="bg-[#1a120b] p-8 rounded-[2.5rem] border border-gold/10 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="flex items-center gap-6">
+          <div className="w-12 h-12 rounded-2xl bg-gold/10 flex items-center justify-center text-gold">
+            <Database size={24} />
           </div>
-        ))}
+          <div>
+            <h3 className="text-sm font-bold text-gold">Sistema de Copias de Seguridad</h3>
+            <p className="text-[10px] text-gold/40 uppercase tracking-widest mt-1">Exporta o restaura la estructura completa de textos</p>
+          </div>
+        </div>
+        <div className="flex gap-4">
+          <button 
+            onClick={exportBackup}
+            className="flex items-center gap-2 bg-white/5 border border-white/10 text-gold/60 px-5 py-2.5 rounded-xl text-[10px] font-bold hover:bg-gold/10 hover:text-gold transition-all"
+          >
+            <Download size={14} />
+            EXPORTAR JSON
+          </button>
+          <button 
+            onClick={() => document.getElementById('backup-import')?.click()}
+            className="flex items-center gap-2 bg-white/5 border border-white/10 text-gold/60 px-5 py-2.5 rounded-xl text-[10px] font-bold hover:bg-gold/10 hover:text-gold transition-all"
+          >
+            <UploadCloud size={14} />
+            IMPORTAR BACKUP
+          </button>
+        </div>
       </div>
 
       {/* Content Editor Area */}

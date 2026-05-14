@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { 
@@ -16,39 +17,56 @@ import {
 } from 'lucide-react'
 import { createBrowserClient } from '@supabase/ssr'
 
-const menuGroups = [
-  {
-    label: 'General',
-    items: [
-      { id: 'dashboard', label: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
-      { id: 'products', label: 'Productos', href: '/admin/products', icon: Package },
-      { id: 'messages', label: 'Mensajes', href: '/admin/messages', icon: Mail, badge: '2' },
-    ]
-  },
-  {
-    label: 'Contenido',
-    items: [
-      { id: 'content', label: 'Contenido Web', href: '/admin/content', icon: FileText, hasSubmenu: true },
-    ]
-  },
-  {
-    label: 'Sitio',
-    items: [
-      { id: 'seo', label: 'SEO', href: '/admin/seo', icon: Globe },
-      { id: 'gallery', label: 'Galería', href: '/admin/gallery', icon: ImageIcon },
-    ]
-  }
-]
-
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const router = useRouter()
+  const [messageCount, setMessageCount] = useState<number | null>(null)
   const isLoginPage = pathname === '/admin/login'
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   )
+
+  useEffect(() => {
+    if (!isLoginPage) {
+      fetchMessageCount()
+    }
+  }, [isLoginPage])
+
+  const fetchMessageCount = async () => {
+    const { count, error } = await supabase
+      .from('contact_messages')
+      .select('*', { count: 'exact', head: true })
+    
+    if (!error && count !== null) {
+      setMessageCount(count)
+    }
+  }
+
+  const menuGroups = [
+    {
+      label: 'General',
+      items: [
+        { id: 'dashboard', label: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
+        { id: 'products', label: 'Productos', href: '/admin/products', icon: Package },
+        { id: 'messages', label: 'Mensajes', href: '/admin/messages', icon: Mail, badge: messageCount?.toString() },
+      ]
+    },
+    {
+      label: 'Contenido',
+      items: [
+        { id: 'content', label: 'Contenido Web', href: '/admin/content', icon: FileText, hasSubmenu: true },
+      ]
+    },
+    {
+      label: 'Sitio',
+      items: [
+        { id: 'seo', label: 'SEO', href: '/admin/seo', icon: Globe },
+        { id: 'gallery', label: 'Galería', href: '/admin/gallery', icon: ImageIcon },
+      ]
+    }
+  ]
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
