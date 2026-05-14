@@ -46,7 +46,9 @@ export default function AdminEditable({
     checkAdmin()
   }, [])
 
-  if (!isAdmin) return <>{children}</>
+  if (!isAdmin) {
+    return className ? <div className={className}>{children}</div> : <>{children}</>
+  }
 
   const handleSave = async () => {
     setIsSaving(true)
