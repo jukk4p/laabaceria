@@ -140,87 +140,134 @@ export default function ProductsPage() {
           <div className="w-10 h-10 border-2 border-gold border-t-transparent rounded-full animate-spin mx-auto"></div>
         </div>
       ) : (
-        <div className="bg-bg-card border border-gold/10 rounded-[2.5rem] overflow-hidden shadow-2xl overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-gold/10 bg-gold/5">
-                <th className="px-8 py-6 text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold">Producto</th>
-                <th className="px-8 py-6 text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold hidden md:table-cell">Categoría</th>
-                <th className="px-8 py-6 text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold">Precio</th>
-                <th className="px-8 py-6 text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold hidden xl:table-cell">Descripción</th>
-                <th className="px-8 py-6 text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold text-right">Acciones</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gold/5">
-              {filteredProducts.map((p) => (
-                <tr key={p.id} className="group hover:bg-gold/[0.02] transition-colors">
-                  <td className="px-8 py-5">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl overflow-hidden bg-bg-dark/50 border border-gold/10 flex-shrink-0">
-                        {p.image_url ? (
-                          <img 
-                            src={p.image_url} 
-                            alt={p.name}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-gold/20">
-                            <Package size={20} />
-                          </div>
-                        )}
+        <>
+          {/* Mobile View: Cards */}
+          <div className="md:hidden space-y-4">
+            {filteredProducts.map((p) => (
+              <div key={p.id} className="bg-bg-card border border-gold/10 rounded-3xl p-6 space-y-6">
+                <div className="flex gap-4">
+                  <div className="w-16 h-16 rounded-2xl overflow-hidden bg-bg-dark/50 border border-gold/10 flex-shrink-0">
+                    {p.image_url ? (
+                      <img src={p.image_url} alt={p.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-gold/20">
+                        <Package size={24} />
                       </div>
-                      <div>
-                        <h3 className="text-gold font-serif text-lg leading-tight">{p.name}</h3>
-                        {p.badge && (
-                          <span className="text-[8px] uppercase tracking-widest text-gold/60 font-bold">{p.badge}</span>
-                        )}
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-8 py-5 hidden md:table-cell">
-                    <span className="text-[10px] uppercase tracking-widest text-gold/40 font-bold bg-gold/5 px-3 py-1 rounded-full border border-gold/10">
-                      {p.category}
-                    </span>
-                  </td>
-                  <td className="px-8 py-5">
-                    <span className="text-gold font-bold">{p.price}</span>
-                  </td>
-                  <td className="px-8 py-5 hidden xl:table-cell max-w-xs">
-                    <p className="text-gold/60 text-xs font-light line-clamp-1">
-                      {p.description}
-                    </p>
-                  </td>
-                  <td className="px-8 py-5 text-right">
-                    <div className="flex justify-end gap-2">
-                      <button 
-                        onClick={() => {
-                          setEditingProduct(p)
-                          setIsModalOpen(true)
-                        }}
-                        className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 text-gold/40 hover:text-gold hover:bg-gold/10 transition-all shadow-sm"
-                        title="Editar"
-                      >
-                        <Edit2 size={16} />
-                      </button>
-                      <button 
-                        onClick={() => handleDelete(p.id)}
-                        className="w-10 h-10 flex items-center justify-center rounded-xl border border-red-500/10 text-red-500/30 hover:text-red-500 hover:bg-red-500/5 transition-all shadow-sm"
-                        title="Eliminar"
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                  </td>
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-gold font-serif text-lg leading-tight truncate">{p.name}</h3>
+                    <p className="text-gold/40 text-[10px] uppercase tracking-widest mt-1">{p.category}</p>
+                    <p className="text-gold font-bold mt-1">{p.price}</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 pt-4 border-t border-gold/5">
+                  <button 
+                    onClick={() => {
+                      setEditingProduct(p)
+                      setIsModalOpen(true)
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-gold/10 text-gold text-[10px] font-bold uppercase tracking-widest border border-gold/10"
+                  >
+                    <Edit2 size={14} />
+                    Editar
+                  </button>
+                  <button 
+                    onClick={() => handleDelete(p.id)}
+                    className="w-12 h-12 flex items-center justify-center rounded-xl border border-red-500/10 text-red-500/30"
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop View: Table */}
+          <div className="hidden md:block bg-bg-card border border-gold/10 rounded-[2.5rem] overflow-hidden shadow-2xl">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-gold/10 bg-gold/5">
+                  <th className="px-8 py-6 text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold">Producto</th>
+                  <th className="px-8 py-6 text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold hidden md:table-cell">Categoría</th>
+                  <th className="px-8 py-6 text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold">Precio</th>
+                  <th className="px-8 py-6 text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold hidden xl:table-cell">Descripción</th>
+                  <th className="px-8 py-6 text-[10px] uppercase tracking-[0.3em] text-gold/40 font-bold text-right">Acciones</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-gold/5">
+                {filteredProducts.map((p) => (
+                  <tr key={p.id} className="group hover:bg-gold/[0.02] transition-colors">
+                    <td className="px-8 py-5">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-xl overflow-hidden bg-bg-dark/50 border border-gold/10 flex-shrink-0">
+                          {p.image_url ? (
+                            <img 
+                              src={p.image_url} 
+                              alt={p.name}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-gold/20">
+                              <Package size={20} />
+                            </div>
+                          )}
+                        </div>
+                        <div>
+                          <h3 className="text-gold font-serif text-lg leading-tight">{p.name}</h3>
+                          {p.badge && (
+                            <span className="text-[8px] uppercase tracking-widest text-gold/60 font-bold">{p.badge}</span>
+                          )}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-8 py-5 hidden md:table-cell">
+                      <span className="text-[10px] uppercase tracking-widest text-gold/40 font-bold bg-gold/5 px-3 py-1 rounded-full border border-gold/10">
+                        {p.category}
+                      </span>
+                    </td>
+                    <td className="px-8 py-5">
+                      <span className="text-gold font-bold">{p.price}</span>
+                    </td>
+                    <td className="px-8 py-5 hidden xl:table-cell max-w-xs">
+                      <p className="text-gold/60 text-xs font-light line-clamp-1">
+                        {p.description}
+                      </p>
+                    </td>
+                    <td className="px-8 py-5 text-right">
+                      <div className="flex justify-end gap-2">
+                        <button 
+                          onClick={() => {
+                            setEditingProduct(p)
+                            setIsModalOpen(true)
+                          }}
+                          className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 text-gold/40 hover:text-gold hover:bg-gold/10 transition-all shadow-sm"
+                          title="Editar"
+                        >
+                          <Edit2 size={16} />
+                        </button>
+                        <button 
+                          onClick={() => handleDelete(p.id)}
+                          className="w-10 h-10 flex items-center justify-center rounded-xl border border-red-500/10 text-red-500/30 hover:text-red-500 hover:bg-red-500/5 transition-all shadow-sm"
+                          title="Eliminar"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           {filteredProducts.length === 0 && (
             <div className="py-20 text-center text-gold/20 italic font-serif text-xl">
               No se encontraron productos
             </div>
           )}
-        </div>
+        </>
       )}
 
       {/* Modal Editor */}
