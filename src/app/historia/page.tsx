@@ -36,7 +36,7 @@ export default async function HistoriaPage() {
           </AdminEditable>
           
           <AdminEditable category="historia" id="historia_hero_subtitle" content={content['historia_hero_subtitle'] || "Más de tres décadas seleccionando los mejores productos ibéricos con pasión, dedicación y respeto por la tradición."}>
-            <p className="text-gold-muted/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
+            <p className="text-[#a39485] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
               {content['historia_hero_subtitle'] || "Más de tres décadas seleccionando los mejores productos ibéricos con pasión, dedicación y respeto por la tradición."}
             </p>
           </AdminEditable>
