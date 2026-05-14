@@ -14,7 +14,7 @@ export async function getSiteContent(): Promise<SiteContent> {
   }
 
   const contentMap: SiteContent = {}
-  data?.forEach((item) => {
+  data?.forEach((item: { id: string; content: string }) => {
     contentMap[item.id] = item.content
   })
 

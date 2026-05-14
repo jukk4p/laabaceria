@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { Facebook, Instagram, Phone, Mail, MapPin, Clock, ChevronRight } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, ChevronRight } from 'lucide-react'
+import { FacebookIcon, InstagramIcon } from './SocialIcons'
 import BusinessStatus from '@/components/BusinessStatus'
 
 const exploreLinks = [
@@ -35,19 +36,20 @@ export default function Footer() {
               Tienda de referencia en jamones ibéricos y embutidos artesanales en Coria del Río, Sevilla. Desde 1990.
             </p>
             <div className="flex items-center gap-4">
-              {[
-                { icon: Facebook, href: "https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/" },
-                { icon: Instagram, href: "https://www.instagram.com/la_abaceria_/" }
-              ].map((Social, idx) => (
-                <a 
-                  key={idx} 
-                  href={Social.href} 
-                  target="_blank" 
-                  className="w-10 h-10 rounded-lg bg-transparent flex items-center justify-center text-gold/60 hover:text-gold border border-gold-18 hover:border-gold-35 transition-all group"
-                >
-                  <Social.icon size={18} strokeWidth={1.5} />
-                </a>
-              ))}
+              <a 
+                href="https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/" 
+                target="_blank" 
+                className="w-10 h-10 rounded-lg bg-transparent flex items-center justify-center text-gold/60 hover:text-gold border border-gold-18 hover:border-gold-35 transition-all group"
+              >
+                <FacebookIcon size={18} />
+              </a>
+              <a 
+                href="https://www.instagram.com/la_abaceria_/" 
+                target="_blank" 
+                className="w-10 h-10 rounded-lg bg-transparent flex items-center justify-center text-gold/60 hover:text-gold border border-gold-18 hover:border-gold-35 transition-all group"
+              >
+                <InstagramIcon size={18} />
+              </a>
             </div>
           </div>
 

@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import PageHero from '@/components/PageHero'
 import CTABand from '@/components/CTABand'
-import { MapPin, Phone, Mail, Send, ChevronDown, MessageSquare, Instagram, Facebook, Clock } from 'lucide-react'
+import { MapPin, Phone, Mail, Send, ChevronDown, MessageSquare, Clock } from 'lucide-react'
+import { FacebookIcon, InstagramIcon } from '@/components/SocialIcons'
 import BusinessStatus from '@/components/BusinessStatus'
 
 export default function ContactoPage() {
@@ -80,10 +81,10 @@ export default function ContactoPage() {
                 <p className="text-[10px] uppercase tracking-[0.2em] text-gold/40 mb-6 font-bold">SÍGUENOS EN</p>
                 <div className="flex gap-4">
                   <a href="https://www.instagram.com/la_abaceria_/" target="_blank" className="w-12 h-12 rounded-xl border border-gold/10 flex items-center justify-center text-gold/60 hover:text-gold hover:border-gold hover:bg-gold/5 transition-all">
-                    <Instagram size={20} strokeWidth={1.5} />
+                    <InstagramIcon size={20} />
                   </a>
                   <a href="https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/" target="_blank" className="w-12 h-12 rounded-xl border border-gold/10 flex items-center justify-center text-gold/60 hover:text-gold hover:border-gold hover:bg-gold/5 transition-all">
-                    <Facebook size={20} strokeWidth={1.5} />
+                    <FacebookIcon size={20} />
                   </a>
                 </div>
               </div>
