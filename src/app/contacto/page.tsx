@@ -13,36 +13,14 @@ export default async function ContactoPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-bg-base">
-      <section className="relative pt-36 pb-20 px-6 bg-bg-base overflow-hidden border-b border-white/5">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-gold/10 blur-[160px] rounded-full opacity-60" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,theme(colors.bg.base)_100%)] opacity-40" />
-        </div>
-
-        <div className="container mx-auto max-w-4xl relative z-10 text-center">
-          <div className="mb-6 opacity-0 animate-fade-in">
-            <AdminEditable category="contacto" id="contact_hero_eyebrow" content={content['contact_hero_eyebrow'] || "ATENCIÓN PERSONALIZADA"}>
-              <span className="inline-block text-[10px] md:text-[11px] uppercase tracking-[0.5em] text-gold/60 font-bold border-b border-gold/20 pb-2">
-                {content['contact_hero_eyebrow'] || "ATENCIÓN PERSONALIZADA"}
-              </span>
-            </AdminEditable>
-          </div>
-          
-          <AdminEditable category="contacto" id="contact_hero_title" content={content['contact_hero_title'] || "Contacto"}>
-            <h1 className="text-4xl md:text-6xl font-serif text-[#f4ead5] mb-6 leading-tight opacity-0 animate-fade-in-up">
-              {content['contact_hero_title'] || "Contacto"}
-            </h1>
-          </AdminEditable>
-          
-          <div className="opacity-0 animate-fade-in [animation-delay:0.3s] [animation-fill-mode:forwards]">
-            <AdminEditable category="contacto" id="contact_hero_subtitle" content={content['contact_hero_subtitle'] || "Estamos a su disposición para resolver cualquier duda sobre nuestra selección artesanal o gestionar su pedido."}>
-              <p className="text-[#a39485] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light">
-                {content['contact_hero_subtitle'] || "Estamos a su disposición para resolver cualquier duda sobre nuestra selección artesanal o gestionar su pedido."}
-              </p>
-            </AdminEditable>
-          </div>
-        </div>
-      </section>
+      <PageHero 
+        eyebrow={content['contact_hero_eyebrow'] || "ATENCIÓN PERSONALIZADA"}
+        title={content['contact_hero_title'] || "Contacto"}
+        subtitle={content['contact_hero_subtitle'] || "Estamos a su disposición para resolver cualquier duda sobre nuestra selección artesanal o gestionar su pedido."}
+        eyebrowId="contact_hero_eyebrow"
+        titleId="contact_hero_title"
+        subtitleId="contact_hero_subtitle"
+      />
 
       <ContactForm content={content} />
 

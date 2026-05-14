@@ -11,20 +11,14 @@ export default async function EnviosPage() {
 
   return (
     <main className="min-h-screen">
-      <AdminEditable 
-        id="envios-hero" 
-        content={{
-          eyebrow: content['envios-hero-eyebrow'] || "SERVICIO A DOMICILIO",
-          title: content['envios-hero-title'] || "Envíos y Pedidos",
-          subtitle: content['envios-hero-subtitle'] || "Disfrute de la máxima calidad de nuestros ibéricos sin salir de casa, con todas las garantías de frescura y rapidez."
-        }}
-      >
-        <PageHero 
-          eyebrow={content['envios-hero-eyebrow'] || "SERVICIO A DOMICILIO"}
-          title={content['envios-hero-title'] || "Envíos y Pedidos"}
-          subtitle={content['envios-hero-subtitle'] || "Disfrute de la máxima calidad de nuestros ibéricos sin salir de casa, con todas las garantías de frescura y rapidez."}
-        />
-      </AdminEditable>
+      <PageHero 
+        eyebrow={content['envios-hero-eyebrow'] || "SERVICIO A DOMICILIO"}
+        title={content['envios-hero-title'] || "Envíos y Pedidos"}
+        subtitle={content['envios-hero-subtitle'] || "Disfrute de la máxima calidad de nuestros ibéricos sin salir de casa, con todas las garantías de frescura y rapidez."}
+        eyebrowId="envios-hero-eyebrow"
+        titleId="envios-hero-title"
+        subtitleId="envios-hero-subtitle"
+      />
 
       <EnviosClient content={content} />
 

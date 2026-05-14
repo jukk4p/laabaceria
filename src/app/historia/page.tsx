@@ -12,38 +12,14 @@ export default async function HistoriaPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0e0600]">
-      {/* Hero Section - Clean Dark Aesthetic */}
-      <section className="relative pt-44 pb-28 px-6 overflow-hidden border-b border-gold/5">
-        {/* Premium ambient glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-gold/10 blur-[160px] rounded-full opacity-60" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0e0600_100%)] opacity-40" />
-        </div>
-
-        <div className="container mx-auto max-w-4xl relative z-10 text-center">
-          <div className="mb-6 opacity-0 animate-fade-in">
-            <AdminEditable category="historia" id="historia_hero_eyebrow" content={content['historia_hero_eyebrow'] || "DESDE 1993 · CORIA DEL RÍO"}>
-              <span className="inline-block text-[10px] md:text-[11px] uppercase tracking-[0.5em] text-gold/60 font-bold border-b border-gold/20 pb-2">
-                {content['historia_hero_eyebrow'] || "DESDE 1993 · CORIA DEL RÍO"}
-              </span>
-            </AdminEditable>
-          </div>
-          
-          <AdminEditable category="historia" id="historia_hero_title" content={content['historia_hero_title'] || "Nuestra Historia"}>
-            <h1 className="text-4xl md:text-6xl font-serif text-[#f4ead5] mb-6 leading-tight opacity-0 animate-fade-in-up italic">
-              {content['historia_hero_title'] || "Nuestra Historia"}
-            </h1>
-          </AdminEditable>
-          
-          <div className="opacity-0 animate-fade-in [animation-delay:0.3s] [animation-fill-mode:forwards]">
-            <AdminEditable category="historia" id="historia_hero_subtitle" content={content['historia_hero_subtitle'] || "Más de tres décadas seleccionando los mejores productos ibéricos con pasión, dedicación y respeto por la tradición."}>
-              <p className="text-[#a39485] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light">
-                {content['historia_hero_subtitle'] || "Más de tres décadas seleccionando los mejores productos ibéricos con pasión, dedicación y respeto por la tradición."}
-              </p>
-            </AdminEditable>
-          </div>
-        </div>
-      </section>
+      <PageHero 
+        eyebrow={content['historia_hero_eyebrow'] || "DESDE 1993 · CORIA DEL RÍO"}
+        title={content['historia_hero_title'] || "Nuestra Historia"}
+        subtitle={content['historia_hero_subtitle'] || "Más de tres décadas dedicadas a la selección de los mejores productos ibéricos y gourmet, manteniendo viva la tradición y el buen hacer de nuestra tierra."}
+        eyebrowId="historia_hero_eyebrow"
+        titleId="historia_hero_title"
+        subtitleId="historia_hero_subtitle"
+      />
 
       {/* Orígenes */}
       <section className="py-32 px-6 bg-bg-base">
