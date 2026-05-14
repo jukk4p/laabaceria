@@ -1,6 +1,6 @@
 'use client'
 
-import { MessageCircle } from 'lucide-react'
+import { WhatsAppIcon } from './SocialIcons'
 
 export default function WhatsAppButton() {
   const whatsappUrl = "https://wa.me/34691419369?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20vuestros%20productos"
@@ -16,10 +16,10 @@ export default function WhatsAppButton() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center w-14 h-14 bg-[#25d366] text-[#0c0805] rounded-full shadow-2xl hover:bg-[#1ebe57] transition-all transform hover:scale-110 active:scale-95"
+        className="flex items-center justify-center w-14 h-14 bg-[#25d366] text-white rounded-full shadow-2xl hover:bg-[#1ebe57] transition-all transform hover:scale-110 active:scale-95"
         aria-label="Contactar por WhatsApp"
       >
-        <MessageCircle size={30} fill="currentColor" />
+        <WhatsAppIcon size={30} />
       </a>
     </div>
   )
