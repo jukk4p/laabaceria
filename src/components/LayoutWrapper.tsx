@@ -5,15 +5,36 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import WhatsAppButton from './WhatsAppButton'
 
-export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
+import { usePathname } from 'next/navigation'
+
+import { CartProvider } from '@/context/CartContext'
+import Cart from './Cart'
+import CartTrigger from './CartTrigger'
+
+export default function LayoutWrapper({ 
+  children,
+  content 
+}: { 
+  children: React.ReactNode,
+  content: any
+}) {
+  const pathname = usePathname()
+  const isAdmin = pathname?.startsWith('/admin')
+
+  if (isAdmin) {
+    return <main className="min-h-screen bg-bg-base">{children}</main>
+  }
+
   return (
-    <>
-      <Navbar />
+    <CartProvider>
+      <Navbar content={content} />
       <main className="min-h-screen">
         {children}
       </main>
-      <Footer />
+      <Footer content={content} />
       <WhatsAppButton />
-    </>
+      <Cart />
+      <CartTrigger />
+    </CartProvider>
   )
 }

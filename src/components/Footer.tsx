@@ -20,7 +20,10 @@ const legalLinks = [
   { href: '/terminos', label: 'Términos' },
 ]
 
-export default function Footer() {
+import AdminEditable from './AdminEditable'
+
+export default function Footer({ content = {} }: { content?: any }) {
+
   return (
     <footer className="bg-bg-dark border-t border-gold/10 pt-24 pb-12 px-6">
       <div className="container mx-auto">
@@ -29,22 +32,28 @@ export default function Footer() {
           {/* Col 1: Branding (span 4) */}
           <div className="lg:col-span-4">
             <div className="flex flex-col mb-8">
-              <span className="text-xl font-bold tracking-[0.2em] text-gold mb-2">LA ABACERÍA</span>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-gold/60 font-medium">CALIDAD · TRADICIÓN · SABOR</p>
+              <AdminEditable id="footer-logo-text" content={content['footer-logo-text'] || "LA ABACERÍA"}>
+                <span className="text-xl font-bold tracking-[0.2em] text-gold mb-2">{content['footer-logo-text'] || "LA ABACERÍA"}</span>
+              </AdminEditable>
+              <AdminEditable id="footer-logo-sub" content={content['footer-logo-sub'] || "CALIDAD · TRADICIÓN · SABOR"}>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-gold/60 font-medium">{content['footer-logo-sub'] || "CALIDAD · TRADICIÓN · SABOR"}</p>
+              </AdminEditable>
             </div>
-            <p className="text-gold-muted text-[14px] leading-relaxed mb-8 max-w-sm">
-              Tienda de referencia en jamones ibéricos y embutidos artesanales en Coria del Río, Sevilla. Desde 1990.
-            </p>
+            <AdminEditable id="footer-about" content={content['footer-about'] || "Tienda de referencia en jamones ibéricos y embutidos artesanales en Coria del Río, Sevilla. Desde 1990."}>
+              <p className="text-gold-muted text-[14px] leading-relaxed mb-8 max-w-sm">
+                {content['footer-about'] || "Tienda de referencia en jamones ibéricos y embutidos artesanales en Coria del Río, Sevilla. Desde 1990."}
+              </p>
+            </AdminEditable>
             <div className="flex items-center gap-4">
               <a 
-                href="https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/" 
+                href={content['social-facebook'] || "https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/"} 
                 target="_blank" 
                 className="w-10 h-10 rounded-lg bg-transparent flex items-center justify-center text-gold/60 hover:text-gold border border-gold-18 hover:border-gold-35 transition-all group"
               >
                 <FacebookIcon size={18} />
               </a>
               <a 
-                href="https://www.instagram.com/la_abaceria_/" 
+                href={content['social-instagram'] || "https://www.instagram.com/la_abaceria_/"} 
                 target="_blank" 
                 className="w-10 h-10 rounded-lg bg-transparent flex items-center justify-center text-gold/60 hover:text-gold border border-gold-18 hover:border-gold-35 transition-all group"
               >
@@ -76,8 +85,12 @@ export default function Footer() {
               <div className="flex gap-4 items-start">
                 <MapPin size={18} className="text-gold shrink-0 mt-1" />
                 <div className="text-text-muted text-[15px]">
-                  <p>C. Cervantes, 75</p>
-                  <p>41100 Coria del Río, Sevilla</p>
+                  <AdminEditable id="footer-address-line1" content={content['footer-address-line1'] || "C. Cervantes, 75"} className="block w-full">
+                    <p>{content['footer-address-line1'] || "C. Cervantes, 75"}</p>
+                  </AdminEditable>
+                  <AdminEditable id="footer-address-line2" content={content['footer-address-line2'] || "41100 Coria del Río, Sevilla"} className="block w-full">
+                    <p>{content['footer-address-line2'] || "41100 Coria del Río, Sevilla"}</p>
+                  </AdminEditable>
                 </div>
               </div>
 
@@ -86,9 +99,15 @@ export default function Footer() {
                 <Clock size={18} className="text-gold shrink-0 mt-1" />
                 <div className="flex flex-col gap-3">
                   <div className="text-text-muted text-[14px] leading-relaxed">
-                    <p><span className="font-medium text-text-primary">Lunes a Viernes:</span> 08:30–14:00, 17:30–21:00</p>
-                    <p><span className="font-medium text-text-primary">Sábados:</span> 08:30–14:00</p>
-                    <p><span className="font-medium text-text-primary">Domingos:</span> Cerrado</p>
+                    <AdminEditable id="footer-hours-mon-fri" content={content['footer-hours-mon-fri'] || "08:30–14:00, 17:30–21:00"} className="block w-full">
+                      <p><span className="font-medium text-text-primary">Lunes a Viernes:</span> {content['footer-hours-mon-fri'] || "08:30–14:00, 17:30–21:00"}</p>
+                    </AdminEditable>
+                    <AdminEditable id="footer-hours-sat" content={content['footer-hours-sat'] || "08:30–14:00"} className="block w-full">
+                      <p><span className="font-medium text-text-primary">Sábados:</span> {content['footer-hours-sat'] || "08:30–14:00"}</p>
+                    </AdminEditable>
+                    <AdminEditable id="footer-hours-sun" content={content['footer-hours-sun'] || "Cerrado"} className="block w-full">
+                      <p><span className="font-medium text-text-primary">Domingos:</span> {content['footer-hours-sun'] || "Cerrado"}</p>
+                    </AdminEditable>
                   </div>
                   <BusinessStatus />
                 </div>
@@ -98,11 +117,15 @@ export default function Footer() {
               <div className="pt-1 space-y-3">
                 <div className="flex gap-4 items-center">
                   <Phone size={18} className="text-gold shrink-0" />
-                  <a href="tel:+34691419369" className="text-text-muted hover:text-gold text-[15px] transition-colors font-medium">+34 691 419 369</a>
+                  <AdminEditable id="footer-phone" content={content['footer-phone'] || "+34 691 419 369"}>
+                    <a href={`tel:${content['social-phone'] || "+34691419369"}`} className="text-text-muted hover:text-gold text-[15px] transition-colors font-medium">{content['footer-phone'] || "+34 691 419 369"}</a>
+                  </AdminEditable>
                 </div>
                 <div className="flex gap-4 items-center">
                   <Mail size={18} className="text-gold shrink-0" />
-                  <a href="mailto:Info@laabaceriacoria.es" className="text-text-muted hover:text-gold text-[15px] transition-colors font-medium">Info@laabaceriacoria.es</a>
+                  <AdminEditable id="footer-email" content={content['footer-email'] || "Info@laabaceriacoria.es"}>
+                    <a href={`mailto:${content['social-email'] || "Info@laabaceriacoria.es"}`} className="text-text-muted hover:text-gold text-[15px] transition-colors font-medium">{content['footer-email'] || "Info@laabaceriacoria.es"}</a>
+                  </AdminEditable>
                 </div>
               </div>
             </div>
@@ -133,3 +156,4 @@ export default function Footer() {
     </footer>
   )
 }
+

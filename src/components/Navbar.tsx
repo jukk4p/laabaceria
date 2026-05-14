@@ -8,6 +8,8 @@ import { FacebookIcon, InstagramIcon, WhatsAppIcon } from './SocialIcons'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
+import AdminEditable from './AdminEditable'
+
 // Helper for tailwind class merging
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -20,7 +22,7 @@ const navLinks = [
   { href: '/contacto', label: 'Contacto' },
 ]
 
-export default function Navbar() {
+export default function Navbar({ content = {} }: { content?: any }) {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
@@ -41,10 +43,14 @@ export default function Navbar() {
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo & Branding */}
         <Link href="/" className="flex flex-col group">
-          <span className="text-xl md:text-2xl font-serif font-bold tracking-[0.15em] text-gold leading-none">LA ABACERÍA</span>
-          <span className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-text-faint mt-1.5 group-hover:text-gold transition-colors">
-            Desde 1990 · Coria del Río
-          </span>
+          <AdminEditable id="nav-logo-text" content={content['nav-logo-text'] || "LA ABACERÍA"}>
+            <span className="text-xl md:text-2xl font-serif font-bold tracking-[0.15em] text-gold leading-none">{content['nav-logo-text'] || "LA ABACERÍA"}</span>
+          </AdminEditable>
+          <AdminEditable id="nav-logo-sub" content={content['nav-logo-sub'] || "Desde 1990 · Coria del Río"}>
+            <span className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-text-faint mt-1.5 group-hover:text-gold transition-colors">
+              {content['nav-logo-sub'] || "Desde 1990 · Coria del Río"}
+            </span>
+          </AdminEditable>
         </Link>
 
         {/* Desktop Navigation */}
@@ -68,29 +74,39 @@ export default function Navbar() {
         {/* Action Elements */}
         <div className="hidden lg:flex items-center gap-8">
           {/* Social Icons */}
-          <div className="flex items-center gap-4 text-text-faint border-r border-gold-faint pr-8">
-            <a href="https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/" target="_blank" className="hover:text-gold transition-colors"><FacebookIcon size={14} /></a>
-            <a href="https://www.instagram.com/la_abaceria_/" target="_blank" className="hover:text-gold transition-colors"><InstagramIcon size={14} /></a>
+          <div className="flex items-center gap-5 text-text-faint border-r border-gold-faint pr-8">
+            <AdminEditable id="social-facebook" content={content['social-facebook'] || "https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/"} category="social">
+              <a href={content['social-facebook'] || "https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/"} target="_blank" className="hover:text-gold transition-colors block"><FacebookIcon size={18} /></a>
+            </AdminEditable>
+            <AdminEditable id="social-instagram" content={content['social-instagram'] || "https://www.instagram.com/la_abaceria_/"} category="social">
+              <a href={content['social-instagram'] || "https://www.instagram.com/la_abaceria_/"} target="_blank" className="hover:text-gold transition-colors block"><InstagramIcon size={18} /></a>
+            </AdminEditable>
           </div>
 
           {/* Vertical Phone Display */}
           <a 
-            href="tel:+34691419369"
+            href={`tel:${content['social-phone'] || "+34691419369"}`}
             className="flex items-center gap-3 px-5 py-2.5 border border-gold/30 rounded-xl bg-bg-card hover:border-gold/50 transition-all group"
           >
             <Phone size={14} className="text-gold group-hover:scale-110 transition-transform" />
-            <span className="text-[12px] font-bold text-gold tracking-tight">691 41 93 69</span>
+            <AdminEditable id="nav-phone-display" content={content['nav-phone-display'] || "691 41 93 69"}>
+              <span className="text-[12px] font-bold text-gold tracking-tight">{content['nav-phone-display'] || "691 41 93 69"}</span>
+            </AdminEditable>
           </a>
 
           {/* WhatsApp Button */}
-          <a 
-            href="https://wa.me/34691419369"
-            target="_blank"
-            className="bg-gold text-bg-dark px-6 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest flex items-center gap-3 hover:bg-gold-light transition-all shadow-lg hover:scale-105"
-          >
-            <WhatsAppIcon size={14} />
-            Encargar
-          </a>
+          <AdminEditable id="social-whatsapp-url" content={content['social-whatsapp'] || "34691419369"} category="social">
+            <a 
+              href={`https://wa.me/${content['social-whatsapp'] || "34691419369"}`}
+              target="_blank"
+              className="bg-gold text-bg-dark px-6 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest flex items-center gap-3 hover:bg-gold-light transition-all shadow-lg hover:scale-105"
+            >
+              <WhatsAppIcon size={18} />
+              <AdminEditable id="nav-cta-text" content={content['nav-cta-text'] || "Encargar"}>
+                <span>{content['nav-cta-text'] || "Encargar"}</span>
+              </AdminEditable>
+            </a>
+          </AdminEditable>
         </div>
 
         {/* Mobile Toggle */}
@@ -128,18 +144,18 @@ export default function Navbar() {
             </Link>
           ))}
           
-          <div className="flex gap-8 mt-10">
-             <a href="https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/" target="_blank" className="text-gold"><FacebookIcon size={24} /></a>
-             <a href="https://www.instagram.com/la_abaceria_/" target="_blank" className="text-gold"><InstagramIcon size={24} /></a>
+          <div className="flex gap-10 mt-10">
+             <a href={content['social-facebook'] || "https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/"} target="_blank" className="text-gold"><FacebookIcon size={32} /></a>
+             <a href={content['social-instagram'] || "https://www.instagram.com/la_abaceria_/"} target="_blank" className="text-gold"><InstagramIcon size={32} /></a>
           </div>
 
           <a 
-            href="https://wa.me/34691419369"
+            href={`https://wa.me/${content['social-whatsapp'] || "34691419369"}`}
             className="mt-10 bg-gold text-bg-dark px-12 py-4 rounded-full font-bold uppercase tracking-widest flex items-center gap-3"
             onClick={() => setIsOpen(false)}
           >
-            <WhatsAppIcon size={20} />
-            Encargar ahora
+            <WhatsAppIcon size={24} />
+            {content['nav-cta-text'] || "Encargar ahora"}
           </a>
         </div>
       </div>

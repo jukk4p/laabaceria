@@ -8,7 +8,7 @@ interface PageHeroProps {
 
 export default function PageHero({ eyebrow, title, subtitle }: PageHeroProps) {
   return (
-    <section className="relative pt-48 pb-28 px-6 bg-bg-base overflow-hidden border-b border-white/5">
+    <section className="relative pt-36 pb-20 px-6 bg-bg-base overflow-hidden border-b border-white/5">
       {/* Premium ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-gold/10 blur-[160px] rounded-full opacity-60" />
@@ -17,14 +17,14 @@ export default function PageHero({ eyebrow, title, subtitle }: PageHeroProps) {
 
       <div className="container mx-auto max-w-4xl relative z-10 text-center">
         {eyebrow && (
-          <div className="mb-8 opacity-0 animate-fade-in">
+          <div className="mb-6 opacity-0 animate-fade-in">
             <span className="inline-block text-[10px] md:text-[11px] uppercase tracking-[0.5em] text-gold/60 font-bold border-b border-gold/20 pb-2">
               {eyebrow}
             </span>
           </div>
         )}
         
-        <h1 className="text-5xl md:text-8xl font-serif text-[#f4ead5] mb-8 leading-tight opacity-0 animate-fade-in-up">
+        <h1 className="text-4xl md:text-6xl font-serif text-[#f4ead5] mb-6 leading-tight opacity-0 animate-fade-in-up">
           {title}
         </h1>
         

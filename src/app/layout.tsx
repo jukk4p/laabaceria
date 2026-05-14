@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import LayoutWrapper from '@/components/LayoutWrapper'
+import { getSiteContent } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'La Abacería | Jamones Ibéricos Gourmet · Coria del Río',
@@ -10,11 +11,12 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const content = await getSiteContent()
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FoodEstablishment",
@@ -52,7 +54,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-bg-base text-gold antialiased">
-        <LayoutWrapper>
+        <LayoutWrapper content={content}>
           {children}
         </LayoutWrapper>
       </body>

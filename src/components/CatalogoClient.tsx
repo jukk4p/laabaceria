@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import ProductCard from '@/components/ProductCard'
-import { PRODUCTS } from '@/data/products'
+import type { Product } from '@/lib/types'
+
 
 const categories = [
   { id: 'all', label: 'Todo' },
@@ -14,48 +15,23 @@ const categories = [
   { id: 'cesta', label: 'Cestas Gourmet' },
 ]
 
-const secondaryFilters = [
-  "SIERRA DE EXTREMADURA",
-  "VALLE DE LOS PEDROCHES",
-  "CORTE A CUCHILLO",
-  "PRODUCTO ARTESANO"
-]
-
-export default function CatalogoClient({ initialProducts }: { initialProducts: any[] }) {
+export default function CatalogoClient({ initialProducts }: { initialProducts: Product[] }) {
   const searchParams = useSearchParams()
-  const initialCat = searchParams.get('cat')
-  
-  // We use the high-end static PRODUCTS as the primary data source for the "blindado" look
-  const products = PRODUCTS;
-  
-  const [activeCategory, setActiveCategory] = useState(initialCat || 'all')
+  const initialCat = searchParams.get('categoria') || 'all'
+  const [activeCategory, setActiveCategory] = useState(initialCat)
   const [searchQuery, setSearchQuery] = useState('')
 
-  const filteredProducts = products.filter(p => {
-    const pCat = (p.category || '').toLowerCase().trim()
-    const activeCat = activeCategory.toLowerCase().trim()
-    const matchesCategory = activeCategory === 'all' || pCat === activeCat
-    const matchesSearch = (p.name || '').toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          (p.description || '').toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredProducts = initialProducts.filter(product => {
+    const matchesCategory = activeCategory === 'all' || product.category === activeCategory
+    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         product.description.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesCategory && matchesSearch
   })
 
   return (
-    <div className="flex flex-col min-h-screen bg-bg-base">
-      {/* Top Meta Filters Bar */}
-      <div className="bg-bg-card border-b border-gold/10 py-4">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-wrap justify-center gap-10">
-            {secondaryFilters.map(filter => (
-              <span key={filter} className="text-[9px] tracking-[0.3em] text-gold/30 hover:text-gold/60 cursor-default transition-colors font-bold whitespace-nowrap">
-                {filter}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-bg-dark pt-12 pb-20">
       <div className="container mx-auto px-6 py-20">
+
         {/* Main Category Selection Tabs */}
         <div className="flex flex-wrap justify-center gap-4 mb-24">
           {categories.map(cat => (
@@ -77,7 +53,7 @@ export default function CatalogoClient({ initialProducts }: { initialProducts: a
         </div>
 
         {/* Product Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {filteredProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
