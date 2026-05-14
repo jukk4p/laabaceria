@@ -21,7 +21,7 @@ export default async function HistoriaPage() {
         </div>
 
         <div className="container mx-auto max-w-4xl relative z-10 text-center">
-          <div className="mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <div className="mb-8 opacity-0 animate-fade-in">
             <AdminEditable category="historia" id="historia_hero_eyebrow" content={content['historia_hero_eyebrow'] || "DESDE 1993 · CORIA DEL RÍO"}>
               <span className="inline-block text-[10px] md:text-[11px] uppercase tracking-[0.6em] text-gold/60 font-bold border-b border-gold/20 pb-3">
                 {content['historia_hero_eyebrow'] || "DESDE 1993 · CORIA DEL RÍO"}
@@ -30,16 +30,18 @@ export default async function HistoriaPage() {
           </div>
           
           <AdminEditable category="historia" id="historia_hero_title" content={content['historia_hero_title'] || "Nuestra Historia"}>
-            <h1 className="text-4xl md:text-7xl font-serif text-[#f4ead5] mb-8 leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200 italic">
+            <h1 className="text-4xl md:text-7xl font-serif text-[#f4ead5] mb-8 leading-tight opacity-0 animate-fade-in-up italic">
               {content['historia_hero_title'] || "Nuestra Historia"}
             </h1>
           </AdminEditable>
           
-          <AdminEditable category="historia" id="historia_hero_subtitle" content={content['historia_hero_subtitle'] || "Más de tres décadas seleccionando los mejores productos ibéricos con pasión, dedicación y respeto por la tradición."}>
-            <p className="text-[#a39485] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
-              {content['historia_hero_subtitle'] || "Más de tres décadas seleccionando los mejores productos ibéricos con pasión, dedicación y respeto por la tradición."}
-            </p>
-          </AdminEditable>
+          <div className="opacity-0 animate-fade-in [animation-delay:0.3s] [animation-fill-mode:forwards]">
+            <AdminEditable category="historia" id="historia_hero_subtitle" content={content['historia_hero_subtitle'] || "Más de tres décadas seleccionando los mejores productos ibéricos con pasión, dedicación y respeto por la tradición."}>
+              <p className="text-[#a39485] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light">
+                {content['historia_hero_subtitle'] || "Más de tres décadas seleccionando los mejores productos ibéricos con pasión, dedicación y respeto por la tradición."}
+              </p>
+            </AdminEditable>
+          </div>
         </div>
       </section>
 

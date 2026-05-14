@@ -20,7 +20,7 @@ export default async function ContactoPage() {
         </div>
 
         <div className="container mx-auto max-w-4xl relative z-10 text-center">
-          <div className="mb-6">
+          <div className="mb-6 opacity-0 animate-fade-in">
             <AdminEditable category="contacto" id="contact_hero_eyebrow" content={content['contact_hero_eyebrow'] || "ATENCIÓN PERSONALIZADA"}>
               <span className="inline-block text-[10px] md:text-[11px] uppercase tracking-[0.5em] text-gold/60 font-bold border-b border-gold/20 pb-2">
                 {content['contact_hero_eyebrow'] || "ATENCIÓN PERSONALIZADA"}
@@ -29,16 +29,18 @@ export default async function ContactoPage() {
           </div>
           
           <AdminEditable category="contacto" id="contact_hero_title" content={content['contact_hero_title'] || "Contacto"}>
-            <h1 className="text-4xl md:text-6xl font-serif text-[#f4ead5] mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-serif text-[#f4ead5] mb-6 leading-tight opacity-0 animate-fade-in-up">
               {content['contact_hero_title'] || "Contacto"}
             </h1>
           </AdminEditable>
           
-          <AdminEditable category="contacto" id="contact_hero_subtitle" content={content['contact_hero_subtitle'] || "Estamos a su disposición para resolver cualquier duda sobre nuestra selección artesanal o gestionar su pedido."}>
-            <p className="text-[#a39485] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light">
-              {content['contact_hero_subtitle'] || "Estamos a su disposición para resolver cualquier duda sobre nuestra selección artesanal o gestionar su pedido."}
-            </p>
-          </AdminEditable>
+          <div className="opacity-0 animate-fade-in [animation-delay:0.3s] [animation-fill-mode:forwards]">
+            <AdminEditable category="contacto" id="contact_hero_subtitle" content={content['contact_hero_subtitle'] || "Estamos a su disposición para resolver cualquier duda sobre nuestra selección artesanal o gestionar su pedido."}>
+              <p className="text-[#a39485] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light">
+                {content['contact_hero_subtitle'] || "Estamos a su disposición para resolver cualquier duda sobre nuestra selección artesanal o gestionar su pedido."}
+              </p>
+            </AdminEditable>
+          </div>
         </div>
       </section>
 
