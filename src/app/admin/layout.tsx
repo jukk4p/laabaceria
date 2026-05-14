@@ -12,7 +12,9 @@ import {
   LogOut, 
   Bell, 
   ChevronDown,
-  Settings
+  Settings,
+  Menu,
+  X
 } from 'lucide-react'
 import { createBrowserClient } from '@supabase/ssr'
 
@@ -20,6 +22,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname()
   const router = useRouter()
   const [messageCount, setMessageCount] = useState<number | null>(null)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const isLoginPage = pathname === '/admin/login'
 
   const supabase = createBrowserClient(
@@ -32,6 +35,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       fetchMessageCount()
     }
   }, [isLoginPage])
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
 
   const fetchMessageCount = async () => {
     const { count, error } = await supabase
@@ -65,10 +73,36 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-[#0f0a05] text-gold/90 font-sans selection:bg-gold/30">
+      {/* Mobile Header */}
+      <header className="md:hidden flex items-center justify-between p-6 bg-[#1a120b] border-b border-gold/5 sticky top-0 z-[60]">
+        <div>
+          <h1 className="text-sm font-black tracking-[0.3em] text-gold uppercase">La Abacería</h1>
+          <p className="text-[9px] tracking-[0.2em] text-gold/40 uppercase font-bold">Admin Panel</p>
+        </div>
+        <button 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="w-10 h-10 flex items-center justify-center rounded-xl bg-gold/5 text-gold border border-gold/10"
+        >
+          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </header>
+
+      {/* Overlay Mobile */}
+      {isMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden animate-in fade-in duration-300"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+
       {/* Sidebar General Premium */}
-      <aside className="w-full md:w-72 bg-[#1a120b] border-r border-gold/5 flex flex-col h-screen sticky top-0 z-50">
-        {/* Header Branding */}
-        <div className="p-8 border-b border-gold/5 flex items-center justify-between">
+      <aside className={`
+        fixed inset-y-0 left-0 w-72 bg-[#1a120b] border-r border-gold/5 flex flex-col z-[60] 
+        transform transition-transform duration-300 md:relative md:translate-x-0 md:h-screen md:sticky md:top-0
+        ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+      `}>
+        {/* Header Branding (Desktop) */}
+        <div className="hidden md:flex p-8 border-b border-gold/5 items-center justify-between">
           <div>
             <h1 className="text-sm font-black tracking-[0.3em] text-gold uppercase whitespace-nowrap">La Abacería</h1>
             <p className="text-[9px] tracking-[0.2em] text-gold/40 uppercase font-bold mt-1">Admin Panel</p>
@@ -81,7 +115,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
 
         {/* Navegación Categorizada */}
-        <nav className="flex-1 overflow-y-auto p-4 space-y-8 no-scrollbar">
+        <nav className="flex-1 overflow-y-auto p-4 space-y-8 no-scrollbar mt-12 md:mt-0">
           {menuGroups.map((group) => (
             <div key={group.label} className="space-y-3">
               <h3 className="px-4 text-[9px] font-bold text-gold/30 tracking-[0.3em] uppercase">{group.label}</h3>
@@ -89,19 +123,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 {group.items.map((item) => {
                   const isActive = pathname.startsWith(item.href)
                   return (
-                    <div key={item.id} className={item.hasSubmenu && isActive ? "bg-gold/5 rounded-2xl p-1 border border-gold/10" : ""}>
+                    <div key={item.id}>
                       <Link
                         href={item.href}
                         className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl transition-all group ${
-                          isActive && !item.hasSubmenu
+                          isActive
                             ? 'bg-gold text-black font-bold' 
-                            : isActive && item.hasSubmenu
-                            ? 'bg-gold/10 text-gold font-bold'
                             : 'text-gold/50 hover:bg-gold/5 hover:text-gold'
                         }`}
                       >
                         <div className="flex items-center gap-3">
-                          <item.icon size={18} className={isActive && !item.hasSubmenu ? 'text-black' : 'group-hover:text-gold'} />
+                          <item.icon size={18} className={isActive ? 'text-black' : 'group-hover:text-gold'} />
                           <span className="text-xs font-medium">{item.label}</span>
                         </div>
                         {item.badge && (
@@ -109,10 +141,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             {item.badge}
                           </span>
                         )}
-                        {item.hasSubmenu && <ChevronDown size={14} className={isActive ? 'rotate-0' : '-rotate-90'} />}
                       </Link>
-
-
                     </div>
                   )
                 })}
@@ -140,9 +169,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
 
       {/* Área de Contenido Principal */}
-      <main className="flex-1 h-screen overflow-y-auto no-scrollbar bg-[#0f0a05]">
+      <main className="flex-1 min-h-[calc(100vh-80px)] md:h-screen md:overflow-y-auto no-scrollbar bg-[#0f0a05]">
         {children}
       </main>
     </div>
+  )
+}
   )
 }
