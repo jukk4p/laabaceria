@@ -8,8 +8,7 @@ import {
   Package, 
   Mail, 
   Database, 
-  Globe, 
-  Image as ImageIcon, 
+  ShoppingBag,
   LogOut, 
   Bell, 
   ChevronDown,
@@ -52,13 +51,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         { id: 'products', label: 'Productos', href: '/admin/products', icon: Package },
         { id: 'messages', label: 'Mensajes', href: '/admin/messages', icon: Mail, badge: messageCount?.toString() },
         { id: 'content', label: 'Mantenimiento', href: '/admin/content', icon: Database },
-      ]
-    },
-    {
-      label: 'Sitio',
-      items: [
-        { id: 'seo', label: 'SEO', href: '/admin/seo', icon: Globe },
-        { id: 'gallery', label: 'Galería', href: '/admin/gallery', icon: ImageIcon },
+        { id: 'orders', label: 'Pedidos', href: '/admin/orders', icon: ShoppingBag },
       ]
     }
   ]
