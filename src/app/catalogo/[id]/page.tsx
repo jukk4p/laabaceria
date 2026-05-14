@@ -7,29 +7,46 @@ import { createClient } from '@/lib/supabase/client'
 import { useCart } from '@/context/CartContext'
 import { ArrowLeft, Plus, ShoppingCart, Award, CheckCircle2, ShieldCheck, RefreshCw } from 'lucide-react'
 import { WhatsAppIcon } from '@/components/SocialIcons'
+import AdminEditable from '@/components/AdminEditable'
 
 export default function ProductDetailsPage() {
   const params = useParams()
   const router = useRouter()
   const { addToCart } = useCart()
   const [product, setProduct] = React.useState<any>(null)
+  const [extraContent, setExtraContent] = React.useState<any[]>([])
   const [loading, setLoading] = React.useState(true)
   
   const supabase = createClient()
 
   React.useEffect(() => {
-    const fetchProduct = async () => {
-      const { data, error } = await supabase
+    const fetchProductData = async () => {
+      // Fetch product
+      const { data: productData } = await supabase
         .from('products')
         .select('*')
         .eq('id', params.id)
         .single()
       
-      if (data) setProduct(data)
+      if (productData) setProduct(productData)
+
+      // Fetch extra content (pairing, notes, etc)
+      const { data: contentData } = await supabase
+        .from('site_content')
+        .select('*')
+        .eq('category', 'product-details')
+      
+      if (contentData) setExtraContent(contentData)
+      
       setLoading(false)
     }
-    fetchProduct()
+    fetchProductData()
   }, [params.id])
+
+  const getExtraContent = (id: string, fallback: string) => {
+    const item = extraContent.find(c => c.id === id)
+    return item ? item.content : fallback
+  }
 
   if (loading) {
     return (
@@ -83,27 +100,29 @@ export default function ProductDetailsPage() {
           
           {/* Image Gallery Column (5/12) */}
           <div className="lg:col-span-5 space-y-8 sticky top-32">
-            <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-gold/10 bg-bg-product group shadow-[0_40px_100px_rgba(0,0,0,0.5)]">
-              <Image 
-                src={product.image_url || product.image || '/images/placeholder.jpg'} 
-                alt={product.name}
-                fill
-                className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                priority
-              />
-              
-              {/* Luxury Overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/40 to-transparent" />
-              
-              {/* Corner Badges */}
-              <div className="absolute top-8 left-8 flex flex-col gap-2">
-                {product.category === 'jamon' && (
-                  <span className="bg-gold text-bg-dark text-[9px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-2xl">
-                    Auténtico Jabugo
-                  </span>
-                )}
+            <AdminEditable id={product.id} tableName="products" field="image_url" type="image" content={product.image_url || product.image || ''}>
+              <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-gold/10 bg-bg-product group shadow-[0_40px_100px_rgba(0,0,0,0.5)]">
+                <Image 
+                  src={product.image_url || product.image || '/images/placeholder.jpg'} 
+                  alt={product.name}
+                  fill
+                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                  priority
+                />
+                
+                {/* Luxury Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/40 to-transparent" />
+                
+                {/* Corner Badges */}
+                <div className="absolute top-8 left-8 flex flex-col gap-2">
+                  {product.category === 'jamon' && (
+                    <span className="bg-gold text-bg-dark text-[9px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-2xl">
+                      Auténtico Jabugo
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
+            </AdminEditable>
             
             {/* Guarantee Pills */}
             <div className="grid grid-cols-3 gap-4">
@@ -129,11 +148,14 @@ export default function ProductDetailsPage() {
               </p>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-serif text-gold-muted leading-[1.1] mb-10">
-              {product.name}
-            </h1>
+            <AdminEditable id={product.id} tableName="products" field="name" content={product.name}>
+              <h1 className="text-5xl md:text-7xl font-serif text-gold-muted leading-[1.1] mb-10">
+                {product.name}
+              </h1>
+            </AdminEditable>
 
             <div className="flex items-center gap-6 mb-12">
+            <AdminEditable id={product.id} tableName="products" field="price" content={product.price}>
               <div className="bg-bg-card/50 border border-gold/20 px-8 py-4 rounded-2xl">
                 <span className="text-4xl font-serif text-gold leading-none">
                   {product.price.split('/')[0]}
@@ -144,6 +166,7 @@ export default function ProductDetailsPage() {
                   </span>
                 )}
               </div>
+            </AdminEditable>
               <div className="h-12 w-[1px] bg-gold/10" />
               <p className="text-gold/30 text-xs italic font-serif max-w-[140px]">
                 Selección exclusiva disponible por tiempo limitado.
@@ -155,22 +178,36 @@ export default function ProductDetailsPage() {
                 La Experiencia Abacería
                 <span className="flex-grow h-[1px] bg-gold/10" />
               </h3>
-              <p className="text-gold-muted/80 text-xl font-light leading-relaxed font-serif italic mb-10">
-                "{product.description}"
-              </p>
+              <AdminEditable id={product.id} tableName="products" field="description" content={product.description}>
+                <p className="text-gold-muted/80 text-xl font-light leading-relaxed font-serif italic mb-10">
+                  "{product.description}"
+                </p>
+              </AdminEditable>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="p-6 rounded-3xl bg-gradient-to-br from-bg-card/20 to-transparent border border-gold/5">
                   <h4 className="text-gold text-[10px] uppercase tracking-widest font-bold mb-3">Maridaje Recomendado</h4>
-                  <p className="text-gold/50 text-sm leading-relaxed">
-                    Ideal para acompañar con vinos tintos de crianza o blancos secos. Potencia su sabor con picos artesanos.
-                  </p>
+                  <AdminEditable 
+                    id={`product-${product.id}-maridaje`} 
+                    category="product-details" 
+                    content={getExtraContent(`product-${product.id}-maridaje`, "Ideal para acompañar con vinos tintos de crianza o blancos secos. Potencia su sabor con picos artesanos.")}
+                  >
+                    <p className="text-gold/50 text-sm leading-relaxed">
+                      {getExtraContent(`product-${product.id}-maridaje`, "Ideal para acompañar con vinos tintos de crianza o blancos secos. Potencia su sabor con picos artesanos.")}
+                    </p>
+                  </AdminEditable>
                 </div>
                 <div className="p-6 rounded-3xl bg-gradient-to-br from-bg-card/20 to-transparent border border-gold/5">
                   <h4 className="text-gold text-[10px] uppercase tracking-widest font-bold mb-3">Notas de Cata</h4>
-                  <p className="text-gold/50 text-sm leading-relaxed">
-                    Textura untuosa con matices dulces y frutos secos. Aroma profundo y persistente.
-                  </p>
+                  <AdminEditable 
+                    id={`product-${product.id}-notas`} 
+                    category="product-details" 
+                    content={getExtraContent(`product-${product.id}-notas`, "Textura untuosa con matices dulces y frutos secos. Aroma profundo y persistente.")}
+                  >
+                    <p className="text-gold/50 text-sm leading-relaxed">
+                      {getExtraContent(`product-${product.id}-notas`, "Textura untuosa con matices dulces y frutos secos. Aroma profundo y persistente.")}
+                    </p>
+                  </AdminEditable>
                 </div>
               </div>
             </div>
@@ -186,13 +223,15 @@ export default function ProductDetailsPage() {
                   Añadir al Carrito
                 </button>
                 
-                <button 
-                  onClick={() => window.open(`https://wa.me/34691419369?text=Hola, tengo una duda sobre: ${product.name}`, '_blank')}
-                  className="flex-grow border border-gold/20 hover:border-gold/50 text-gold rounded-2xl transition-all duration-500 flex items-center justify-center gap-3 group px-8"
-                >
-                  <WhatsAppIcon size={18} className="text-gold/40 group-hover:text-gold transition-colors" />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">Consultar</span>
-                </button>
+                <AdminEditable id="social-whatsapp-url" category="social" content={getExtraContent('social-whatsapp-url', '34691419369')}>
+                  <button 
+                    onClick={() => window.open(`https://wa.me/${getExtraContent('social-whatsapp-url', '34691419369')}?text=Hola, tengo una duda sobre: ${product.name}`, '_blank')}
+                    className="flex-grow border border-gold/20 hover:border-gold/50 text-gold rounded-2xl transition-all duration-500 flex items-center justify-center gap-3 group px-8 py-6"
+                  >
+                    <WhatsAppIcon size={18} className="text-gold/40 group-hover:text-gold transition-colors" />
+                    <span className="text-[10px] uppercase tracking-widest font-bold">Consultar</span>
+                  </button>
+                </AdminEditable>
               </div>
               
               <div className="mt-8 flex items-center justify-center gap-6 opacity-30">

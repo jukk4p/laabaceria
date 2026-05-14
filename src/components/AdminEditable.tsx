@@ -12,9 +12,20 @@ interface AdminEditableProps {
   category?: string
   children: React.ReactNode
   className?: string
+  tableName?: string
+  field?: string
 }
 
-export default function AdminEditable({ id, content, type = 'text', category = 'general', children, className = '' }: AdminEditableProps) {
+export default function AdminEditable({ 
+  id, 
+  content, 
+  type = 'text', 
+  category = 'general', 
+  children, 
+  className = '',
+  tableName = 'site_content',
+  field = 'content'
+}: AdminEditableProps) {
   const router = useRouter()
   const [isAdmin, setIsAdmin] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
@@ -39,9 +50,16 @@ export default function AdminEditable({ id, content, type = 'text', category = '
 
   const handleSave = async () => {
     setIsSaving(true)
-    const { error } = await supabase
-      .from('site_content')
-      .upsert({ id, content: value, category, updated_at: new Date() })
+    
+    let updateData: any = { [field]: value, updated_at: new Date() }
+    if (tableName === 'site_content') {
+      updateData.id = id
+      updateData.category = category
+    }
+
+    const { error } = tableName === 'site_content' 
+      ? await supabase.from(tableName).upsert(updateData)
+      : await supabase.from(tableName).update(updateData).eq('id', id)
     
     if (error) {
       alert('Error al guardar: ' + error.message)
@@ -70,9 +88,15 @@ export default function AdminEditable({ id, content, type = 'text', category = '
         .from('product-images')
         .getPublicUrl(filePath)
 
-      const { error: updateError } = await supabase
-        .from('site_content')
-        .upsert({ id, content: publicUrl, category, updated_at: new Date() })
+      let updateData: any = { [field]: publicUrl, updated_at: new Date() }
+      if (tableName === 'site_content') {
+        updateData.id = id
+        updateData.category = category
+      }
+
+      const { error: updateError } = tableName === 'site_content'
+        ? await supabase.from(tableName).upsert(updateData)
+        : await supabase.from(tableName).update(updateData).eq('id', id)
 
       if (updateError) throw updateError
       

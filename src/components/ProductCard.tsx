@@ -5,6 +5,7 @@ import { MessageSquare, Award, Plus, Eye } from 'lucide-react'
 import type { Product } from '@/lib/types'
 import { useCart } from '@/context/CartContext'
 import Link from 'next/link'
+import AdminEditable from './AdminEditable'
 
 interface ProductCardProps {
   product: Product
@@ -30,12 +31,14 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Visual / Badge Area (60% of card visual weight roughly) */}
       <div className="relative aspect-video flex items-center justify-center overflow-hidden bg-bg-product">
         {/* Product Image */}
-        <Image 
-          src={product.image_url || product.image || '/images/placeholder.jpg'} 
-          alt={product.name}
-          fill
-          className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-60"
-        />
+        <AdminEditable id={product.id} tableName="products" field="image_url" type="image" content={product.image_url || product.image || ''}>
+          <Image 
+            src={product.image_url || product.image || '/images/placeholder.jpg'} 
+            alt={product.name}
+            fill
+            className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-60"
+          />
+        </AdminEditable>
 
 
         {/* Overlay Gradient */}
@@ -44,9 +47,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         {/* Quality Badges */}
         <div className="absolute top-6 right-6 z-10 flex flex-col gap-2 items-end">
           {product.category === 'jamon' && (
-            <div className="bg-bg-card/80 border border-gold/20 text-gold text-[8px] uppercase tracking-widest px-3 py-1.5 rounded-full font-bold backdrop-blur-sm">
-              D.O.P. Jabugo
-            </div>
+            <AdminEditable id={product.id} tableName="products" field="badge" content={product.badge || 'D.O.P. Jabugo'}>
+              <div className="bg-bg-card/80 border border-gold/20 text-gold text-[8px] uppercase tracking-widest px-3 py-1.5 rounded-full font-bold backdrop-blur-sm">
+                {product.badge || 'D.O.P. Jabugo'}
+              </div>
+            </AdminEditable>
           )}
           {product.badge && (
             <div className="bg-bg-card/80 border border-gold/30 text-gold text-[8px] uppercase tracking-widest px-3 py-1.5 rounded-full font-bold backdrop-blur-sm">
@@ -63,9 +68,11 @@ export default function ProductCard({ product }: ProductCardProps) {
           <p className="text-[10px] uppercase tracking-[0.4em] text-gold/40 mb-4 font-bold">
             {categoryLabel(product.category)}
           </p>
-          <h3 className="text-xl font-serif text-gold-muted mb-3 group-hover:text-gold transition-colors leading-tight">
-            {product.name}
-          </h3>
+          <AdminEditable id={product.id} tableName="products" field="name" content={product.name}>
+            <h3 className="text-xl font-serif text-gold-muted mb-3 group-hover:text-gold transition-colors leading-tight">
+              {product.name}
+            </h3>
+          </AdminEditable>
           <p className="text-[13px] text-gold-muted font-light leading-relaxed opacity-60 group-hover:opacity-90 transition-opacity mb-6">
             {product.description}
           </p>
@@ -75,12 +82,14 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="grid grid-cols-[1.2fr_auto_auto] items-center gap-2 border-t border-gold/5 pt-6">
           <div className="flex flex-col h-10 justify-center">
             <span className="text-[7px] uppercase tracking-[0.2em] text-gold/30 font-bold leading-none mb-1">Desde</span>
-            <div className="flex items-baseline gap-0.5 leading-none">
-              <span className="text-[1.1rem] font-serif text-gold">{product.price.split('/')[0]}</span>
-              {product.price.includes('/') && (
-                <span className="text-[9px] text-gold/40 font-light lowercase">/{product.price.split('/')[1]}</span>
-              )}
-            </div>
+            <AdminEditable id={product.id} tableName="products" field="price" content={product.price}>
+              <div className="flex items-baseline gap-0.5 leading-none">
+                <span className="text-[1.1rem] font-serif text-gold">{product.price.split('/')[0]}</span>
+                {product.price.includes('/') && (
+                  <span className="text-[9px] text-gold/40 font-light lowercase">/{product.price.split('/')[1]}</span>
+                )}
+              </div>
+            </AdminEditable>
           </div>
           
           <Link 
