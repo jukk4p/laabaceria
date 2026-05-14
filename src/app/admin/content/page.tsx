@@ -278,13 +278,27 @@ function ContentPageInner() {
             Administración del sitio · Controles maestros de contenido
           </p>
         </div>
-        <div className="flex gap-4">
+      </header>
+
+      {/* Backup Controls - Unified */}
+      <div className="bg-[#1a120b] p-8 rounded-[2.5rem] border border-gold/10 flex flex-col xl:flex-row justify-between items-center gap-8">
+        <div className="flex items-center gap-6">
+          <div className="w-12 h-12 rounded-2xl bg-gold/10 flex items-center justify-center text-gold">
+            <Database size={24} />
+          </div>
+          <div>
+            <h3 className="text-sm font-bold text-gold">Sistema de Copias de Seguridad</h3>
+            <p className="text-[10px] text-gold/40 uppercase tracking-widest mt-1">Exporta, restaura o limpia la estructura de textos</p>
+          </div>
+        </div>
+        
+        <div className="flex flex-wrap justify-center gap-4">
           <button 
             disabled={isRestoring}
             onClick={async () => {
               if (confirm('¿ESTÁS TOTALMENTE SEGURO? Esta acción borrará TODOS los textos y configuraciones del sitio. Asegúrate de tener un backup.')) {
                 setIsRestoring(true);
-                const { error } = await supabase.from('site_content').delete().neq('id', 'placeholder'); // Delete all
+                const { error } = await supabase.from('site_content').delete().neq('id', 'placeholder');
                 if (error) alert('Error al borrar: ' + error.message);
                 else {
                   alert('Todo el contenido ha sido borrado.');
@@ -293,34 +307,23 @@ function ContentPageInner() {
                 setIsRestoring(false);
               }
             }}
-            className="flex items-center gap-2 bg-red-500/10 border border-red-500/30 text-red-400 px-6 py-2.5 rounded-full text-[10px] font-bold tracking-[0.2em] hover:bg-red-500 hover:text-white transition-all group disabled:opacity-50"
+            className="flex items-center gap-2 bg-red-500/10 border border-red-500/30 text-red-400 px-5 py-2.5 rounded-xl text-[10px] font-bold hover:bg-red-500 hover:text-white transition-all disabled:opacity-50"
           >
             <Trash2 size={14} />
             BORRAR TODO
           </button>
+
           <button 
             disabled={isRestoring}
             onClick={restoreToDefaults}
-            className="flex items-center gap-2 bg-white/5 border border-white/20 text-gold/60 px-6 py-2.5 rounded-full text-[10px] font-bold tracking-[0.2em] hover:bg-gold hover:text-black transition-all group disabled:opacity-50"
+            className="flex items-center gap-2 bg-white/5 border border-white/10 text-gold/60 px-5 py-2.5 rounded-xl text-[10px] font-bold hover:bg-gold/10 hover:text-gold transition-all disabled:opacity-50"
           >
             <RotateCcw size={14} className={isRestoring ? 'animate-spin' : ''} />
             RESTAURAR FÁBRICA
           </button>
-        </div>
-      </header>
 
-      {/* Backup Controls */}
-      <div className="bg-[#1a120b] p-8 rounded-[2.5rem] border border-gold/10 flex flex-col md:flex-row justify-between items-center gap-8">
-        <div className="flex items-center gap-6">
-          <div className="w-12 h-12 rounded-2xl bg-gold/10 flex items-center justify-center text-gold">
-            <Database size={24} />
-          </div>
-          <div>
-            <h3 className="text-sm font-bold text-gold">Sistema de Copias de Seguridad</h3>
-            <p className="text-[10px] text-gold/40 uppercase tracking-widest mt-1">Exporta o restaura la estructura completa de textos</p>
-          </div>
-        </div>
-        <div className="flex gap-4">
+          <div className="w-px h-10 bg-gold/10 mx-2 hidden md:block" />
+
           <button 
             onClick={exportBackup}
             className="flex items-center gap-2 bg-white/5 border border-white/10 text-gold/60 px-5 py-2.5 rounded-xl text-[10px] font-bold hover:bg-gold/10 hover:text-gold transition-all"
@@ -328,6 +331,7 @@ function ContentPageInner() {
             <Download size={14} />
             EXPORTAR JSON
           </button>
+          
           <button 
             onClick={() => document.getElementById('backup-import')?.click()}
             className="flex items-center gap-2 bg-white/5 border border-white/10 text-gold/60 px-5 py-2.5 rounded-xl text-[10px] font-bold hover:bg-gold/10 hover:text-gold transition-all"
