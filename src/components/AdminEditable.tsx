@@ -127,7 +127,7 @@ export default function AdminEditable({
 
       {/* Editor Inline */}
       {isEditing && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-fit z-[101] flex flex-col items-center justify-center bg-black/95 backdrop-blur-xl rounded-2xl border border-gold/20 shadow-[0_0_50px_rgba(0,0,0,0.8)] animate-in fade-in zoom-in-95 duration-300 p-6 space-y-4">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-fit z-[101] flex flex-col items-center justify-center bg-bg-card/95 backdrop-blur-xl rounded-2xl border border-gold/20 shadow-[0_0_50px_rgba(0,0,0,0.8)] animate-in fade-in zoom-in-95 duration-300 p-6 space-y-4">
           {type === 'text' ? (
             <textarea
               value={value}

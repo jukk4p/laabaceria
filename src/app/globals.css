@@ -9,23 +9,51 @@
 
 /* ── 2. CSS CUSTOM PROPERTIES ── */
 :root {
-  /* ── FONDOS ── */
-  --bg-base-rgb:    14, 6, 0;
-  --bg-dark-rgb:    8, 3, 0;
-  --bg-card-rgb:    26, 10, 0;
-  --bg-section-rgb: 19, 8, 0;
-  --bg-product-rgb: 37, 16, 0;
-  --bg-cta-rgb:     42, 18, 0;
-  
-  --bg-base:        #0e0600;   /* Fondo general de la web */
-  --bg-dark:        #080300;   /* Fondo del footer */
-  --bg-card:        #1a0a00;   /* Cards, navbar, hero */
-  --bg-section:     #130800;   /* Secciones alternadas (about, galería, visita) */
-  --bg-product:     #251000;   /* Imágenes de producto, avatares */
-  --bg-cta:         #2a1200;   /* Franja CTA */
-  --bg-ticker:      #120700;   /* Fondo Ticker */
+  /* ── 1. SHARED TOKENS (Common for both themes) ── */
+  --green-wa-rgb:   37, 211, 102;
+  --green-wa:       #25d366;
+  --green-wa-dark:  #1db954;
+  --red-closed-rgb: 226, 75, 74;
+  --red-closed:     #e24b4a;
+  --teal-custom-rgb: 93, 202, 165;
+  --teal-custom:    #5DCAA5;
+  --amber-premium-rgb: 239, 159, 39;
+  --amber-premium:  #EF9F27;
 
-  /* ── DORADO ── */
+  --font-display:   'Cormorant Garamond', Georgia, serif;
+  --font-body:      'DM Sans', system-ui, sans-serif;
+
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-pill: 999px;
+
+  --t-fast:   150ms ease;
+  --t-base:   250ms ease;
+  --t-slow:   350ms ease;
+
+  --z-nav:    100;
+  --z-modal:  200;
+  --z-toast:  300;
+  --z-wa:     50;
+
+  /* ── 2. DEFAULT THEME: "ESPRESSO & GOLD" (Dark Mode) ── */
+  /* Blindado: Estos son los colores originales del proyecto */
+  --bg-base-rgb:    14, 6, 0;
+  --bg-base:        #0e0600;
+  --bg-dark-rgb:    8, 3, 0;
+  --bg-dark:        #080300;
+  --bg-card-rgb:    26, 10, 0;
+  --bg-card:        #1a0a00;
+  --bg-section-rgb: 19, 8, 0;
+  --bg-section:     #130800;
+  --bg-product-rgb: 37, 16, 0;
+  --bg-product:     #251000;
+  --bg-cta-rgb:     42, 18, 0;
+  --bg-cta:         #2a1200;
+  --bg-ticker:      #120700;
+
   --gold-rgb:       232, 201, 122;
   --gold:           #e8c97a;
   --gold-light-rgb: 240, 224, 176;
@@ -39,7 +67,6 @@
   --gold-12:        rgba(232, 201, 122, 0.12);
   --gold-08:        rgba(232, 201, 122, 0.08);
 
-  /* ── TEXTO ── */
   --text-primary-rgb: 245, 232, 200;
   --text-primary:   #f5e8c8;
   --text-secondary: rgba(255, 245, 220, 0.70);
@@ -49,43 +76,52 @@
   --text-faint:     rgba(255, 245, 220, 0.35);
   --text-ghost:     rgba(255, 245, 220, 0.22);
 
-  /* ── BORDES ── */
   --border:         rgba(232, 201, 122, 0.12);
   --border-md:      rgba(232, 201, 122, 0.20);
   --border-strong:  rgba(232, 201, 122, 0.40);
+}
 
-  /* ── ACENTOS ── */
-  --green-wa-rgb:   37, 211, 102;
-  --green-wa:       #25d366;
-  --green-wa-dark:  #1db954;
-  --red-closed-rgb: 226, 75, 74;
-  --red-closed:     #e24b4a;
-  --teal-custom-rgb: 93, 202, 165;
-  --teal-custom:    #5DCAA5;
-  --amber-premium-rgb: 239, 159, 39;
-  --amber-premium:  #EF9F27;
+/* ── 3. LIGHT THEME: "VANILLA & CHOCOLATE" ── */
+.light {
+  --bg-base-rgb:    253, 251, 247;
+  --bg-base:        #FDFBF7;
+  --bg-dark-rgb:    245, 241, 234;
+  --bg-dark:        #F5F1EA;
+  --bg-card-rgb:    255, 255, 255;
+  --bg-card:        #FFFFFF;
+  --bg-section-rgb: 250, 247, 242;
+  --bg-section:     #FAF7F2;
+  --bg-product-rgb: 242, 236, 228;
+  --bg-product:     #F2ECE4;
+  --bg-cta-rgb:     248, 243, 235;
+  --bg-cta:         #F8F3EB;
+  --bg-ticker:      #fcf9f2;
 
-  /* ── TIPOGRAFÍA ── */
-  --font-display:   'Cormorant Garamond', Georgia, serif;
-  --font-body:      'DM Sans', system-ui, sans-serif;
+  --gold-rgb:       141, 110, 43; /* Dorado más profundo para contraste */
+  --gold:           #8D6E2B;
+  --gold-light-rgb: 184, 148, 70;
+  --gold-light:     #B89446;
+  --gold-warm:      #5E4200;
+  --gold-55:        rgba(141, 110, 43, 0.55);
+  --gold-45:        rgba(141, 110, 43, 0.45);
+  --gold-35:        rgba(141, 110, 43, 0.35);
+  --gold-25:        rgba(141, 110, 43, 0.25);
+  --gold-15:        rgba(141, 110, 43, 0.15);
+  --gold-12:        rgba(141, 110, 43, 0.12);
+  --gold-08:        rgba(141, 110, 43, 0.08);
 
-  /* ── RADIOS ── */
-  --radius-sm:   6px;
-  --radius-md:   10px;
-  --radius-lg:   12px;
-  --radius-xl:   16px;
-  --radius-pill: 999px;
+  --text-primary-rgb: 42, 18, 0;
+  --text-primary:   #2A1200;
+  --text-secondary: rgba(42, 18, 0, 0.75);
+  --text-muted-rgb: 42, 18, 0;
+  --text-muted:     rgba(42, 18, 0, 0.60);
+  --text-faint-rgb: 42, 18, 0;
+  --text-faint:     rgba(42, 18, 0, 0.45);
+  --text-ghost:     rgba(42, 18, 0, 0.25);
 
-  /* ── TRANSICIONES ── */
-  --t-fast:   150ms ease;
-  --t-base:   250ms ease;
-  --t-slow:   350ms ease;
-
-  /* Z-index */
-  --z-nav:    100;
-  --z-modal:  200;
-  --z-toast:  300;
-  --z-wa:     50;
+  --border:         rgba(141, 110, 43, 0.15);
+  --border-md:      rgba(141, 110, 43, 0.25);
+  --border-strong:  rgba(141, 110, 43, 0.45);
 }
 
 /* ── 3. RESET & BASE ── */

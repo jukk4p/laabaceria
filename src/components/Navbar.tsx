@@ -9,6 +9,7 @@ import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
 import AdminEditable from './AdminEditable'
+import ThemeToggle from './ThemeToggle'
 
 // Helper for tailwind class merging
 function cn(...inputs: ClassValue[]) {
@@ -37,7 +38,7 @@ export default function Navbar({ content = {} }: { content?: any }) {
     <nav 
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-500 px-6",
-        scrolled ? "py-4 bg-[rgba(var(--bg-card-rgb),0.35)] backdrop-blur-md border-b border-gold-18" : "py-8 bg-transparent"
+        scrolled ? "py-4 bg-[rgba(var(--bg-card-rgb),0.35)] backdrop-blur-md border-b border-gold-08" : "py-8 bg-transparent"
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
@@ -73,14 +74,17 @@ export default function Navbar({ content = {} }: { content?: any }) {
 
         {/* Action Elements */}
         <div className="hidden lg:flex items-center gap-8">
-          {/* Social Icons */}
-          <div className="flex items-center gap-5 text-text-faint border-r border-gold-faint pr-8">
-            <AdminEditable id="social-facebook" content={content['social-facebook'] || "https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/"} category="social">
-              <a href={content['social-facebook'] || "https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/"} target="_blank" className="hover:text-gold transition-colors block"><FacebookIcon size={18} /></a>
-            </AdminEditable>
-            <AdminEditable id="social-instagram" content={content['social-instagram'] || "https://www.instagram.com/la_abaceria_/"} category="social">
-              <a href={content['social-instagram'] || "https://www.instagram.com/la_abaceria_/"} target="_blank" className="hover:text-gold transition-colors block"><InstagramIcon size={18} /></a>
-            </AdminEditable>
+          {/* Theme Toggle & Social Icons */}
+          <div className="flex items-center gap-5 border-r border-gold-faint pr-8">
+            <ThemeToggle />
+            <div className="flex items-center gap-5 text-text-faint">
+              <AdminEditable id="social-facebook" content={content['social-facebook'] || "https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/"} category="social">
+                <a href={content['social-facebook'] || "https://www.facebook.com/p/Jamones-y-Embutidos-La-Abacer%C3%ADa-100054325518401/"} target="_blank" className="hover:text-gold transition-colors block"><FacebookIcon size={18} /></a>
+              </AdminEditable>
+              <AdminEditable id="social-instagram" content={content['social-instagram'] || "https://www.instagram.com/la_abaceria_/"} category="social">
+                <a href={content['social-instagram'] || "https://www.instagram.com/la_abaceria_/"} target="_blank" className="hover:text-gold transition-colors block"><InstagramIcon size={18} /></a>
+              </AdminEditable>
+            </div>
           </div>
 
           {/* Vertical Phone Display */}
@@ -133,6 +137,9 @@ export default function Navbar({ content = {} }: { content?: any }) {
         </button>
 
         <div className="flex flex-col items-center gap-10">
+          <div className="mb-4">
+            <ThemeToggle />
+          </div>
           {navLinks.map((link) => (
             <Link 
               key={link.href}
