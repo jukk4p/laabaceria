@@ -57,7 +57,7 @@ export default function ContactForm({ content }: ContactFormProps) {
                 <Send size={32} strokeWidth={1.5} />
               </div>
               <h4 className="text-3xl font-serif text-gold mb-3">¡Mensaje enviado!</h4>
-              <p className="text-[#a39485] font-light mb-8 max-w-xs mx-auto">Gracias por contactar. Le responderemos con la máxima brevedad posible.</p>
+              <p className="text-text-muted font-light mb-8 max-w-xs mx-auto">Gracias por contactar. Le responderemos con la máxima brevedad posible.</p>
               <button 
                 onClick={() => setIsSubmitted(false)}
                 className="text-gold text-[10px] border-b border-gold/40 pb-1 uppercase tracking-[0.3em] font-bold hover:border-gold transition-all"
