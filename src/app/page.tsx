@@ -70,7 +70,7 @@ export default async function HomePage() {
           </div>
 
           <AdminEditable id="home_hero_title" content={content['home_hero_title'] || "El arte del |jamón ibérico|"} className="w-full">
-            <h1 className="text-6xl md:text-[8rem] font-serif text-[#f4ead5] leading-[1.1] mb-10 max-w-5xl mx-auto opacity-0 animate-[fade-in-up_1s_ease-out_0.3s_forwards]">
+            <h1 className="text-6xl md:text-[8rem] font-serif text-text-primary leading-[1.1] mb-10 max-w-5xl mx-auto opacity-0 animate-[fade-in-up_1s_ease-out_0.3s_forwards]">
               {(() => {
                 const text = content['home_hero_title'] || "El arte del |jamón ibérico|";
 
@@ -206,7 +206,7 @@ export default async function HomePage() {
             </AdminEditable>
 
             <AdminEditable id="about-title" content={content['about-title'] || "Pasión por el producto bien hecho"} className="w-full block">
-              <h2 className="text-5xl md:text-6xl font-serif text-[#f4ead5] mb-10 leading-[1.2]">
+              <h2 className="text-5xl md:text-6xl font-serif text-text-primary mb-10 leading-[1.2]">
                 {content['about-title'] || "Pasión por el producto bien hecho"}
               </h2>
             </AdminEditable>
@@ -259,7 +259,7 @@ export default async function HomePage() {
             <span className="inline-block text-[11px] uppercase tracking-[0.5em] text-gold/40 mb-8 font-bold">{content['baskets-eyebrow'] || "EL REGALO PERFECTO"}</span>
           </AdminEditable>
           <AdminEditable id="baskets-title" content={content['baskets-title'] || "Cestas Gourmet"} className="w-full block">
-            <h2 className="text-5xl md:text-8xl font-serif text-[#f4ead5] mb-8 leading-none italic">{content['baskets-title'] || "Cestas Gourmet"}</h2>
+            <h2 className="text-5xl md:text-8xl font-serif text-text-primary mb-8 leading-none italic">{content['baskets-title'] || "Cestas Gourmet"}</h2>
           </AdminEditable>
           <AdminEditable id="baskets-description" content={content['baskets-description'] || "Selecciones artesanales para regalar o disfrutar en ocasiones especiales."} className="w-full block">
             <p className="text-text-muted text-lg max-w-2xl mx-auto font-light opacity-60">{content['baskets-description'] || "Selecciones artesanales para regalar o disfrutar en ocasiones especiales."}</p>
@@ -324,7 +324,7 @@ export default async function HomePage() {
               <div className="flex-grow p-12 flex flex-col justify-between">
                 <div>
                   <AdminEditable id={`baskets-card-${cesta.id}-title`} content={cesta.title} className="w-full block">
-                    <h3 className="text-3xl font-serif text-[#f4ead5] mb-4 leading-tight group-hover:text-gold transition-colors">
+                    <h3 className="text-3xl font-serif text-text-primary mb-4 leading-tight group-hover:text-gold transition-colors">
                       {cesta.title}
                     </h3>
                   </AdminEditable>

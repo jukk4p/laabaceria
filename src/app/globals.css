@@ -83,45 +83,45 @@
 
 /* ── 3. LIGHT THEME: "VANILLA & CHOCOLATE" ── */
 .light {
-  --bg-base-rgb:    253, 251, 247;
-  --bg-base:        #FDFBF7;
-  --bg-dark-rgb:    245, 241, 234;
-  --bg-dark:        #F5F1EA;
+  --bg-base-rgb:    252, 250, 247;
+  --bg-base:        #FCFAF7;
+  --bg-dark-rgb:    245, 240, 232;
+  --bg-dark:        #F5F0E8;
   --bg-card-rgb:    255, 255, 255;
   --bg-card:        #FFFFFF;
-  --bg-section-rgb: 250, 247, 242;
-  --bg-section:     #FAF7F2;
-  --bg-product-rgb: 242, 236, 228;
-  --bg-product:     #F2ECE4;
+  --bg-section-rgb: 253, 251, 249;
+  --bg-section:     #FDFBF9;
+  --bg-product-rgb: 252, 250, 247;
+  --bg-product:     #FCFAF7;
   --bg-cta-rgb:     248, 243, 235;
   --bg-cta:         #F8F3EB;
-  --bg-ticker:      #fcf9f2;
+  --bg-ticker:      #fcfaf7;
 
-  --gold-rgb:       141, 110, 43; /* Dorado más profundo para contraste */
-  --gold:           #8D6E2B;
-  --gold-light-rgb: 184, 148, 70;
-  --gold-light:     #B89446;
-  --gold-warm:      #5E4200;
-  --gold-55:        rgba(141, 110, 43, 0.55);
-  --gold-45:        rgba(141, 110, 43, 0.45);
-  --gold-35:        rgba(141, 110, 43, 0.35);
-  --gold-25:        rgba(141, 110, 43, 0.25);
-  --gold-15:        rgba(141, 110, 43, 0.15);
-  --gold-12:        rgba(141, 110, 43, 0.12);
-  --gold-08:        rgba(141, 110, 43, 0.08);
+  --gold-rgb:       179, 139, 77;
+  --gold:           #B38B4D;
+  --gold-light-rgb: 197, 160, 89;
+  --gold-light:     #C5A059;
+  --gold-warm:      #D4B98A;
+  --gold-55:        rgba(179, 139, 77, 0.55);
+  --gold-45:        rgba(179, 139, 77, 0.45);
+  --gold-35:        rgba(179, 139, 77, 0.35);
+  --gold-25:        rgba(179, 139, 77, 0.25);
+  --gold-15:        rgba(179, 139, 77, 0.15);
+  --gold-12:        rgba(179, 139, 77, 0.12);
+  --gold-08:        rgba(179, 139, 77, 0.08);
+  
+  --text-primary-rgb: 42, 27, 21;
+  --text-primary:   #2A1B15;
+  --text-secondary: rgba(42, 27, 21, 0.75);
+  --text-muted-rgb: 92, 74, 65;
+  --text-muted:     #5C4A41;
+  --text-faint-rgb: 141, 122, 113;
+  --text-faint:     #8D7A71;
+  --text-ghost:     rgba(42, 27, 21, 0.15);
 
-  --text-primary-rgb: 42, 18, 0;
-  --text-primary:   #2A1200;
-  --text-secondary: rgba(42, 18, 0, 0.75);
-  --text-muted-rgb: 42, 18, 0;
-  --text-muted:     rgba(42, 18, 0, 0.60);
-  --text-faint-rgb: 42, 18, 0;
-  --text-faint:     rgba(42, 18, 0, 0.45);
-  --text-ghost:     rgba(42, 18, 0, 0.25);
-
-  --border:         rgba(141, 110, 43, 0.15);
-  --border-md:      rgba(141, 110, 43, 0.25);
-  --border-strong:  rgba(141, 110, 43, 0.45);
+  --border:         rgba(179, 139, 77, 0.15);
+  --border-md:      rgba(179, 139, 77, 0.25);
+  --border-strong:  rgba(179, 139, 77, 0.40);
 }
 
 /* ── 3. RESET & BASE ── */
