@@ -22,20 +22,14 @@ export default async function EnviosPage() {
 
       <EnviosClient content={content} />
 
-      <AdminEditable
-        id="envios-cta"
-        content={{
-          title: content['envios-cta-title'] || "¿Listo para hacer tu pedido?",
-          subtitle: content['envios-cta-subtitle'] || "Escríbenos por WhatsApp y te atendemos en menos de 1 hora en horario de apertura.",
-          buttonText: content['envios-cta-buttonText'] || "Hacer pedido por WhatsApp"
-        }}
-      >
-        <CTABand 
-          title={content['envios-cta-title'] || "¿Listo para hacer tu pedido?"}
-          subtitle={content['envios-cta-subtitle'] || "Escríbenos por WhatsApp y te atendemos en menos de 1 hora en horario de apertura."}
-          buttonText={content['envios-cta-buttonText'] || "Hacer pedido por WhatsApp"}
-        />
-      </AdminEditable>
+      <CTABand 
+        title={content['envios-cta-title'] || "¿Listo para hacer tu pedido?"}
+        subtitle={content['envios-cta-subtitle'] || "Escríbenos por WhatsApp y te atendemos en menos de 1 hora en horario de apertura."}
+        buttonText={content['envios-cta-buttonText'] || "Hacer pedido por WhatsApp"}
+        titleId="envios-cta-title"
+        subtitleId="envios-cta-subtitle"
+        buttonTextId="envios-cta-buttonText"
+      />
     </main>
   )
 }

@@ -4,12 +4,18 @@ interface CTABandProps {
   title?: string;
   subtitle?: string;
   buttonText?: string;
+  titleId?: string;
+  subtitleId?: string;
+  buttonTextId?: string;
 }
 
 export default function CTABand({ 
   title = "¿Tienes una celebración especial?", 
   subtitle = "Cuéntanos qué necesitas y te preparamos una selección a medida con los mejores productos ibéricos.",
-  buttonText = "Escribir por WhatsApp"
+  buttonText = "Escribir por WhatsApp",
+  titleId = "cta-title",
+  subtitleId = "cta-subtitle",
+  buttonTextId = "cta-button"
 }: CTABandProps) {
   return (
     <section className="py-24 px-6 bg-bg-cta border-t border-gold/10">
@@ -19,12 +25,12 @@ export default function CTABand({
           <div className="absolute inset-0 bg-gradient-to-tr from-gold/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
           
           <div className="relative z-10 text-center md:text-left max-w-2xl">
-            <AdminEditable id="cta-title" content={title}>
+            <AdminEditable id={titleId} content={title}>
               <h2 className="text-3xl md:text-4xl font-medium text-gold mb-4">
                 {title}
               </h2>
             </AdminEditable>
-            <AdminEditable id="cta-subtitle" content={subtitle}>
+            <AdminEditable id={subtitleId} content={subtitle}>
               <p className="text-gold/45 text-sm md:text-lg font-light leading-relaxed">
                 {subtitle}
               </p>
@@ -38,7 +44,7 @@ export default function CTABand({
               className="inline-flex items-center gap-3 bg-[#25d366] hover:bg-[#20ba5a] text-[#0c0805] px-8 py-4 rounded-2xl font-bold text-base transition-all shadow-lg shadow-green-500/20 hover:scale-105 active:scale-95 group/btn"
             >
               <WhatsAppIcon className="w-6 h-6 fill-[#0c0805] group-hover:scale-110 transition-transform" />
-              <AdminEditable id="cta-button" content={buttonText}>
+              <AdminEditable id={buttonTextId} content={buttonText}>
                 <span>{buttonText}</span>
               </AdminEditable>
             </a>
